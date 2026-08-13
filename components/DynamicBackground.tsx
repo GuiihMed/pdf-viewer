@@ -128,49 +128,6 @@ export function InteractiveBackground() {
         ctx.stroke();
       }
 
-      // 3. Draw Autonomous 3D Wireframe Icosahedron Geometry
-      angleX += 0.005;
-      angleY += 0.008;
-
-      const centerX = width * 0.78;
-      const centerY = height * 0.45;
-
-      const cosX = Math.cos(angleX);
-      const sinX = Math.sin(angleX);
-      const cosY = Math.cos(angleY);
-      const sinY = Math.sin(angleY);
-
-      const projectedVertices = vertices.map(([x, y, z]) => {
-        // Rotate Y
-        let x1 = x * cosY + z * sinY;
-        let z1 = -x * sinY + z * cosY;
-
-        // Rotate X
-        let y2 = y * cosX - z1 * sinX;
-        let z2 = y * sinX + z1 * cosX;
-
-        return {
-          x: centerX + x1,
-          y: centerY + y2,
-          z: z2,
-        };
-      });
-
-      ctx.strokeStyle = 'rgba(0, 195, 255, 0.65)';
-      ctx.lineWidth = 1.5;
-      ctx.shadowColor = 'rgba(0, 195, 255, 0.5)';
-      ctx.shadowBlur = 12;
-
-      edges.forEach(([i, j]) => {
-        const v1 = projectedVertices[i];
-        const v2 = projectedVertices[j];
-        ctx.beginPath();
-        ctx.moveTo(v1.x, v1.y);
-        ctx.lineTo(v2.x, v2.y);
-        ctx.stroke();
-      });
-      ctx.shadowBlur = 0; // reset
-
       // 4. Render Floating Particles
       ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
       particles.forEach((p) => {
