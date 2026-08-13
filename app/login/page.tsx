@@ -82,7 +82,7 @@ function LoginForm() {
       }
 
       showToast('Login realizado com sucesso! Redirecionando...', 'success');
-      router.push(redirectTarget);
+      window.location.href = redirectTarget;
     } catch (err) {
       setError('Erro de conexão com o servidor.');
       setLoading(false);
