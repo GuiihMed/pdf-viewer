@@ -132,7 +132,7 @@ export default function LandingPage() {
               <div style={{ width: 44, height: 44, borderRadius: 10, background: 'rgba(16, 185, 129, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#34d399', marginBottom: 16 }}>
                 <Globe size={24} />
               </div>
-              <div style={{ fontSize: '0.8rem', color: '#10b981', fontWeight 700, textTransform: 'uppercase', marginBottom: 4 }}>Passo 4</div>
+              <div style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 700, textTransform: 'uppercase', marginBottom: 4 }}>Passo 4</div>
               <h3 style={{ fontSize: '1.15rem', marginBottom: 8 }}>4. Publique</h3>
               <p style={{ fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.5 }}>Cole o iframe no site de destino. Se precisar atualizar o arquivo, a URL se mantém!</p>
             </div>
