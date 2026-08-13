@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Apenas Super Admins podem criar sites.' }, { status: 403 });
     }
 
-    const { name, domain, description, status } = await request.json();
+    const { name, domain, description, wix_webhook_url, status } = await request.json();
 
     if (!name || !domain) {
       return NextResponse.json({ error: 'Nome e Domínio são obrigatórios.' }, { status: 400 });
@@ -53,11 +53,11 @@ export async function POST(request: Request) {
     const siteId = `site_${Date.now()}`;
 
     const stmt = db.prepare(`
-      INSERT INTO sites (id, name, domain, slug, description, status)
-      VALUES (?, ?, ?, ?, ?, ?)
+      INSERT INTO sites (id, name, domain, slug, description, wix_webhook_url, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
     `);
 
-    stmt.run(siteId, name, domain.toLowerCase().trim(), slug, description || '', status || 'active');
+    stmt.run(siteId, name, domain.toLowerCase().trim(), slug, description || '', wix_webhook_url || null, status || 'active');
 
     return NextResponse.json({ success: true, site: { id: siteId, name, domain, slug } });
   } catch (err: any) {

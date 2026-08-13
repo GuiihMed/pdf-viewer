@@ -45,6 +45,7 @@ export interface Site {
   domain: string;
   slug: string;
   description: string;
+  wix_webhook_url?: string | null;
   status: string;
   created_at: string;
   updated_at: string;

@@ -217,6 +217,32 @@ export async function POST(request: Request) {
       });
     }
 
+    // If site has a configured Wix Webhook URL, forward the PDF link and metadata to Wix
+    if (siteId) {
+      try {
+        const site = db.prepare('SELECT * FROM sites WHERE id = ?').get(siteId) as any;
+        if (site && site.wix_webhook_url) {
+          const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://wdcom-pdfviewer.vercel.app';
+          fetch(site.wix_webhook_url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              event: 'pdf.created',
+              pdf: {
+                id: pdfId,
+                publicId: publicId,
+                title: title,
+                description: description,
+                publicViewUrl: `${appUrl}/view/${publicId}`,
+                streamPdfUrl: `${appUrl}/api/pdfs/stream/${publicId}`,
+                embedIframeCode: `<iframe src="${appUrl}/view/${publicId}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`,
+              },
+            }),
+          }).catch((e) => console.warn('Could not dispatch to Wix Webhook:', e.message));
+        }
+      } catch (e) {}
+    }
+
     return NextResponse.json({
       success: true,
       pdf: {

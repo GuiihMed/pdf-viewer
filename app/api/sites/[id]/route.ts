@@ -10,16 +10,16 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
 
     const siteId = params.id;
-    const { name, domain, description, status } = await request.json();
+    const { name, domain, description, wix_webhook_url, status } = await request.json();
 
     const slug = domain.toLowerCase().replace(/[^a-z0-9]/g, '-');
     const stmt = db.prepare(`
       UPDATE sites
-      SET name = ?, domain = ?, slug = ?, description = ?, status = ?, updated_at = CURRENT_TIMESTAMP
+      SET name = ?, domain = ?, slug = ?, description = ?, wix_webhook_url = ?, status = ?, updated_at = CURRENT_TIMESTAMP
       WHERE id = ?
     `);
 
-    stmt.run(name, domain.toLowerCase().trim(), slug, description || '', status || 'active', siteId);
+    stmt.run(name, domain.toLowerCase().trim(), slug, description || '', wix_webhook_url || null, status || 'active', siteId);
 
     return NextResponse.json({ success: true, message: 'Site atualizado.' });
   } catch (err: any) {

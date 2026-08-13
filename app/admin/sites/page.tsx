@@ -15,6 +15,7 @@ function SitesManagementContent() {
   const [name, setName] = useState('');
   const [domain, setDomain] = useState('');
   const [description, setDescription] = useState('');
+  const [wixWebhookUrl, setWixWebhookUrl] = useState('');
   const [status, setStatus] = useState('active');
   const [saving, setSaving] = useState(false);
 
@@ -38,6 +39,7 @@ function SitesManagementContent() {
     setName('');
     setDomain('');
     setDescription('');
+    setWixWebhookUrl('');
     setStatus('active');
     setIsModalOpen(true);
   };
@@ -47,6 +49,7 @@ function SitesManagementContent() {
     setName(site.name);
     setDomain(site.domain);
     setDescription(site.description || '');
+    setWixWebhookUrl(site.wix_webhook_url || '');
     setStatus(site.status || 'active');
     setIsModalOpen(true);
   };
@@ -62,7 +65,7 @@ function SitesManagementContent() {
       const res = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, domain, description, status }),
+        body: JSON.stringify({ name, domain, description, wix_webhook_url: wixWebhookUrl, status }),
       });
 
       if (res.ok) {
@@ -224,11 +227,25 @@ function SitesManagementContent() {
               <div className="form-group">
                 <label className="form-label">Descrição (Opcional)</label>
                 <textarea
-                  rows={3}
+                  rows={2}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   className="form-textarea"
                 />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">URL do Webhook do Wix (Para Enviar PDFs Direto ao Wix)</label>
+                <input
+                  type="url"
+                  value={wixWebhookUrl}
+                  onChange={(e) => setWixWebhookUrl(e.target.value)}
+                  placeholder="https://seu-site.wixsite.com/_functions/receberPdf"
+                  className="form-input"
+                />
+                <span style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: '4px', display: 'block' }}>
+                  Quando você subir um PDF para este site, o sistema enviará o arquivo e o link automaticamente para o Wix!
+                </span>
               </div>
 
               <div className="form-group">
