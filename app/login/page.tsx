@@ -64,12 +64,9 @@ export default function LoginPage() {
           boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
         }}
       >
-        {/* Brand Header WDCOM Main Logo */}
+        {/* Brand Header WDCOM Logo */}
         <div style={{ textAlign: 'center', marginBottom: '28px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <WdcomLogo height={48} />
-          <p style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: '12px' }}>
-            Acesso Restrito ao Painel Administrativo
-          </p>
         </div>
 
         {error && (
@@ -94,8 +91,7 @@ export default function LoginPage() {
 
         {/* Secure Login Form */}
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="form-label">E-mail de Acesso</label>
+          <div className="form-group" style={{ marginBottom: '16px' }}>
             <div style={{ position: 'relative' }}>
               <input
                 type="email"
@@ -103,7 +99,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-input"
-                placeholder="atendimento@wdcom.com.br"
+                placeholder="E-mail"
                 style={{ paddingLeft: '38px' }}
               />
               <Mail size={16} color="#6b7280" style={{ position: 'absolute', left: 12, top: 13 }} />
@@ -111,7 +107,6 @@ export default function LoginPage() {
           </div>
 
           <div className="form-group" style={{ marginBottom: '24px' }}>
-            <label className="form-label">Senha</label>
             <div style={{ position: 'relative' }}>
               <input
                 type="password"
@@ -119,7 +114,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-input"
-                placeholder="••••••••"
+                placeholder="Senha"
                 style={{ paddingLeft: '38px' }}
               />
               <Lock size={16} color="#6b7280" style={{ position: 'absolute', left: 12, top: 13 }} />
@@ -132,7 +127,7 @@ export default function LoginPage() {
             className="btn-primary"
             style={{ width: '100%', padding: '12px', fontSize: '0.95rem', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}
           >
-            {loading ? 'Autenticando...' : 'Entrar no Sistema'} <ArrowRight size={18} />
+            {loading ? 'Autenticando...' : 'Entrar'} <ArrowRight size={18} />
           </button>
         </form>
       </div>

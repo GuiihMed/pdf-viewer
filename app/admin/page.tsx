@@ -3,13 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   FileText,
-  FileCheck,
-  FileX,
   Globe,
   Tag,
   Eye,
   TrendingUp,
-  Clock,
   Plus,
   ArrowUpRight,
   Copy,
@@ -31,7 +28,7 @@ export default function AdminDashboardPage() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        console.error('Error fetching admin stats:', err);
         setLoading(false);
       });
   }, []);
@@ -49,7 +46,19 @@ export default function AdminDashboardPage() {
     );
   }
 
-  const { kpis, viewsChart, recentPdfs } = stats;
+  const kpis = stats.kpis || {
+    totalPdfs: 0,
+    activePdfs: 0,
+    inactivePdfs: 0,
+    totalViews: 0,
+    views7d: 0,
+    views30d: 0,
+    totalSites: 0,
+    totalTags: 0,
+  };
+
+  const viewsChart = Array.isArray(stats.viewsChart) ? stats.viewsChart : [];
+  const recentPdfs = Array.isArray(stats.recentPdfs) ? stats.recentPdfs : [];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
@@ -124,13 +133,17 @@ export default function AdminDashboardPage() {
 
         {/* Interactive SVG Bar Chart */}
         <div style={{ height: '200px', display: 'flex', alignItems: 'flex-end', gap: '12px', paddingTop: '20px', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '12px' }}>
-          {viewsChart && viewsChart.length > 0 ? (
+          {viewsChart.length > 0 ? (
             viewsChart.map((item: any, idx: number) => {
-              const maxCount = Math.max(...viewsChart.map((v: any) => v.count), 1);
-              const heightPct = Math.max((item.count / maxCount) * 100, 10);
+              const maxCount = Math.max(...viewsChart.map((v: any) => (v && typeof v.count === 'number' ? v.count : 0)), 1);
+              const count = item && typeof item.count === 'number' ? item.count : 0;
+              const heightPct = Math.max((count / maxCount) * 100, 10);
+              const dateStr = item && item.date ? String(item.date) : '';
+              const dateLabel = dateStr.length >= 5 ? dateStr.slice(5) : dateStr;
+
               return (
                 <div key={idx} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', justifyContent: 'flex-end' }}>
-                  <div style={{ fontSize: '0.72rem', color: '#a5b4fc', fontWeight: 600, marginBottom: '4px' }}>{item.count}</div>
+                  <div style={{ fontSize: '0.72rem', color: '#a5b4fc', fontWeight: 600, marginBottom: '4px' }}>{count}</div>
                   <div
                     style={{
                       width: '100%',
@@ -141,10 +154,10 @@ export default function AdminDashboardPage() {
                       border: '1px solid rgba(99, 102, 241, 0.4)',
                       transition: 'height 0.3s ease',
                     }}
-                    title={`${item.date}: ${item.count} visualizações`}
+                    title={`${dateStr}: ${count} visualizações`}
                   />
                   <div style={{ fontSize: '0.68rem', color: '#6b7280', marginTop: '6px', whiteSpace: 'nowrap', overflow: 'hidden' }}>
-                    {item.date.slice(5)}
+                    {dateLabel}
                   </div>
                 </div>
               );
@@ -213,7 +226,7 @@ export default function AdminDashboardPage() {
                       </span>
                     </td>
                     <td style={{ padding: '14px', textAlign: 'right', fontWeight: 600, color: '#818cf8' }}>
-                      {pdf.views_count}
+                      {pdf.views_count || 0}
                     </td>
                     <td style={{ padding: '14px', textAlign: 'right' }}>
                       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '6px' }}>
