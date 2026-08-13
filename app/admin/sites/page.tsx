@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { Globe, Plus, Edit3, Trash2, CheckCircle2, AlertCircle, FileText, Eye } from 'lucide-react';
 import { useToast } from '@/components/Toast';
+import { RequireRole } from '@/components/RequireRole';
 
-export default function SitesManagementPage() {
+function SitesManagementContent() {
   const { showToast } = useToast();
   const [sites, setSites] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -251,5 +252,13 @@ export default function SitesManagementPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function SitesManagementPage() {
+  return (
+    <RequireRole requiredRole="superadmin">
+      <SitesManagementContent />
+    </RequireRole>
   );
 }

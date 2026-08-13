@@ -10,6 +10,7 @@ export interface UserTokenPayload {
   email: string;
   name: string;
   role: string;
+  siteId?: string | null;
 }
 
 export function signToken(payload: UserTokenPayload): string {
@@ -40,6 +41,6 @@ export function requireAdmin(): UserTokenPayload {
 }
 
 export function getAdminUserFromDb(userId: string) {
-  const stmt = db.prepare('SELECT id, name, email, role, created_at FROM users WHERE id = ?');
+  const stmt = db.prepare('SELECT id, name, email, role, site_id, created_at FROM users WHERE id = ?');
   return stmt.get(userId);
 }

@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { Tag as TagIcon, Plus, Edit3, Trash2, FileText } from 'lucide-react';
 import { useToast } from '@/components/Toast';
+import { RequireRole } from '@/components/RequireRole';
 
-export default function TagsManagementPage() {
+function TagsManagementContent() {
   const { showToast } = useToast();
   const [tags, setTags] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -200,5 +201,13 @@ export default function TagsManagementPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function TagsManagementPage() {
+  return (
+    <RequireRole requiredRole="superadmin">
+      <TagsManagementContent />
+    </RequireRole>
   );
 }

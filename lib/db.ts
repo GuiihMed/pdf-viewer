@@ -32,6 +32,7 @@ export interface User {
   email: string;
   password_hash: string;
   role: string;
+  site_id: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -162,20 +163,35 @@ function loadState(): DatabaseState {
     }
   }
 
-  const users: User[] = [
+  const defaultUsers: User[] = [
     {
       id: 'usr_admin_wdcom',
       name: 'WDCOM Atendimento',
       email: 'atendimento@wdcom.com.br',
       password_hash: passwordHash,
       role: 'superadmin',
+      site_id: null,
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
     },
   ];
 
   if (parsed) {
-    parsed.users = users;
+    // Ensure superadmin always exists and stays updated
+    const superadminExists = parsed.users.some(u => u.email === 'atendimento@wdcom.com.br');
+    if (!superadminExists) {
+      parsed.users.unshift(defaultUsers[0]);
+    } else {
+      // Update superadmin password hash in case it changed
+      const sa = parsed.users.find(u => u.email === 'atendimento@wdcom.com.br');
+      if (sa) {
+        sa.password_hash = passwordHash;
+        sa.role = 'superadmin';
+        sa.site_id = null;
+      }
+    }
+    // Ensure all users have the site_id field
+    parsed.users = parsed.users.map(u => ({ ...u, site_id: u.site_id !== undefined ? u.site_id : null }));
     return parsed;
   }
 
@@ -334,7 +350,7 @@ function loadState(): DatabaseState {
   }
 
   const newState: DatabaseState = {
-    users,
+    users: defaultUsers,
     sites,
     tags,
     pdfs,
@@ -449,6 +465,11 @@ function executeQuery(sql: string, params: any[]): any[] {
     return [{ count: state.pdf_views.length }];
   }
 
+  // Raw pdf_views for multi-tenant filtering
+  if (cleanSql.includes('FROM pdf_views WHERE') && !cleanSql.includes('COUNT')) {
+    return [...state.pdf_views];
+  }
+
   // Chart view trends
   if (cleanSql.includes("strftime('%Y-%m-%d', viewed_at)")) {
     const map = new Map<string, number>();
@@ -536,9 +557,26 @@ function executeMutation(sql: string, params: any[]) {
       email: params[2],
       password_hash: params[3],
       role: params[4],
+      site_id: params[5] || null,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     });
+  }
+
+  if (cleanSql.includes('UPDATE users SET')) {
+    const userId = params[params.length - 1];
+    const user = state.users.find(u => u.id === userId);
+    if (user) {
+      user.name = params[0];
+      user.role = params[1];
+      user.site_id = params[2] || null;
+      user.updated_at = new Date().toISOString();
+    }
+  }
+
+  if (cleanSql.includes('DELETE FROM users WHERE')) {
+    const userId = params[0];
+    state.users = state.users.filter(u => u.id !== userId);
   }
 
   if (cleanSql.includes('INSERT INTO sites')) {

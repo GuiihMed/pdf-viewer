@@ -26,6 +26,12 @@ export async function GET(request: Request, { params }: { params: { id: string }
       return NextResponse.json({ error: 'PDF não encontrado.' }, { status: 404 });
     }
 
+    // Multi-tenancy check for admin operations (non-public access)
+    const user = getAuthUser();
+    if (user && user.role !== 'superadmin' && user.siteId && pdf.site_id !== user.siteId) {
+      return NextResponse.json({ error: 'Acesso negado. Este PDF pertence a outro site.' }, { status: 403 });
+    }
+
     const tags = pdf.tags_info
       ? pdf.tags_info.split(';').map((tStr: string) => {
           const [id, name, slug] = tStr.split(':');
@@ -62,6 +68,16 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
 
     const pdfId = params.id;
+
+    // Multi-tenancy: verify ownership
+    const existingPdf = db.prepare('SELECT id, site_id FROM pdfs WHERE id = ?').get(pdfId) as any;
+    if (!existingPdf) {
+      return NextResponse.json({ error: 'PDF não encontrado.' }, { status: 404 });
+    }
+    if (user.role !== 'superadmin' && user.siteId && existingPdf.site_id !== user.siteId) {
+      return NextResponse.json({ error: 'Acesso negado. Você não tem permissão para editar este PDF.' }, { status: 403 });
+    }
+
     const body = await request.json();
     const {
       title,
@@ -77,10 +93,8 @@ export async function PUT(request: Request, { params }: { params: { id: string }
       allowedDomains,
     } = body;
 
-    const existing = db.prepare('SELECT id FROM pdfs WHERE id = ?').get(pdfId);
-    if (!existing) {
-      return NextResponse.json({ error: 'PDF não encontrado.' }, { status: 404 });
-    }
+    // Non-superadmin users cannot change the site_id of a PDF
+    const finalSiteId = user.role !== 'superadmin' && user.siteId ? user.siteId : (siteId || null);
 
     const updateStmt = db.prepare(`
       UPDATE pdfs
@@ -94,7 +108,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
       title,
       description || '',
       category || '',
-      siteId || null,
+      finalSiteId,
       status || 'active',
       allowDownload ? 1 : 0,
       allowPrint ? 1 : 0,
@@ -135,9 +149,14 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     }
 
     const pdfId = params.id;
-    const pdf = db.prepare('SELECT storage_path FROM pdfs WHERE id = ?').get(pdfId) as any;
+    const pdf = db.prepare('SELECT id, storage_path, site_id FROM pdfs WHERE id = ?').get(pdfId) as any;
     if (!pdf) {
       return NextResponse.json({ error: 'PDF não encontrado.' }, { status: 404 });
+    }
+
+    // Multi-tenancy: verify ownership
+    if (user.role !== 'superadmin' && user.siteId && pdf.site_id !== user.siteId) {
+      return NextResponse.json({ error: 'Acesso negado. Você não tem permissão para excluir este PDF.' }, { status: 403 });
     }
 
     // Delete file from disk

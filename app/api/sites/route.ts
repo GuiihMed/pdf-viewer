@@ -9,6 +9,15 @@ export async function GET() {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 
+    // Non-superadmin users only see their assigned site
+    if (user.role !== 'superadmin' && user.siteId) {
+      const site = db.prepare('SELECT * FROM sites WHERE id = ?').get(user.siteId) as any;
+      if (site) {
+        return NextResponse.json({ sites: [site] });
+      }
+      return NextResponse.json({ sites: [] });
+    }
+
     const stmt = db.prepare(`
       SELECT s.*,
         (SELECT COUNT(*) FROM pdfs p WHERE p.site_id = s.id) as pdfs_count,
@@ -27,8 +36,8 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const user = getAuthUser();
-    if (!user) {
-      return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
+    if (!user || user.role !== 'superadmin') {
+      return NextResponse.json({ error: 'Apenas Super Admins podem criar sites.' }, { status: 403 });
     }
 
     const { name, domain, description, status } = await request.json();

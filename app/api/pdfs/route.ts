@@ -13,11 +13,9 @@ export async function GET(request: Request) {
     const publicId = searchParams.get('publicId') || '';
 
     // If publicId is missing, this is an administrative list query
-    if (!publicId) {
-      const user = getAuthUser();
-      if (!user) {
-        return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
-      }
+    const user = !publicId ? getAuthUser() : null;
+    if (!publicId && !user) {
+      return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 
     let query = `
@@ -36,6 +34,12 @@ export async function GET(request: Request) {
     `;
 
     const params: any[] = [];
+
+    // Multi-tenancy: non-superadmin users can only see PDFs from their assigned site
+    if (user && user.role !== 'superadmin' && user.siteId) {
+      query += ` AND p.site_id = ?`;
+      params.push(user.siteId);
+    }
 
     if (publicId) {
       query += ` AND p.public_id = ?`;
@@ -109,7 +113,11 @@ export async function POST(request: Request) {
     const title = formData.get('title') as string;
     const description = (formData.get('description') as string) || '';
     const category = (formData.get('category') as string) || '';
-    const siteId = (formData.get('siteId') as string) || null;
+    // Multi-tenancy: non-superadmin users can only create PDFs for their own site
+    let siteId = (formData.get('siteId') as string) || null;
+    if (user.role !== 'superadmin' && user.siteId) {
+      siteId = user.siteId;
+    }
     const status = (formData.get('status') as string) || 'active';
     const allowDownload = formData.get('allowDownload') === 'true' ? 1 : 0;
     const allowPrint = formData.get('allowPrint') === 'true' ? 1 : 0;

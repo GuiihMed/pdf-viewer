@@ -1,13 +1,14 @@
 {
   "users": [
     {
-      "id": "usr_admin_01",
-      "name": "Administrador Principal",
-      "email": "admin@pdfembed.com",
-      "password_hash": "$2a$10$UiI/egtgNPZD6Z8LgGRo.uj3OUL4.rYjPhfbTMCbFSbkS2HXHTZKO",
+      "id": "usr_admin_wdcom",
+      "name": "WDCOM Atendimento",
+      "email": "atendimento@wdcom.com.br",
+      "password_hash": "$2a$10$2rX/R1qoCFJLqPaYD7.d6.VzZAVLQXXBGKFoiyD1F2mKxHmCYiTbW",
       "role": "superadmin",
-      "created_at": "2026-08-13T13:14:20.974Z",
-      "updated_at": "2026-08-13T13:14:20.976Z"
+      "site_id": null,
+      "created_at": "2026-08-13T15:54:52.108Z",
+      "updated_at": "2026-08-13T15:54:52.108Z"
     }
   ],
   "sites": [
@@ -18,8 +19,8 @@
       "slug": "meusite",
       "description": "Website principal da marca",
       "status": "active",
-      "created_at": "2026-08-13T13:14:20.976Z",
-      "updated_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z",
+      "updated_at": "2026-08-13T15:54:52.108Z"
     },
     {
       "id": "site_02",
@@ -28,8 +29,8 @@
       "slug": "empresa",
       "description": "Portal corporativo oficial",
       "status": "active",
-      "created_at": "2026-08-13T13:14:20.976Z",
-      "updated_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z",
+      "updated_at": "2026-08-13T15:54:52.108Z"
     },
     {
       "id": "site_03",
@@ -38,8 +39,8 @@
       "slug": "portaltech",
       "description": "Blog e documentações técnicas",
       "status": "active",
-      "created_at": "2026-08-13T13:14:20.976Z",
-      "updated_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z",
+      "updated_at": "2026-08-13T15:54:52.108Z"
     }
   ],
   "tags": [
@@ -48,42 +49,42 @@
       "name": "Catálogo",
       "slug": "catalogo",
       "description": "Documentos de linhas de produtos",
-      "created_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z"
     },
     {
       "id": "tag_02",
       "name": "Produtos",
       "slug": "produtos",
       "description": "Fichas técnicas e especificações",
-      "created_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z"
     },
     {
       "id": "tag_03",
       "name": "2026",
       "slug": "2026",
       "description": "Ano de referência",
-      "created_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z"
     },
     {
       "id": "tag_04",
       "name": "Marketing",
       "slug": "marketing",
       "description": "Apresentações e folhetos",
-      "created_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z"
     },
     {
       "id": "tag_05",
       "name": "Manuais",
       "slug": "manuais",
       "description": "Guias do usuário e instruções",
-      "created_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z"
     },
     {
       "id": "tag_06",
       "name": "Relatórios",
       "slug": "relatorios",
       "description": "Relatórios corporativos",
-      "created_at": "2026-08-13T13:14:20.976Z"
+      "created_at": "2026-08-13T15:54:52.108Z"
     }
   ],
   "pdfs": [
@@ -95,7 +96,7 @@
       "category": "Catálogo",
       "original_filename": "catalogo-2026.pdf",
       "storage_path": "catalogo-2026-8f72a91c.pdf",
-      "file_size": 5264,
+      "file_size": 608,
       "page_count": 4,
       "site_id": "site_01",
       "status": "active",
@@ -103,8 +104,8 @@
       "allow_print": 1,
       "allow_embed": 1,
       "restrict_domains": 0,
-      "created_at": "2026-07-19T13:14:21.322Z",
-      "updated_at": "2026-07-19T13:14:21.322Z"
+      "created_at": "2026-07-19T15:54:52.108Z",
+      "updated_at": "2026-07-19T15:54:52.108Z"
     },
     {
       "id": "pdf_02",
@@ -114,7 +115,7 @@
       "category": "Manual",
       "original_filename": "manual-cliente-v2.pdf",
       "storage_path": "manual-cliente-b73ca91e.pdf",
-      "file_size": 4090,
+      "file_size": 610,
       "page_count": 3,
       "site_id": "site_02",
       "status": "active",
@@ -122,8 +123,8 @@
       "allow_print": 1,
       "allow_embed": 1,
       "restrict_domains": 1,
-      "created_at": "2026-07-26T13:14:21.322Z",
-      "updated_at": "2026-07-26T13:14:21.322Z"
+      "created_at": "2026-07-26T15:54:52.108Z",
+      "updated_at": "2026-07-26T15:54:52.108Z"
     },
     {
       "id": "pdf_03",
@@ -133,7 +134,7 @@
       "category": "Relatório",
       "original_filename": "relatorio-sustentabilidade.pdf",
       "storage_path": "relatorio-sustentabilidade-c92fa812.pdf",
-      "file_size": 6413,
+      "file_size": 610,
       "page_count": 5,
       "site_id": "site_03",
       "status": "active",
@@ -141,8 +142,8 @@
       "allow_print": 1,
       "allow_embed": 1,
       "restrict_domains": 0,
-      "created_at": "2026-08-03T13:14:21.322Z",
-      "updated_at": "2026-08-03T13:14:21.322Z"
+      "created_at": "2026-08-03T15:54:52.108Z",
+      "updated_at": "2026-08-03T15:54:52.108Z"
     },
     {
       "id": "pdf_04",
@@ -152,7 +153,7 @@
       "category": "Manual",
       "original_filename": "guia-rapido.pdf",
       "storage_path": "guia-instalacao-d41ea567.pdf",
-      "file_size": 2971,
+      "file_size": 608,
       "page_count": 2,
       "site_id": "site_01",
       "status": "active",
@@ -160,8 +161,8 @@
       "allow_print": 1,
       "allow_embed": 1,
       "restrict_domains": 0,
-      "created_at": "2026-08-10T13:14:21.322Z",
-      "updated_at": "2026-08-10T13:14:21.322Z"
+      "created_at": "2026-08-10T15:54:52.108Z",
+      "updated_at": "2026-08-10T15:54:52.108Z"
     }
   ],
   "pdf_tags": [
@@ -213,44 +214,44 @@
   "pdf_views": [
     {
       "id": "vw_1",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-14T13:39:38.331Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-15T01:03:06.680Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Safari"
+      "device": "Tablet",
+      "browser": "Firefox"
     },
     {
       "id": "vw_2",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-14T19:44:25.864Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-15T05:14:06.894Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_3",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-14T19:34:01.547Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Chrome"
     },
     {
-      "id": "vw_3",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-14T23:13:57.209Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
       "id": "vw_4",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-15T04:01:10.356Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-15T02:39:39.941Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
+      "device": "Desktop",
+      "browser": "Chrome"
     },
     {
       "id": "vw_5",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-15T02:00:32.959Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-15T08:22:51.319Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
@@ -259,214 +260,214 @@
     {
       "id": "vw_6",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-15T05:41:30.696Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-15T03:41:12.604Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
+      "device": "Tablet",
+      "browser": "Firefox"
     },
     {
       "id": "vw_7",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-15T09:54:49.511Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-14T17:08:36.576Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
+      "device": "Tablet",
+      "browser": "Safari"
     },
     {
       "id": "vw_8",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-15T00:31:49.803Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-14T19:45:44.458Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Safari"
     },
     {
       "id": "vw_9",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-14T16:15:46.737Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-14T16:24:36.840Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
+      "device": "Tablet",
+      "browser": "Chrome"
     },
     {
       "id": "vw_10",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-14T18:49:26.519Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-07-15T10:40:20.698Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
+      "device": "Desktop",
+      "browser": "Chrome"
     },
     {
       "id": "vw_11",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-14T21:25:33.973Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_12",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-15T22:58:34.477Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_13",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-15T23:12:21.551Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_14",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-15T20:53:08.261Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_15",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-16T06:14:44.112Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_16",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-16T05:05:27.081Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_17",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-15T15:29:49.361Z",
+      "viewed_at": "2026-07-15T00:55:59.349Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Chrome"
     },
     {
-      "id": "vw_18",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-15T15:07:02.035Z",
-      "referrer": "https://meusite.com/produtos",
+      "id": "vw_12",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-15T07:01:19.427Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_13",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-14T16:40:22.876Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_14",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-14T16:23:03.409Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_15",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-15T11:53:15.588Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_16",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-14T21:56:29.213Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_17",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-16T03:51:19.795Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_18",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-16T03:32:32.784Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
       "browser": "Chrome"
     },
     {
       "id": "vw_19",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-16T11:23:11.748Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-16T07:37:52.679Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Chrome"
+      "browser": "Safari"
     },
     {
       "id": "vw_20",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-15T17:49:44.274Z",
+      "viewed_at": "2026-07-15T16:52:50.166Z",
       "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_21",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-15T19:39:35.613Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Edge"
     },
     {
-      "id": "vw_21",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-16T03:33:34.553Z",
-      "referrer": "https://google.com",
+      "id": "vw_22",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-16T07:53:05.708Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Safari"
     },
     {
-      "id": "vw_22",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-16T07:28:58.220Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
       "id": "vw_23",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-16T08:59:13.276Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-16T12:49:20.129Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Edge"
     },
     {
       "id": "vw_24",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-16T09:22:30.071Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-15T19:39:56.765Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Edge"
     },
     {
       "id": "vw_25",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-16T00:04:10.673Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-16T00:45:34.350Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Safari"
     },
     {
       "id": "vw_26",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-16T01:41:47.736Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_27",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-15T22:30:56.007Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_28",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-16T05:38:20.466Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-07-15T19:45:03.052Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Firefox"
     },
     {
-      "id": "vw_29",
+      "id": "vw_27",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-15T23:13:15.412Z",
+      "viewed_at": "2026-07-16T19:40:00.371Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_28",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-16T19:22:05.004Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_29",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-17T02:20:53.692Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
@@ -475,97 +476,97 @@
     {
       "id": "vw_30",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-15T18:36:44.333Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_31",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-16T04:15:13.661Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_32",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-17T06:00:08.906Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_33",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-17T09:41:00.240Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_34",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-17T09:09:33.491Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_35",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-17T02:38:54.924Z",
+      "viewed_at": "2026-07-17T10:42:06.405Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Firefox"
+      "browser": "Chrome"
     },
     {
-      "id": "vw_36",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-17T03:02:45.370Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "id": "vw_31",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-17T00:19:10.450Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
+      "device": "Tablet",
+      "browser": "Safari"
     },
     {
-      "id": "vw_37",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-16T21:26:46.529Z",
-      "referrer": "https://portaltech.io/docs",
+      "id": "vw_32",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-17T01:08:07.955Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_33",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-16T18:58:29.857Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Edge"
     },
     {
-      "id": "vw_38",
+      "id": "vw_34",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-16T22:00:22.288Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_39",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-16T19:07:42.871Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-07-17T13:25:01.997Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Chrome"
     },
     {
-      "id": "vw_40",
+      "id": "vw_35",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-16T22:38:48.843Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_36",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-17T01:13:06.148Z",
+      "viewed_at": "2026-07-16T22:19:23.228Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_37",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-17T04:43:02.637Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_38",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-16T21:56:04.964Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_39",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-17T11:52:52.264Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_40",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-18T02:05:37.101Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
@@ -573,224 +574,224 @@
     },
     {
       "id": "vw_41",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-16T23:07:46.186Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-17T19:15:23.637Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
+      "device": "Mobile",
+      "browser": "Edge"
     },
     {
       "id": "vw_42",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-16T23:35:12.828Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-17T16:27:01.154Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Firefox"
+      "browser": "Safari"
     },
     {
       "id": "vw_43",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-17T07:27:05.417Z",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-18T01:11:41.872Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_44",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-16T20:01:28.458Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-07-18T09:24:40.103Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Safari"
     },
     {
       "id": "vw_45",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-16T22:18:27.765Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-18T12:10:07.824Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Tablet",
       "browser": "Chrome"
     },
     {
       "id": "vw_46",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-17T13:15:23.130Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-07-17T15:54:55.208Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_47",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-17T22:45:47.866Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-18T04:13:40.566Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Chrome"
     },
     {
       "id": "vw_48",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-18T10:35:02.510Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-07-18T17:15:42.627Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_49",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-18T23:28:46.275Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Safari"
     },
     {
-      "id": "vw_49",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-18T10:50:41.764Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
       "id": "vw_50",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-17T22:13:06.524Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-19T08:06:12.952Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Edge"
+      "browser": "Firefox"
     },
     {
       "id": "vw_51",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T03:13:27.356Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-19T03:34:51.785Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
+      "device": "Tablet",
+      "browser": "Chrome"
     },
     {
       "id": "vw_52",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T05:17:27.102Z",
+      "viewed_at": "2026-07-19T01:07:21.066Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Edge"
     },
     {
       "id": "vw_53",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T09:44:06.259Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-19T06:38:39.351Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Desktop",
       "browser": "Firefox"
     },
     {
       "id": "vw_54",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-17T15:00:17.196Z",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-18T23:40:20.971Z",
       "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_55",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-18T04:03:25.536Z",
-      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Safari"
     },
     {
-      "id": "vw_56",
+      "id": "vw_55",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-17T19:42:13.446Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-19T05:22:10.230Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_56",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-18T20:40:02.711Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
     },
     {
       "id": "vw_57",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-17T20:46:43.676Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-18T16:48:41.836Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Chrome"
     },
     {
       "id": "vw_58",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-20T05:24:06.952Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_59",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-20T13:20:44.879Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_60",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-20T07:10:31.279Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_61",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-18T05:44:32.411Z",
+      "viewed_at": "2026-07-20T04:16:09.097Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Firefox"
     },
     {
-      "id": "vw_59",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-17T15:21:49.597Z",
+      "id": "vw_62",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-20T03:01:12.229Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_60",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-18T03:11:26.906Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_61",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T08:40:18.965Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_62",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T04:09:51.765Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
+      "browser": "Safari"
     },
     {
       "id": "vw_63",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-18T20:42:41.287Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_64",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-19T05:36:13.156Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-19T21:40:37.445Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Edge"
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_64",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-20T01:51:15.158Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
     },
     {
       "id": "vw_65",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-18T23:47:33.750Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-20T08:11:11.355Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
@@ -798,225 +799,225 @@
     },
     {
       "id": "vw_66",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-19T05:27:57.395Z",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-19T23:58:54.004Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
+      "device": "Desktop",
+      "browser": "Edge"
     },
     {
       "id": "vw_67",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-19T00:51:04.820Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-07-20T05:24:55.727Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
+      "device": "Desktop",
+      "browser": "Firefox"
     },
     {
       "id": "vw_68",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-19T09:36:37.183Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-19T17:30:56.073Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
+      "device": "Desktop",
+      "browser": "Edge"
     },
     {
       "id": "vw_69",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-18T19:18:07.590Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-20T12:35:55.958Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Safari"
     },
     {
       "id": "vw_70",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-19T03:34:22.373Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T11:02:30.938Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
+      "device": "Mobile",
+      "browser": "Chrome"
     },
     {
       "id": "vw_71",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T13:24:10.525Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_72",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T22:36:07.819Z",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-21T01:44:37.700Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_72",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T09:00:59.485Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
       "browser": "Firefox"
     },
     {
       "id": "vw_73",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-19T01:44:49.779Z",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-21T04:19:26.127Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_74",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T08:43:46.422Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Safari"
     },
     {
-      "id": "vw_74",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-19T04:12:38.247Z",
+      "id": "vw_75",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-21T09:27:15.320Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_75",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-18T20:40:07.526Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_76",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-19T09:55:43.921Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
       "browser": "Chrome"
     },
     {
-      "id": "vw_77",
+      "id": "vw_76",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T14:46:14.922Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-20T19:58:00.659Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_77",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-21T08:27:02.073Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Firefox"
     },
     {
       "id": "vw_78",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-18T18:29:51.600Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-21T07:36:24.658Z",
       "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_79",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-19T04:15:49.137Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_80",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-19T10:54:06.909Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_81",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-18T19:58:13.773Z",
-      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Safari"
     },
     {
-      "id": "vw_82",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-19T21:42:16.249Z",
+      "id": "vw_79",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-21T12:49:34.937Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_80",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-20T20:42:33.445Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_81",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T13:07:22.335Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_82",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-20T16:12:09.599Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
       "browser": "Edge"
     },
     {
       "id": "vw_83",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-20T04:09:11.773Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-07-21T12:56:31.533Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Safari"
+      "browser": "Chrome"
     },
     {
       "id": "vw_84",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-20T01:03:21.781Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-21T00:49:38.125Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Tablet",
       "browser": "Firefox"
     },
     {
       "id": "vw_85",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-19T15:33:59.178Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-21T01:05:56.170Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
+      "device": "Desktop",
+      "browser": "Firefox"
     },
     {
       "id": "vw_86",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-19T14:31:23.035Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_87",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-20T08:55:06.505Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_88",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-20T05:44:09.646Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_89",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-19T16:40:59.982Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-20T19:24:32.511Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Firefox"
     },
     {
+      "id": "vw_87",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T12:20:22.492Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_88",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T19:23:54.903Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_89",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-21T18:31:36.468Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Safari"
+    },
+    {
       "id": "vw_90",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-20T23:53:27.855Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T16:28:22.810Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Firefox"
@@ -1024,196 +1025,196 @@
     {
       "id": "vw_91",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-20T22:51:05.487Z",
+      "viewed_at": "2026-07-21T20:46:50.925Z",
       "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_92",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-20T14:01:15.853Z",
-      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Safari"
     },
     {
+      "id": "vw_92",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-22T06:13:18.980Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
       "id": "vw_93",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-21T00:02:01.427Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-07-22T09:31:00.827Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Edge"
     },
     {
       "id": "vw_94",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-21T01:32:13.011Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_95",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-20T15:04:18.283Z",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T16:57:38.289Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Firefox"
     },
     {
-      "id": "vw_96",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-20T20:40:42.443Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_97",
+      "id": "vw_95",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-20T20:55:06.201Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_98",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-20T16:39:45.955Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_99",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-21T23:22:46.173Z",
+      "viewed_at": "2026-07-22T10:15:21.314Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_96",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-22T11:18:43.010Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_97",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-22T00:23:45.532Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_98",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-21T22:57:15.353Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_99",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-21T19:53:10.743Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
       "browser": "Safari"
     },
     {
       "id": "vw_100",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-22T06:00:11.088Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-22T02:18:51.443Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Firefox"
+      "browser": "Safari"
     },
     {
       "id": "vw_101",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-22T07:58:30.895Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-22T00:39:45.135Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
+      "device": "Desktop",
+      "browser": "Edge"
     },
     {
       "id": "vw_102",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-21T14:07:48.410Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_103",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-22T05:14:06.784Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_104",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-23T08:26:29.912Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_105",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-23T04:02:13.788Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_106",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-22T16:25:14.513Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_107",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-22T15:36:27.487Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_108",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-23T00:00:14.881Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_109",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-22T18:37:45.397Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_110",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-22T18:49:43.137Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_111",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-23T01:27:14.807Z",
+      "viewed_at": "2026-07-21T20:47:16.069Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Safari"
     },
     {
-      "id": "vw_112",
+      "id": "vw_103",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-22T06:18:21.462Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_104",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-23T09:59:34.478Z",
+      "viewed_at": "2026-07-21T22:20:20.248Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_105",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-22T07:29:24.783Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_106",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-22T00:53:19.483Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_107",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-22T05:53:14.647Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_108",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-23T03:06:38.061Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_109",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-22T16:53:59.714Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_110",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-23T01:02:20.379Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_111",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-23T07:15:39.524Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_112",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-23T13:23:15.129Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
@@ -1221,296 +1222,296 @@
     },
     {
       "id": "vw_113",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-22T19:42:46.581Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-22T20:29:15.838Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Edge"
+      "browser": "Chrome"
     },
     {
       "id": "vw_114",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-23T16:54:09.565Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-07-23T08:05:27.535Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
+      "device": "Tablet",
+      "browser": "Chrome"
     },
     {
       "id": "vw_115",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-23T23:50:37.212Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-07-22T16:20:16.699Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Desktop",
       "browser": "Edge"
     },
     {
       "id": "vw_116",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-23T14:48:41.189Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-22T17:10:03.685Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Firefox"
+      "browser": "Safari"
     },
     {
       "id": "vw_117",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-23T17:06:51.417Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-07-23T00:44:53.019Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Firefox"
+      "browser": "Safari"
     },
     {
       "id": "vw_118",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-23T14:01:41.586Z",
+      "viewed_at": "2026-07-23T05:44:59.678Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_119",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-23T09:54:25.695Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_120",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-23T11:52:13.698Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_121",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-23T08:37:24.361Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
-      "id": "vw_119",
+      "id": "vw_122",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-24T00:17:22.520Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_120",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-24T00:44:31.643Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_121",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-23T17:25:14.913Z",
+      "viewed_at": "2026-07-23T09:43:07.553Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_122",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-24T07:34:12.707Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Safari"
+      "browser": "Firefox"
     },
     {
       "id": "vw_123",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-23T17:23:06.529Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-23T10:13:14.701Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_124",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-23T14:15:09.728Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-07-23T03:39:26.508Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_125",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-22T18:11:33.576Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Edge"
     },
     {
-      "id": "vw_125",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-24T02:58:07.081Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
       "id": "vw_126",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-24T08:43:29.310Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-23T12:29:44.101Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Edge"
     },
     {
       "id": "vw_127",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-23T15:45:19.024Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-23T02:47:17.968Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Edge"
+      "browser": "Firefox"
     },
     {
       "id": "vw_128",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-23T23:37:57.663Z",
+      "viewed_at": "2026-07-22T21:47:35.917Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Safari"
+      "device": "Tablet",
+      "browser": "Edge"
     },
     {
       "id": "vw_129",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-25T05:00:24.377Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-22T15:58:39.636Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Firefox"
     },
     {
       "id": "vw_130",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-24T23:02:02.287Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-23T16:08:40.378Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Firefox"
+      "browser": "Chrome"
     },
     {
       "id": "vw_131",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-25T08:59:09.020Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-24T01:48:45.716Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Firefox"
     },
     {
       "id": "vw_132",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-25T05:53:24.528Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-23T18:07:20.378Z",
       "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_133",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-25T02:22:13.838Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_134",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-24T22:14:39.876Z",
-      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Chrome"
     },
     {
-      "id": "vw_135",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-24T23:43:59.242Z",
-      "referrer": "https://portaltech.io/docs",
+      "id": "vw_133",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-24T00:59:17.716Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_134",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-23T17:31:24.382Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_135",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-24T13:00:25.699Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
       "browser": "Safari"
     },
     {
       "id": "vw_136",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-24T18:33:21.472Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-25T00:37:22.202Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Firefox"
     },
     {
       "id": "vw_137",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-24T16:35:31.232Z",
+      "viewed_at": "2026-07-24T16:05:20.816Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Edge"
+      "browser": "Safari"
     },
     {
       "id": "vw_138",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-25T09:38:15.226Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-24T19:50:48.711Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Firefox"
     },
     {
       "id": "vw_139",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-25T07:16:09.989Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-24T22:22:48.246Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Edge"
+      "browser": "Chrome"
     },
     {
       "id": "vw_140",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-24T23:29:04.769Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-24T16:23:34.688Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
+      "device": "Desktop",
+      "browser": "Safari"
     },
     {
       "id": "vw_141",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-25T09:58:57.087Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-25T00:03:06.431Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Firefox"
+      "browser": "Chrome"
     },
     {
       "id": "vw_142",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-25T11:27:03.609Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-26T03:44:46.765Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
+      "device": "Tablet",
+      "browser": "Edge"
     },
     {
       "id": "vw_143",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-25T05:58:40.149Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-26T07:38:51.059Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Edge"
     },
     {
       "id": "vw_144",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-24T23:09:11.012Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-25T22:48:28.342Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Mobile",
       "browser": "Edge"
     },
     {
       "id": "vw_145",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-25T02:01:31.253Z",
+      "viewed_at": "2026-07-26T07:32:28.053Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
@@ -1518,26 +1519,26 @@
     },
     {
       "id": "vw_146",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-25T07:49:45.350Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_147",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-26T05:38:15.843Z",
+      "viewed_at": "2026-07-25T17:56:56.288Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Chrome"
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_147",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-26T01:26:17.060Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Edge"
     },
     {
       "id": "vw_148",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-25T20:52:36.142Z",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-26T00:47:21.178Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
@@ -1545,161 +1546,161 @@
     },
     {
       "id": "vw_149",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-26T06:23:42.116Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-25T22:30:05.835Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_150",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-26T02:21:09.594Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Edge"
     },
     {
-      "id": "vw_150",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-26T10:46:09.817Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
       "id": "vw_151",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-25T22:03:21.859Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_152",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-26T06:04:13.147Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-25T23:18:47.231Z",
       "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_153",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-26T18:56:48.399Z",
-      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Firefox"
     },
     {
-      "id": "vw_154",
+      "id": "vw_152",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-26T15:25:27.412Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-07-25T18:28:58.618Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Mobile",
       "browser": "Safari"
     },
     {
-      "id": "vw_155",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-26T16:23:12.161Z",
-      "referrer": "Direct",
+      "id": "vw_153",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-25T19:08:04.991Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_154",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-26T13:17:36.085Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_155",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-26T08:38:04.816Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
       "browser": "Edge"
     },
     {
       "id": "vw_156",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-27T08:31:32.186Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-26T02:44:34.817Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Safari"
     },
     {
       "id": "vw_157",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-27T08:55:08.264Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-25T19:31:35.803Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Edge"
     },
     {
       "id": "vw_158",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-27T02:32:54.045Z",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-25T18:08:32.288Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Tablet",
       "browser": "Chrome"
     },
     {
       "id": "vw_159",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-26T19:28:30.500Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_160",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-26T20:19:15.531Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_161",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-26T13:22:48.613Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_162",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-27T04:56:06.475Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_163",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-27T14:11:36.277Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_164",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-28T01:20:08.876Z",
+      "viewed_at": "2026-07-26T11:05:46.476Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Safari"
     },
     {
-      "id": "vw_165",
+      "id": "vw_160",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-28T07:30:50.006Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-07-25T22:22:30.055Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_161",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-25T19:13:50.890Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_162",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-25T16:07:16.384Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_163",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-25T18:14:24.948Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_164",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-27T12:32:29.470Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_165",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-27T12:25:45.281Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
       "browser": "Firefox"
     },
     {
       "id": "vw_166",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-27T20:36:44.638Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-27T11:29:01.921Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
@@ -1707,107 +1708,107 @@
     },
     {
       "id": "vw_167",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-27T20:26:45.343Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-26T19:13:48.503Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Firefox"
     },
     {
       "id": "vw_168",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-27T22:25:24.739Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-27T10:22:38.288Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
+      "device": "Tablet",
+      "browser": "Chrome"
     },
     {
       "id": "vw_169",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-28T05:58:49.931Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-27T04:28:15.782Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
+      "device": "Mobile",
+      "browser": "Edge"
     },
     {
       "id": "vw_170",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-28T10:55:31.402Z",
+      "viewed_at": "2026-07-26T18:45:33.697Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_171",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-26T18:29:36.441Z",
       "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_172",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-27T12:04:40.467Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_173",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-27T11:48:18.275Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_174",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-26T20:54:51.437Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_175",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-27T02:36:26.627Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_176",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-27T08:57:28.618Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Edge"
     },
     {
-      "id": "vw_171",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-28T09:11:12.767Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_172",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-28T05:21:59.610Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_173",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-28T06:21:23.505Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_174",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-28T04:50:35.532Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_175",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-28T09:51:39.267Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_176",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-29T03:23:27.741Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
       "id": "vw_177",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-29T01:31:52.220Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-27T05:34:42.531Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Chrome"
     },
     {
       "id": "vw_178",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-28T20:49:08.442Z",
+      "viewed_at": "2026-07-27T13:21:21.960Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
@@ -1815,27 +1816,27 @@
     },
     {
       "id": "vw_179",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-29T10:29:35.517Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-28T08:24:54.730Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
+      "device": "Tablet",
+      "browser": "Chrome"
     },
     {
       "id": "vw_180",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-29T10:39:57.062Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-28T13:22:45.068Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Firefox"
     },
     {
       "id": "vw_181",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-29T09:10:20.850Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-28T02:28:30.204Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Edge"
@@ -1843,305 +1844,305 @@
     {
       "id": "vw_182",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-29T01:31:04.402Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-27T23:51:09.769Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
+      "device": "Tablet",
+      "browser": "Firefox"
     },
     {
       "id": "vw_183",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-29T07:51:07.929Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_184",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-29T02:10:51.546Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_185",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-29T11:16:47.637Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_186",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-28T23:44:03.217Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_187",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-29T18:14:58.391Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_188",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-30T09:06:02.153Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_189",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-29T14:02:08.169Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_190",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-30T10:56:12.899Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_191",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-29T21:20:00.610Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-27T19:27:31.609Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Edge"
     },
     {
-      "id": "vw_192",
+      "id": "vw_184",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-28T12:20:11.726Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_185",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-29T19:37:20.373Z",
+      "viewed_at": "2026-07-28T09:52:46.403Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_186",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-28T01:27:40.258Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_187",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-28T13:05:47.620Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_188",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-28T09:37:34.188Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_189",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-27T22:52:20.764Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_190",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-28T10:36:07.921Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_191",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-28T14:03:26.204Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
+      "id": "vw_192",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-28T12:17:35.432Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
       "id": "vw_193",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-30T04:33:56.596Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-28T22:25:09.693Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Chrome"
     },
     {
       "id": "vw_194",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-30T19:17:09.929Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-07-28T16:59:13.927Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Chrome"
     },
     {
       "id": "vw_195",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-30T20:41:49.633Z",
+      "viewed_at": "2026-07-28T17:03:23.375Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_196",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-28T16:59:55.442Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_197",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-29T11:24:00.180Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_198",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-30T04:17:04.562Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Edge"
     },
     {
-      "id": "vw_196",
+      "id": "vw_199",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-30T12:06:08.811Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_200",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-30T19:31:34.284Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-30T09:49:22.246Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_201",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-30T09:58:34.448Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Safari"
     },
     {
-      "id": "vw_197",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-30T20:33:21.364Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_198",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-30T23:14:35.745Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_199",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-30T23:52:29.729Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_200",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-31T09:17:08.554Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_201",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-07-30T16:08:21.009Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
       "id": "vw_202",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-07-31T00:10:39.754Z",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-29T22:53:55.936Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Safari"
     },
     {
       "id": "vw_203",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-31T09:54:31.995Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-29T16:30:10.916Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Edge"
     },
     {
       "id": "vw_204",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-07-31T09:46:21.762Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_205",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-31T03:02:00.136Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_206",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-01T02:21:49.104Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-30T05:36:48.126Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Safari"
     },
     {
-      "id": "vw_207",
+      "id": "vw_205",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-01T07:03:48.349Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-07-30T05:10:43.896Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Firefox"
+      "browser": "Safari"
     },
     {
-      "id": "vw_208",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-01T11:04:38.436Z",
+      "id": "vw_206",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-29T21:30:10.024Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
-      "id": "vw_209",
+      "id": "vw_207",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-01T08:26:25.680Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_210",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-01T04:57:46.672Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-30T10:49:28.473Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Chrome"
     },
     {
-      "id": "vw_211",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-01T04:47:00.831Z",
+      "id": "vw_208",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-29T16:38:17.380Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_209",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-29T21:11:54.024Z",
       "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_210",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-29T17:58:15.892Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_211",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-29T23:26:09.812Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
       "id": "vw_212",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-07-31T23:07:41.594Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-30T06:41:46.241Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Edge"
     },
     {
       "id": "vw_213",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-30T06:32:46.300Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_214",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-01T23:28:04.704Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-07-30T00:25:53.255Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
-      "id": "vw_214",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-02T10:44:49.746Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
       "id": "vw_215",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-01T23:47:34.724Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-29T17:01:36.418Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Chrome"
@@ -2149,701 +2150,701 @@
     {
       "id": "vw_216",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-02T09:53:28.080Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-29T23:05:19.934Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Chrome"
     },
     {
       "id": "vw_217",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-01T20:41:41.209Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-30T08:13:29.938Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Chrome"
+      "browser": "Safari"
     },
     {
       "id": "vw_218",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-01T21:38:40.542Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-07-31T03:28:07.486Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Firefox"
     },
     {
       "id": "vw_219",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-01T14:17:17.373Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-31T06:20:46.249Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Safari"
     },
     {
       "id": "vw_220",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-01T19:03:26.785Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-30T21:23:26.159Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Edge"
+      "browser": "Safari"
     },
     {
       "id": "vw_221",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-01T15:46:31.054Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_222",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-02T06:32:20.031Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_223",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-01T16:32:19.275Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_224",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-01T22:17:20.870Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_225",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-02T08:20:01.988Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_226",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-02T07:03:22.164Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_227",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-01T18:45:05.897Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_228",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-01T20:32:14.899Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_229",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-02T09:47:05.002Z",
+      "viewed_at": "2026-07-30T19:56:05.877Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Firefox"
     },
     {
-      "id": "vw_230",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-02T08:08:13.582Z",
-      "referrer": "https://portaltech.io/docs",
+      "id": "vw_222",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-31T00:47:49.980Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Firefox"
     },
     {
-      "id": "vw_231",
+      "id": "vw_223",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-02T00:14:34.259Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-31T12:27:24.079Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
+      "device": "Tablet",
+      "browser": "Chrome"
     },
     {
-      "id": "vw_232",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-02T07:40:01.961Z",
-      "referrer": "https://google.com",
+      "id": "vw_224",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-31T05:17:59.132Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_225",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-31T02:41:23.057Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Chrome"
     },
     {
-      "id": "vw_233",
+      "id": "vw_226",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-03T06:01:12.926Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-07-31T02:24:12.786Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_227",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-30T22:36:47.185Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_228",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-31T20:05:30.899Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_229",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-01T06:48:04.292Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_230",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-07-31T21:18:55.434Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_231",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-07-31T23:07:38.156Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_232",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-07-31T19:52:46.522Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_233",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-01T04:24:28.456Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
       "browser": "Edge"
     },
     {
       "id": "vw_234",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-03T07:44:06.149Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-07-31T18:38:49.643Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
+      "device": "Tablet",
+      "browser": "Edge"
     },
     {
       "id": "vw_235",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-03T07:59:58.924Z",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-01T06:30:27.925Z",
       "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_236",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-01T04:35:56.108Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_237",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-07-31T20:53:24.500Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_238",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-02T05:07:51.779Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_239",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-01T15:56:09.449Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_240",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-02T05:19:48.831Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
-      "id": "vw_236",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-02T15:27:00.976Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_237",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-02T14:47:03.201Z",
+      "id": "vw_241",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-02T00:27:34.635Z",
       "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_238",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-03T05:44:49.045Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_239",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-03T07:45:18.833Z",
-      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Edge"
     },
     {
-      "id": "vw_240",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-03T07:03:32.685Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_241",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-03T06:03:24.802Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
       "id": "vw_242",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-02T15:41:46.086Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-08-02T04:38:42.264Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Safari"
     },
     {
       "id": "vw_243",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-03T02:38:42.940Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-08-02T09:58:23.601Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Edge"
+      "browser": "Chrome"
     },
     {
       "id": "vw_244",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-02T18:07:04.067Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-08-02T07:58:33.928Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Mobile",
       "browser": "Safari"
     },
     {
       "id": "vw_245",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-02T21:38:51.138Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-02T05:22:41.061Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Mobile",
       "browser": "Edge"
     },
     {
       "id": "vw_246",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-02T18:07:23.009Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-01T16:43:31.868Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Mobile",
       "browser": "Firefox"
     },
     {
       "id": "vw_247",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-03T06:41:32.431Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-01T20:24:49.490Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
+      "device": "Tablet",
+      "browser": "Firefox"
     },
     {
       "id": "vw_248",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-04T01:42:57.270Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-02T02:57:07.908Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Edge"
+      "browser": "Chrome"
     },
     {
       "id": "vw_249",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-03T13:48:30.424Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-02T11:34:55.627Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Desktop",
       "browser": "Edge"
     },
     {
       "id": "vw_250",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-04T00:37:59.220Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-01T21:30:25.763Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Desktop",
       "browser": "Edge"
     },
     {
       "id": "vw_251",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-03T20:42:51.745Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-03T07:51:44.615Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
+      "device": "Tablet",
+      "browser": "Edge"
     },
     {
       "id": "vw_252",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-03T22:46:44.140Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_253",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-04T09:10:11.095Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-02T22:09:48.022Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Edge"
+    },
+    {
+      "id": "vw_253",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-02T23:43:15.001Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Safari"
     },
     {
       "id": "vw_254",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-03T22:29:27.559Z",
+      "viewed_at": "2026-08-03T04:36:30.736Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Tablet",
       "browser": "Chrome"
     },
     {
       "id": "vw_255",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-04T04:21:13.351Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-02T18:42:18.835Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
+      "device": "Desktop",
+      "browser": "Safari"
     },
     {
       "id": "vw_256",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-04T01:31:29.546Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_257",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-04T01:34:55.718Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_258",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-04T08:23:03.030Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_259",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-04T03:45:56.094Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_260",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-04T04:45:36.114Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-08-03T09:53:35.139Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Edge"
     },
     {
-      "id": "vw_261",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-04T04:38:13.319Z",
-      "referrer": "https://portaltech.io/docs",
+      "id": "vw_257",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-02T16:21:49.535Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_258",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-02T23:45:09.550Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_259",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-03T08:57:05.963Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_260",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-03T06:08:49.350Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_261",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-03T13:41:53.994Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
       "browser": "Chrome"
     },
     {
       "id": "vw_262",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-03T18:54:27.959Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-02T17:06:59.016Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
+      "device": "Desktop",
+      "browser": "Firefox"
     },
     {
       "id": "vw_263",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-03T20:33:47.684Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-02T21:12:47.394Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Safari"
+      "device": "Desktop",
+      "browser": "Edge"
     },
     {
       "id": "vw_264",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-04T10:03:33.431Z",
+      "viewed_at": "2026-08-03T08:09:24.156Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
+      "device": "Tablet",
+      "browser": "Edge"
     },
     {
       "id": "vw_265",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-03T13:41:35.356Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-02T21:21:54.350Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Chrome"
+      "browser": "Safari"
     },
     {
       "id": "vw_266",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-04T03:05:22.417Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-03T13:30:45.377Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_267",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-04T09:03:29.288Z",
+      "viewed_at": "2026-08-03T04:15:08.282Z",
       "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_268",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-03T17:48:00.537Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_269",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-04T07:15:28.539Z",
-      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Safari"
     },
     {
-      "id": "vw_270",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-04T20:27:05.359Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_271",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-05T07:57:44.310Z",
+      "id": "vw_268",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-02T22:28:26.757Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_269",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-02T21:35:49.331Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
       "browser": "Chrome"
     },
     {
-      "id": "vw_272",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-04T21:33:04.766Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "id": "vw_270",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-03T01:42:11.619Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Edge"
     },
     {
-      "id": "vw_273",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-05T10:33:49.871Z",
-      "referrer": "Direct",
+      "id": "vw_271",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-02T16:57:20.332Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Firefox"
     },
     {
+      "id": "vw_272",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-02T19:45:23.079Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_273",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-04T09:40:23.277Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
       "id": "vw_274",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-05T05:52:31.746Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-08-04T10:17:58.726Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Safari"
+      "browser": "Chrome"
     },
     {
       "id": "vw_275",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-05T15:36:19.740Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-04T04:51:44.443Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
       "id": "vw_276",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-06T08:10:45.918Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-04T00:21:13.713Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_277",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-03T18:28:33.479Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Safari"
     },
     {
-      "id": "vw_277",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-06T01:29:18.901Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
       "id": "vw_278",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-06T08:28:42.277Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_279",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-06T07:33:58.036Z",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-03T18:01:18.088Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Firefox"
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_279",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-04T12:06:07.827Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
     },
     {
       "id": "vw_280",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-05T14:09:37.327Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-04T11:35:28.900Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_281",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-06T04:43:54.466Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_282",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-05T22:46:33.037Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_283",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-06T03:37:28.111Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_284",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-06T01:46:45.046Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-08-04T03:38:13.930Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Firefox"
     },
     {
-      "id": "vw_285",
+      "id": "vw_282",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-03T21:14:49.575Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_283",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-05T15:12:41.410Z",
+      "viewed_at": "2026-08-04T05:37:37.723Z",
       "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_284",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-04T08:13:23.103Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_285",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-04T03:20:35.694Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_286",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-03T23:35:12.582Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Firefox"
     },
     {
-      "id": "vw_286",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-06T08:22:18.730Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
       "id": "vw_287",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-05T15:54:45.219Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_288",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-05T16:04:07.009Z",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-03T23:38:19.994Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Edge"
     },
     {
+      "id": "vw_288",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-03T23:27:04.464Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
       "id": "vw_289",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-05T19:20:55.623Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-04T06:06:55.560Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_290",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-04T01:18:56.557Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Edge"
     },
     {
-      "id": "vw_290",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-06T05:53:14.785Z",
-      "referrer": "https://meusite.com/produtos",
+      "id": "vw_291",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-04T07:02:58.715Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_292",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-03T17:46:30.825Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Edge"
     },
     {
-      "id": "vw_291",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-07T05:14:44.384Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_292",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-06T18:38:39.318Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
-    },
-    {
       "id": "vw_293",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-07T09:05:56.276Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-04T18:24:00.354Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Firefox"
@@ -2851,215 +2852,215 @@
     {
       "id": "vw_294",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-06T16:17:44.775Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_295",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-07T09:22:44.608Z",
+      "viewed_at": "2026-08-05T02:01:04.166Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_295",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-05T00:40:12.207Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
       "browser": "Edge"
     },
     {
       "id": "vw_296",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-07T05:57:08.401Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_297",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-08T03:25:59.031Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_298",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-07T20:14:21.470Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_299",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-07T13:32:26.566Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_300",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-07T19:18:49.734Z",
+      "viewed_at": "2026-08-05T07:13:52.858Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Safari"
     },
     {
-      "id": "vw_301",
+      "id": "vw_297",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-07T14:53:33.798Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-08-05T03:05:06.360Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_298",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-05T12:09:59.505Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_299",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-05T09:30:19.305Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_300",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-04T20:59:26.178Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_301",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-05T08:27:54.567Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Edge"
     },
     {
       "id": "vw_302",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-07T21:38:08.602Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-04T21:00:56.730Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Chrome"
+      "browser": "Firefox"
     },
     {
       "id": "vw_303",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-08T10:05:05.926Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-05T12:20:27.951Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Chrome"
+      "browser": "Safari"
     },
     {
       "id": "vw_304",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-08T10:35:36.683Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-06T01:56:02.203Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Safari"
     },
     {
       "id": "vw_305",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-07T13:22:21.509Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-06T02:06:03.912Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
+      "device": "Mobile",
+      "browser": "Firefox"
     },
     {
       "id": "vw_306",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-08T01:02:10.659Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-05T22:40:41.913Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
+      "device": "Desktop",
+      "browser": "Firefox"
     },
     {
       "id": "vw_307",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-07T14:40:06.500Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-08-06T08:47:21.495Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Firefox"
     },
     {
       "id": "vw_308",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-08T08:21:31.326Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-08-06T10:18:26.783Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_309",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-06T04:54:57.287Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_310",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-06T08:05:54.384Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_311",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-06T05:16:44.285Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_312",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-06T07:52:34.676Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_313",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-05T19:16:43.946Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_314",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-08T10:22:41.478Z",
+      "viewed_at": "2026-08-05T22:07:19.446Z",
       "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_315",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-06T23:17:09.459Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Firefox"
     },
     {
-      "id": "vw_310",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-07T23:44:30.468Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_311",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-08T04:00:54.790Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_312",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-09T03:41:41.636Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_313",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-08T16:48:51.946Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_314",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-09T09:42:01.242Z",
-      "referrer": "https://empresa.com.br/sobre",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_315",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-08T14:59:49.647Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
-    },
-    {
       "id": "vw_316",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-08T15:04:15.065Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-07T13:40:57.842Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Mobile",
       "browser": "Safari"
     },
     {
       "id": "vw_317",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-09T08:39:21.600Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-07T01:08:00.843Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Edge"
@@ -3067,26 +3068,26 @@
     {
       "id": "vw_318",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-09T05:36:08.988Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_319",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-10T02:53:02.400Z",
+      "viewed_at": "2026-08-07T04:49:44.036Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Chrome"
     },
     {
-      "id": "vw_320",
+      "id": "vw_319",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-10T03:16:00.398Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-07T09:13:37.605Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_320",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-06T18:41:05.081Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Firefox"
@@ -3094,196 +3095,196 @@
     {
       "id": "vw_321",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-10T01:28:05.247Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-08-06T20:33:27.284Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
+      "device": "Tablet",
+      "browser": "Edge"
     },
     {
       "id": "vw_322",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-10T02:19:15.535Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-07T06:19:05.034Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Edge"
+      "browser": "Safari"
     },
     {
       "id": "vw_323",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-09T17:31:38.654Z",
+      "viewed_at": "2026-08-06T23:48:59.330Z",
       "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Chrome"
+      "browser": "Safari"
     },
     {
       "id": "vw_324",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-09T13:51:31.321Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-08T03:44:17.759Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
+      "device": "Mobile",
+      "browser": "Edge"
     },
     {
       "id": "vw_325",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T04:59:00.752Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-08T05:01:35.567Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
+      "device": "Mobile",
+      "browser": "Firefox"
     },
     {
       "id": "vw_326",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-10T23:45:57.007Z",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-07T17:29:13.406Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Chrome"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_327",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T09:42:59.827Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-08T00:49:50.906Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Edge"
+      "device": "Desktop",
+      "browser": "Chrome"
     },
     {
       "id": "vw_328",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T04:59:31.047Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-08T08:33:34.573Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Safari"
+      "browser": "Chrome"
     },
     {
       "id": "vw_329",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T00:07:48.360Z",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-07T18:31:48.110Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Safari"
     },
     {
       "id": "vw_330",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-10T16:35:20.538Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_331",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-10T20:04:14.754Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_332",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T03:57:35.304Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_333",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-10T15:18:36.068Z",
+      "viewed_at": "2026-08-08T03:58:04.665Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_331",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-07T20:38:27.443Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_332",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-08T08:47:55.854Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_333",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-08T08:35:43.382Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
       "browser": "Safari"
     },
     {
       "id": "vw_334",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-10T15:17:56.752Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-08-08T11:06:35.885Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Chrome"
+      "browser": "Safari"
     },
     {
       "id": "vw_335",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-10T15:27:44.544Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-08T05:38:41.285Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Mobile",
       "browser": "Chrome"
     },
     {
       "id": "vw_336",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-10T20:05:38.270Z",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-08T02:58:16.405Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Tablet",
       "browser": "Safari"
     },
     {
       "id": "vw_337",
       "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-11T10:53:02.358Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-08-08T08:19:02.617Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_338",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-11T08:12:39.329Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-08T13:39:53.906Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Firefox"
     },
     {
       "id": "vw_339",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-12T00:48:41.604Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_340",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-12T08:20:39.564Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-08T13:52:04.540Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Firefox"
     },
     {
-      "id": "vw_341",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-11T23:01:21.923Z",
-      "referrer": "https://portaltech.io/docs",
+      "id": "vw_340",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-07T17:01:17.663Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_341",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-08T13:54:23.280Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
       "browser": "Safari"
     },
     {
       "id": "vw_342",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T15:59:42.851Z",
+      "viewed_at": "2026-08-08T14:04:49.665Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
@@ -3291,270 +3292,270 @@
     },
     {
       "id": "vw_343",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-11T16:56:18.464Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-09T14:02:23.259Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
+      "device": "Tablet",
+      "browser": "Safari"
     },
     {
       "id": "vw_344",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-11T17:48:25.443Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-09T13:52:52.264Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Chrome"
+      "browser": "Safari"
     },
     {
       "id": "vw_345",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T23:26:02.960Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-09T01:36:14.585Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
-      "browser": "Chrome"
+      "browser": "Firefox"
     },
     {
       "id": "vw_346",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T14:09:21.127Z",
-      "referrer": "https://meusite.com/produtos",
+      "viewed_at": "2026-08-09T04:29:05.984Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_347",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T20:22:36.796Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
+      "device": "Desktop",
       "browser": "Chrome"
     },
     {
-      "id": "vw_348",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-12T05:47:11.682Z",
+      "id": "vw_347",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-08T17:10:59.651Z",
       "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_348",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-08T21:13:16.148Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
       "browser": "Safari"
     },
     {
       "id": "vw_349",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T18:26:48.455Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-09T02:27:48.426Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Tablet",
       "browser": "Chrome"
     },
     {
       "id": "vw_350",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-12T01:20:38.639Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-08T23:13:38.255Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_351",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-09T03:14:38.490Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Edge"
     },
     {
-      "id": "vw_351",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-12T07:44:22.092Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
       "id": "vw_352",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-11T15:56:25.944Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-09T12:16:18.058Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
+      "device": "Mobile",
+      "browser": "Safari"
     },
     {
       "id": "vw_353",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T18:37:32.637Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-08-08T17:38:08.451Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Edge"
+      "browser": "Safari"
     },
     {
       "id": "vw_354",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-11T22:49:44.789Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_355",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-12T21:09:13.142Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-08T18:55:42.037Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Safari"
+    },
+    {
+      "id": "vw_355",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-09T09:08:34.260Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
     },
     {
       "id": "vw_356",
       "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-13T05:41:11.510Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-08T23:41:52.781Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_357",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-08T19:44:15.237Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Safari"
     },
     {
-      "id": "vw_357",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-12T19:17:47.494Z",
-      "referrer": "https://meusite.com/produtos",
+      "id": "vw_358",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-08T22:03:55.579Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
+      "device": "Tablet",
       "browser": "Edge"
     },
     {
-      "id": "vw_358",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-12T17:39:41.485Z",
+      "id": "vw_359",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-10T03:23:20.367Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_360",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-10T06:56:02.575Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_361",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-10T03:14:11.579Z",
       "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_362",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-10T03:37:20.358Z",
+      "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Safari"
     },
     {
-      "id": "vw_359",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-13T06:44:40.610Z",
+      "id": "vw_363",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-10T10:37:32.479Z",
       "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_364",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-10T12:47:07.373Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_365",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-09T19:06:36.172Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_366",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-09T22:40:50.267Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Firefox"
     },
     {
-      "id": "vw_360",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-12T21:55:57.091Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_361",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-12T23:07:59.669Z",
-      "referrer": "Direct",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_362",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-12T20:24:54.614Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_363",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-13T08:30:43.509Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_364",
+      "id": "vw_367",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-12T14:57:06.490Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Edge"
-    },
-    {
-      "id": "vw_365",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-12T19:44:20.514Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_366",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-12T19:14:12.666Z",
+      "viewed_at": "2026-08-10T11:23:42.172Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
-      "browser": "Safari"
-    },
-    {
-      "id": "vw_367",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-12T23:55:24.436Z",
-      "referrer": "https://portaltech.io/docs",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Safari"
+      "browser": "Edge"
     },
     {
       "id": "vw_368",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-13T00:52:09.156Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-09T17:04:12.308Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
-      "browser": "Chrome"
+      "browser": "Safari"
     },
     {
       "id": "vw_369",
-      "pdf_id": "pdf_04",
-      "viewed_at": "2026-08-12T22:41:08.973Z",
-      "referrer": "https://meusite.com/produtos",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-10T07:09:40.384Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Safari"
+      "device": "Desktop",
+      "browser": "Firefox"
     },
     {
       "id": "vw_370",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-12T14:39:14.020Z",
-      "referrer": "https://google.com",
+      "viewed_at": "2026-08-10T10:25:03.707Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Firefox"
+      "device": "Desktop",
+      "browser": "Safari"
     },
     {
       "id": "vw_371",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-13T00:05:26.103Z",
-      "referrer": "https://portaltech.io/docs",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-09T21:08:08.890Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Firefox"
+      "device": "Mobile",
+      "browser": "Chrome"
     },
     {
       "id": "vw_372",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-14T01:41:53.110Z",
-      "referrer": "https://portaltech.io/docs",
+      "viewed_at": "2026-08-09T16:01:30.594Z",
+      "referrer": "https://google.com",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Tablet",
       "browser": "Safari"
@@ -3562,110 +3563,434 @@
     {
       "id": "vw_373",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-14T02:37:58.823Z",
+      "viewed_at": "2026-08-10T13:32:34.661Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_374",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-09T20:43:38.821Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_375",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-10T16:41:46.469Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
-      "id": "vw_374",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-14T04:53:11.375Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "id": "vw_376",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-11T11:20:54.073Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_377",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-10T21:59:32.523Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Chrome"
     },
     {
-      "id": "vw_375",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-13T23:18:16.835Z",
+      "id": "vw_378",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-11T04:39:05.800Z",
       "referrer": "https://portaltech.io/docs",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_376",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-14T09:19:42.862Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Firefox"
-    },
-    {
-      "id": "vw_377",
-      "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-14T00:07:50.997Z",
-      "referrer": "https://meusite.com/produtos",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
-      "browser": "Chrome"
-    },
-    {
-      "id": "vw_378",
-      "pdf_id": "pdf_02",
-      "viewed_at": "2026-08-13T15:23:28.389Z",
-      "referrer": "https://google.com",
-      "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Mobile",
       "browser": "Edge"
     },
     {
       "id": "vw_379",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-13T19:45:31.076Z",
-      "referrer": "Direct",
+      "viewed_at": "2026-08-10T20:08:29.329Z",
+      "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Tablet",
-      "browser": "Safari"
+      "device": "Mobile",
+      "browser": "Chrome"
     },
     {
       "id": "vw_380",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-14T08:54:17.626Z",
-      "referrer": "https://google.com",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-11T06:04:01.844Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Mobile",
-      "browser": "Edge"
+      "device": "Tablet",
+      "browser": "Firefox"
     },
     {
       "id": "vw_381",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-13T22:24:58.629Z",
-      "referrer": "Direct",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-10T16:10:33.109Z",
+      "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
-      "device": "Desktop",
+      "device": "Tablet",
       "browser": "Edge"
     },
     {
       "id": "vw_382",
       "pdf_id": "pdf_01",
-      "viewed_at": "2026-08-13T20:22:29.238Z",
-      "referrer": "https://empresa.com.br/sobre",
+      "viewed_at": "2026-08-11T01:42:39.339Z",
+      "referrer": "Direct",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
       "browser": "Chrome"
     },
     {
       "id": "vw_383",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-11T19:42:20.194Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_384",
       "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-14T02:29:48.929Z",
+      "viewed_at": "2026-08-12T05:44:22.769Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_385",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-12T02:36:13.704Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_386",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-12T00:19:20.540Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_387",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-11T23:57:24.239Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_388",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-12T18:34:28.259Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_389",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-13T03:39:06.587Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_390",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-12T16:06:49.173Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_391",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-13T13:48:22.815Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_392",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-13T00:59:15.991Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_393",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-13T00:03:31.141Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_394",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-13T13:40:06.963Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_395",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-12T20:38:48.816Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_396",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-13T09:46:19.483Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_397",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-13T04:16:01.395Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_398",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-13T06:52:51.699Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_399",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-13T12:23:33.290Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_400",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-13T06:59:19.325Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_401",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-13T11:38:37.265Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_402",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-13T09:40:39.029Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_403",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-12T18:18:55.983Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_404",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-13T17:44:51.307Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_405",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-14T04:14:23.112Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_406",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-14T07:23:29.076Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_407",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-14T11:12:40.365Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_408",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-14T11:35:59.171Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_409",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-14T04:24:46.331Z",
+      "referrer": "https://empresa.com.br/sobre",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Edge"
+    },
+    {
+      "id": "vw_410",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-14T10:58:37.774Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_411",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-13T22:35:54.670Z",
       "referrer": "https://meusite.com/produtos",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Mobile",
       "browser": "Safari"
     },
     {
-      "id": "vw_384",
-      "pdf_id": "pdf_03",
-      "viewed_at": "2026-08-13T20:25:55.444Z",
+      "id": "vw_412",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-13T23:42:49.169Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_413",
+      "pdf_id": "pdf_02",
+      "viewed_at": "2026-08-13T16:29:46.752Z",
       "referrer": "https://empresa.com.br/sobre",
       "user_agent": "Mozilla/5.0 ...",
       "device": "Desktop",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_414",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-14T12:03:16.876Z",
+      "referrer": "https://portaltech.io/docs",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_415",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-13T16:28:52.255Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_416",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-14T03:58:30.994Z",
+      "referrer": "https://google.com",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Chrome"
+    },
+    {
+      "id": "vw_417",
+      "pdf_id": "pdf_04",
+      "viewed_at": "2026-08-13T20:18:49.941Z",
+      "referrer": "https://meusite.com/produtos",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Tablet",
+      "browser": "Safari"
+    },
+    {
+      "id": "vw_418",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-14T09:03:13.423Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
+      "browser": "Firefox"
+    },
+    {
+      "id": "vw_419",
+      "pdf_id": "pdf_01",
+      "viewed_at": "2026-08-14T06:09:45.199Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Desktop",
       "browser": "Edge"
+    },
+    {
+      "id": "vw_420",
+      "pdf_id": "pdf_03",
+      "viewed_at": "2026-08-14T06:45:54.588Z",
+      "referrer": "Direct",
+      "user_agent": "Mozilla/5.0 ...",
+      "device": "Mobile",
+      "browser": "Firefox"
     }
   ]
 }
