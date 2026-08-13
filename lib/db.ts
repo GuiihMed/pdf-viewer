@@ -192,12 +192,18 @@ function loadState(): DatabaseState {
         sa.status = 'active';
       }
     }
-    // Ensure all users have site_id and status fields
-    parsed.users = parsed.users.map(u => ({
+    // Ensure array integrity
+    parsed.users = (parsed.users || []).map(u => ({
       ...u,
       site_id: u.site_id !== undefined ? u.site_id : null,
       status: u.status || 'active',
     }));
+    parsed.pdfs = parsed.pdfs || [];
+    parsed.sites = parsed.sites || [];
+    parsed.tags = parsed.tags || [];
+    parsed.pdf_tags = parsed.pdf_tags || [];
+    parsed.allowed_domains = parsed.allowed_domains || [];
+    parsed.pdf_views = parsed.pdf_views || [];
     return parsed;
   }
 
@@ -384,17 +390,6 @@ function saveState() {
 function getState(): DatabaseState {
   if (!state) {
     state = loadState();
-  } else {
-    // Sync with file on disk if exists
-    if (fs.existsSync(dbJsonPath)) {
-      try {
-        const data = fs.readFileSync(dbJsonPath, 'utf8');
-        const diskState = JSON.parse(data);
-        if (diskState && Array.isArray(diskState.users)) {
-          state = diskState;
-        }
-      } catch (e) {}
-    }
   }
   return state;
 }
