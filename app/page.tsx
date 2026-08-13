@@ -16,6 +16,7 @@ import {
   FileCheck2
 } from 'lucide-react';
 import { WdcomLogo } from '@/components/WdcomLogo';
+import { DynamicBackground } from '@/components/DynamicBackground';
 
 export default function LandingPage() {
   const [demoPublicId, setDemoPublicId] = useState<string>('demo-wdcom');
@@ -26,7 +27,8 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div style={{ backgroundColor: '#0b0f19', color: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowX: 'hidden' }}>
+    <div style={{ backgroundColor: '#0b0f19', color: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowX: 'hidden', position: 'relative' }}>
+      <DynamicBackground />
       {/* Header Navigation */}
       <header
         className="glass-header"
