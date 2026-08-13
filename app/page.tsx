@@ -29,29 +29,33 @@ export default function LandingPage() {
     <div style={{ backgroundColor: '#0b0f19', color: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowX: 'hidden' }}>
       {/* Header Navigation */}
       <header
+        className="glass-header"
         style={{
           height: '88px',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
           padding: '0 32px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          maxWidth: '1280px',
+          maxWidth: '100%',
           width: '100%',
-          margin: '0 auto',
+          position: 'sticky',
+          top: 0,
+          zIndex: 100,
         }}
       >
-        <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
-          <WdcomLogo height={58} />
-        </a>
+        <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+            <WdcomLogo height={58} />
+          </a>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <Link href="/login" className="btn-secondary" style={{ fontSize: '0.88rem', padding: '10px 20px' }}>
-            Fazer Login
-          </Link>
-          <Link href="/login" className="btn-primary" style={{ fontSize: '0.88rem', padding: '10px 22px', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}>
-            Acessar Painel <ArrowRight size={16} />
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <Link href="/login" className="btn-secondary" style={{ fontSize: '0.88rem', padding: '10px 20px', background: 'rgba(255, 255, 255, 0.06)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
+              Fazer Login
+            </Link>
+            <Link href="/login" className="btn-primary" style={{ fontSize: '0.88rem', padding: '10px 22px', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}>
+              Acessar Painel <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </header>
 

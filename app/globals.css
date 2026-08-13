@@ -90,19 +90,28 @@ button, input, select, textarea {
   font-family: inherit;
 }
 
-/* Utility Layouts */
+/* Ultra Modern Glassmorphism System */
 .glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  transition: all 0.2s ease-in-out;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel:hover {
-  border-color: var(--border-medium);
+  border-color: rgba(0, 163, 224, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 163, 224, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+}
+
+.glass-header {
+  background: rgba(11, 15, 25, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .gradient-text {
