@@ -48,9 +48,24 @@ export async function GET(request: Request, { params }: { params: { publicId: st
       }
     }
 
+    let fileBuffer: Buffer | null = null;
+    if (pdf.storage_path.includes('|||data:application/pdf;base64,')) {
+      const parts = pdf.storage_path.split('|||data:application/pdf;base64,');
+      if (parts[1]) {
+        fileBuffer = Buffer.from(parts[1], 'base64');
+      }
+    }
+
     const filePath = getPdfFilePath(pdf.storage_path);
-    const stats = fs.statSync(filePath);
-    const fileSize = stats.size;
+    if (!fileBuffer && fs.existsSync(filePath)) {
+      fileBuffer = fs.readFileSync(filePath);
+    }
+
+    if (!fileBuffer) {
+      return NextResponse.json({ error: 'Arquivo PDF não encontrado.' }, { status: 404 });
+    }
+
+    const fileSize = fileBuffer.length;
 
     // Build CSP frame-ancestors header
     let frameAncestors = "*";
@@ -66,17 +81,9 @@ export async function GET(request: Request, { params }: { params: { publicId: st
       const start = parseInt(parts[0], 10);
       const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
       const chunkSize = end - start + 1;
+      const slicedBuffer = fileBuffer.subarray(start, end + 1);
 
-      const fileStream = fs.createReadStream(filePath, { start, end });
-      const stream = new ReadableStream({
-        start(controller) {
-          fileStream.on('data', (chunk) => controller.enqueue(chunk));
-          fileStream.on('end', () => controller.close());
-          fileStream.on('error', (err) => controller.error(err));
-        },
-      });
-
-      return new Response(stream, {
+      return new Response(slicedBuffer, {
         status: 206,
         headers: {
           'Content-Range': `bytes ${start}-${end}/${fileSize}`,
@@ -90,17 +97,7 @@ export async function GET(request: Request, { params }: { params: { publicId: st
       });
     }
 
-    // Full stream response
-    const fileStream = fs.createReadStream(filePath);
-    const stream = new ReadableStream({
-      start(controller) {
-        fileStream.on('data', (chunk) => controller.enqueue(chunk));
-        fileStream.on('end', () => controller.close());
-        fileStream.on('error', (err) => controller.error(err));
-      },
-    });
-
-    return new Response(stream, {
+    return new Response(fileBuffer, {
       status: 200,
       headers: {
         'Content-Length': fileSize.toString(),

@@ -38,9 +38,12 @@ export async function savePdfFile(fileBuffer: Buffer, originalFilename: string):
   const fileExt = path.extname(originalFilename) || '.pdf';
   const cleanBaseName = path.basename(originalFilename, fileExt).replace(/[^a-zA-Z0-9_-]/g, '_');
   const uniqueName = `${cleanBaseName}-${Date.now()}-${crypto.randomBytes(4).toString('hex')}${fileExt}`;
-  const fullPath = path.join(uploadsDir, uniqueName);
-
-  fs.writeFileSync(fullPath, fileBuffer);
+  
+  // Save to disk
+  try {
+    const fullPath = path.join(uploadsDir, uniqueName);
+    fs.writeFileSync(fullPath, fileBuffer);
+  } catch (e) {}
 
   let pageCount = 1;
   try {
@@ -51,8 +54,12 @@ export async function savePdfFile(fileBuffer: Buffer, originalFilename: string):
     pageCount = 1;
   }
 
+  // Store base64 data string format so file is never lost across Vercel ephemeral instances
+  const base64Data = `data:application/pdf;base64,${fileBuffer.toString('base64')}`;
+  const storagePath = `${uniqueName}|||${base64Data}`;
+
   return {
-    storagePath: uniqueName,
+    storagePath,
     fileSize: fileBuffer.length,
     pageCount,
     originalFilename,
@@ -101,7 +108,8 @@ export async function downloadAndSavePdfFromUrl(pdfUrl: string): Promise<{
 }
 
 export function deletePdfFile(storagePath: string): void {
-  const fullPath = path.join(uploadsDir, storagePath);
+  const cleanName = storagePath.split('|||')[0];
+  const fullPath = path.join(uploadsDir, cleanName);
   if (fs.existsSync(fullPath)) {
     try {
       fs.unlinkSync(fullPath);
@@ -110,9 +118,14 @@ export function deletePdfFile(storagePath: string): void {
 }
 
 export function getPdfFilePath(storagePath: string): string {
-  return path.join(uploadsDir, storagePath);
+  const cleanName = storagePath.split('|||')[0];
+  return path.join(uploadsDir, cleanName);
 }
 
 export function pdfFileExists(storagePath: string): boolean {
-  return fs.existsSync(path.join(uploadsDir, storagePath));
+  if (storagePath.includes('|||data:application/pdf;base64,')) {
+    return true;
+  }
+  const cleanName = storagePath.split('|||')[0];
+  return fs.existsSync(path.join(uploadsDir, cleanName));
 }
