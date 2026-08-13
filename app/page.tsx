@@ -222,9 +222,9 @@ export default function LandingPage() {
             <div style={{ width: 48, height: 48, borderRadius: 12, background: 'rgba(0, 163, 224, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
               <Zap size={26} color="#38bdf8" />
             </div>
-            <h3 style={{ fontSize: '1.3rem', marginBottom: 12, color: '#ffffff' }}>Google Cloud Storage & Firestore</h3>
+            <h3 style={{ fontSize: '1.3rem', marginBottom: 12, color: '#ffffff' }}>Infraestrutura em Nuvem & Alta Performance</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.92rem', lineHeight: 1.65 }}>
-              Integrado nativamente ao Google Cloud. Seus PDFs ficam salvos na infraestrutura oficial da Google, garantindo velocidade máxima e alta disponibilidade.
+              Servidores otimizados em nuvem com carregamento instantâneo de arquivos. Seus documentos ficam salvos de forma redundante com máxima disponibilidade e segurança.
             </p>
           </div>
 
