@@ -1,4 +1,4 @@
-import { NextResponse } from 'next';
+import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
 import { generatePublicId, savePdfFile, downloadAndSavePdfFromUrl } from '@/lib/storage';
@@ -84,7 +84,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ pdfs });
   } catch (err: any) {
     console.error('Error fetching PDFs:', err);
-    return NextResponse.json({ error: 'Erro ao carregar lista de PDFs.' }, { status: 500 });
+    return NextResponse.json({ error: err.message || 'Erro ao carregar lista de PDFs.' }, { status: 500 });
   }
 }
 
@@ -208,6 +208,6 @@ export async function POST(request: Request) {
     });
   } catch (err: any) {
     console.error('Error creating PDF:', err);
-    return NextResponse.json({ error: 'Erro ao cadastrar PDF.' }, { status: 500 });
+    return NextResponse.json({ error: err.message || 'Erro ao cadastrar PDF.' }, { status: 500 });
   }
 }

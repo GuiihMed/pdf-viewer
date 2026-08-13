@@ -1,17 +1,29 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import bcrypt from 'bcryptjs';
 
-const dataDir = path.join(process.cwd(), 'data');
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
+function getWritableDir(subDir: string): string {
+  try {
+    const localPath = path.join(process.cwd(), subDir);
+    if (!fs.existsSync(localPath)) {
+      fs.mkdirSync(localPath, { recursive: true });
+    }
+    const testFile = path.join(localPath, '.write_test');
+    fs.writeFileSync(testFile, 'test');
+    fs.unlinkSync(testFile);
+    return localPath;
+  } catch (e) {
+    const tmpPath = path.join(os.tmpdir(), subDir);
+    if (!fs.existsSync(tmpPath)) {
+      fs.mkdirSync(tmpPath, { recursive: true });
+    }
+    return tmpPath;
+  }
 }
 
-const uploadsDir = path.join(process.cwd(), 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
+const dataDir = getWritableDir('data');
+const uploadsDir = getWritableDir('uploads');
 const dbJsonPath = path.join(dataDir, 'db.json');
 
 export interface User {
@@ -163,7 +175,6 @@ function loadState(): DatabaseState {
   ];
 
   if (parsed) {
-    // Ensure WDCOM user exists and is up to date with new password
     parsed.users = users;
     return parsed;
   }
@@ -193,10 +204,12 @@ function loadState(): DatabaseState {
   const pdf3File = 'relatorio-sustentabilidade-c92fa812.pdf';
   const pdf4File = 'guia-instalacao-d41ea567.pdf';
 
-  fs.writeFileSync(path.join(uploadsDir, pdf1File), pdf1Buffer);
-  fs.writeFileSync(path.join(uploadsDir, pdf2File), pdf2Buffer);
-  fs.writeFileSync(path.join(uploadsDir, pdf3File), pdf3Buffer);
-  fs.writeFileSync(path.join(uploadsDir, pdf4File), pdf4Buffer);
+  try {
+    fs.writeFileSync(path.join(uploadsDir, pdf1File), pdf1Buffer);
+    fs.writeFileSync(path.join(uploadsDir, pdf2File), pdf2Buffer);
+    fs.writeFileSync(path.join(uploadsDir, pdf3File), pdf3Buffer);
+    fs.writeFileSync(path.join(uploadsDir, pdf4File), pdf4Buffer);
+  } catch (e) {}
 
   const pdfs: Pdf[] = [
     {
@@ -330,14 +343,20 @@ function loadState(): DatabaseState {
     pdf_views,
   };
 
-  fs.writeFileSync(dbJsonPath, JSON.stringify(newState, null, 2), 'utf8');
+  try {
+    fs.writeFileSync(dbJsonPath, JSON.stringify(newState, null, 2), 'utf8');
+  } catch (e) {}
   return newState;
 }
 
 let state: DatabaseState = loadState();
 
 function saveState() {
-  fs.writeFileSync(dbJsonPath, JSON.stringify(state, null, 2), 'utf8');
+  try {
+    fs.writeFileSync(dbJsonPath, JSON.stringify(state, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Could not persist state to db.json:', e);
+  }
 }
 
 export const db = {
@@ -438,7 +457,7 @@ function executeQuery(sql: string, params: any[]): any[] {
       map.set(dStr, 0);
     }
     state.pdf_views.forEach(v => {
-      const dStr = v.viewed_at.slice(0, 10);
+      const dStr = v.viewed_at ? v.viewed_at.slice(0, 10) : '';
       if (map.has(dStr)) {
         map.set(dStr, (map.get(dStr) || 0) + 1);
       }
@@ -489,10 +508,10 @@ function executeQuery(sql: string, params: any[]): any[] {
     if (searchParam) {
       const term = searchParam.replace(/%/g, '').toLowerCase();
       list = list.filter(p =>
-        p.title.toLowerCase().includes(term) ||
+        (p.title && p.title.toLowerCase().includes(term)) ||
         (p.description && p.description.toLowerCase().includes(term)) ||
-        p.original_filename.toLowerCase().includes(term) ||
-        p.public_id.toLowerCase().includes(term)
+        (p.original_filename && p.original_filename.toLowerCase().includes(term)) ||
+        (p.public_id && p.public_id.toLowerCase().includes(term))
       );
     }
 

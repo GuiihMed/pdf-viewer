@@ -1,13 +1,29 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { PDFDocument } from 'pdf-lib';
 import crypto from 'crypto';
 
-const uploadsDir = path.join(process.cwd(), 'uploads');
-
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+function getWritableUploadsDir(): string {
+  try {
+    const localPath = path.join(process.cwd(), 'uploads');
+    if (!fs.existsSync(localPath)) {
+      fs.mkdirSync(localPath, { recursive: true });
+    }
+    const testFile = path.join(localPath, '.write_test');
+    fs.writeFileSync(testFile, 'test');
+    fs.unlinkSync(testFile);
+    return localPath;
+  } catch (e) {
+    const tmpPath = path.join(os.tmpdir(), 'uploads');
+    if (!fs.existsSync(tmpPath)) {
+      fs.mkdirSync(tmpPath, { recursive: true });
+    }
+    return tmpPath;
+  }
 }
+
+const uploadsDir = getWritableUploadsDir();
 
 export function generatePublicId(): string {
   return crypto.randomBytes(4).toString('hex'); // 8 character random hex string e.g. 8f72a91c
@@ -71,19 +87,24 @@ export async function downloadAndSavePdfFromUrl(pdfUrl: string): Promise<{
   }
 
   // Extract filename from URL path
-  const urlObj = new URL(cleanUrl);
-  let filename = path.basename(urlObj.pathname);
-  if (!filename || !filename.toLowerCase().endsWith('.pdf')) {
-    filename = `documento-${generatePublicId()}.pdf`;
+  try {
+    const urlObj = new URL(cleanUrl);
+    let filename = path.basename(urlObj.pathname);
+    if (!filename || !filename.toLowerCase().endsWith('.pdf')) {
+      filename = `documento-${generatePublicId()}.pdf`;
+    }
+    return savePdfFile(buffer, filename);
+  } catch (e) {
+    return savePdfFile(buffer, `documento-${generatePublicId()}.pdf`);
   }
-
-  return savePdfFile(buffer, filename);
 }
 
 export function deletePdfFile(storagePath: string): void {
   const fullPath = path.join(uploadsDir, storagePath);
   if (fs.existsSync(fullPath)) {
-    fs.unlinkSync(fullPath);
+    try {
+      fs.unlinkSync(fullPath);
+    } catch (e) {}
   }
 }
 
