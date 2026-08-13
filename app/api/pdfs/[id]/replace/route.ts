@@ -1,4 +1,4 @@
-import { NextResponse } from 'next';
+import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
 import { deletePdfFile, savePdfFile, downloadAndSavePdfFromUrl } from '@/lib/storage';
