@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Save, RefreshCw, Upload, CheckCircle2, AlertCircle, FileText, Tag as TagIcon } from 'lucide-react';
+import { ArrowLeft, Save, RefreshCw, Upload, CheckCircle2, AlertCircle, FileText, Tag as TagIcon, Link as LinkIcon } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 
 export default function EditPdfPage() {
@@ -31,7 +31,9 @@ export default function EditPdfPage() {
   const [allowedDomainsRaw, setAllowedDomainsRaw] = useState('');
 
   // Replacement File State
+  const [replaceMode, setReplaceMode] = useState<'file' | 'url'>('file');
   const [replacementFile, setReplacementFile] = useState<File | null>(null);
+  const [replacementUrl, setReplacementUrl] = useState('');
   const [replacing, setReplacing] = useState(false);
 
   useEffect(() => {
@@ -112,8 +114,12 @@ export default function EditPdfPage() {
 
   const handleReplaceFile = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!replacementFile) {
+    if (replaceMode === 'file' && !replacementFile) {
       setError('Por favor, escolha um novo arquivo PDF para substituir.');
+      return;
+    }
+    if (replaceMode === 'url' && !replacementUrl.trim()) {
+      setError('Por favor, insira o link/URL do novo PDF para substituir.');
       return;
     }
 
@@ -121,7 +127,11 @@ export default function EditPdfPage() {
     setError(null);
 
     const formData = new FormData();
-    formData.append('file', replacementFile);
+    if (replaceMode === 'file' && replacementFile) {
+      formData.append('file', replacementFile);
+    } else {
+      formData.append('pdfUrl', replacementUrl.trim());
+    }
 
     try {
       const res = await fetch(`/api/pdfs/${pdfId}/replace`, {
@@ -140,6 +150,7 @@ export default function EditPdfPage() {
       showToast('Arquivo PDF substituído mantendo a mesma URL pública e iframe!', 'success');
       setReplacing(false);
       setReplacementFile(null);
+      setReplacementUrl('');
       router.push(`/admin/pdfs/${pdfId}`);
     } catch (err) {
       setError('Erro de conexão ao substituir o arquivo.');
@@ -161,7 +172,7 @@ export default function EditPdfPage() {
         <div>
           <h1 style={{ fontSize: '1.8rem', color: '#ffffff' }}>Editar PDF & Substituir Arquivo</h1>
           <p style={{ color: '#9ca3af', fontSize: '0.9rem' }}>
-            ID Público: <code style={{ color: '#a5b4fc' }}>{pdf?.public_id}</code>
+            ID Público: <code style={{ color: '#00a3e0' }}>{pdf?.public_id}</code>
           </p>
         </div>
       </div>
@@ -190,34 +201,92 @@ export default function EditPdfPage() {
         className="glass-panel"
         style={{
           padding: '24px',
-          background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)',
-          border: '1px solid rgba(99, 102, 241, 0.3)',
+          background: 'linear-gradient(135deg, rgba(0, 163, 224, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)',
+          border: '1px solid rgba(0, 163, 224, 0.3)',
         }}
       >
         <h3 style={{ fontSize: '1.1rem', color: '#ffffff', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <RefreshCw size={18} color="#818cf8" /> Substituição Transparente do Arquivo PDF
+          <RefreshCw size={18} color="#00a3e0" /> Substituição Transparente do Arquivo PDF
         </h3>
         <p style={{ fontSize: '0.85rem', color: '#9ca3af', marginBottom: '16px' }}>
-          Ao substituir o arquivo, a URL pública (<code style={{ color: '#a5b4fc' }}>/view/{pdf?.public_id}</code>) e o código iframe já instalados nos sites dos clientes continuarão funcionando normalmente sem necessidade de re-instalação!
+          Ao substituir o arquivo, a URL pública (<code style={{ color: '#38bdf8' }}>/view/{pdf?.public_id}</code>) e o código iframe já instalados nos sites dos clientes continuarão funcionando normalmente sem necessidade de re-instalação!
         </p>
 
-        <form onSubmit={handleReplaceFile} style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
-          <input
-            type="file"
-            accept=".pdf,application/pdf"
-            onChange={(e) => e.target.files && setReplacementFile(e.target.files[0])}
-            id="replacement-file-input"
-            style={{ display: 'none' }}
-          />
-          <label htmlFor="replacement-file-input" className="btn-secondary" style={{ cursor: 'pointer' }}>
-            <Upload size={16} /> {replacementFile ? replacementFile.name : 'Selecionar Novo PDF para Substituir'}
-          </label>
+        {/* Option Tabs for Replacement: File vs URL */}
+        <div style={{ display: 'flex', gap: '10px', marginBottom: '14px' }}>
+          <button
+            type="button"
+            onClick={() => setReplaceMode('file')}
+            style={{
+              padding: '6px 14px',
+              borderRadius: '6px',
+              border: 'none',
+              background: replaceMode === 'file' ? '#00a3e0' : 'rgba(255, 255, 255, 0.08)',
+              color: '#ffffff',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <Upload size={14} /> Novo Arquivo PDF
+          </button>
+          <button
+            type="button"
+            onClick={() => setReplaceMode('url')}
+            style={{
+              padding: '6px 14px',
+              borderRadius: '6px',
+              border: 'none',
+              background: replaceMode === 'url' ? '#00a3e0' : 'rgba(255, 255, 255, 0.08)',
+              color: '#ffffff',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <LinkIcon size={14} /> Nova URL do PDF
+          </button>
+        </div>
 
-          {replacementFile && (
-            <button type="submit" disabled={replacing} className="btn-primary">
-              {replacing ? 'Substituindo...' : 'Confirmar Substituição do PDF'}
-            </button>
+        <form onSubmit={handleReplaceFile} style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+          {replaceMode === 'file' ? (
+            <>
+              <input
+                type="file"
+                accept=".pdf,application/pdf"
+                onChange={(e) => e.target.files && setReplacementFile(e.target.files[0])}
+                id="replacement-file-input"
+                style={{ display: 'none' }}
+              />
+              <label htmlFor="replacement-file-input" className="btn-secondary" style={{ cursor: 'pointer' }}>
+                <Upload size={16} /> {replacementFile ? replacementFile.name : 'Selecionar Novo Arquivo .PDF'}
+              </label>
+            </>
+          ) : (
+            <input
+              type="url"
+              value={replacementUrl}
+              onChange={(e) => setReplacementUrl(e.target.value)}
+              placeholder="https://exemplo.com/novo-documento.pdf"
+              className="form-input"
+              style={{ flex: 1, minWidth: '280px', padding: '10px 14px', fontSize: '0.9rem' }}
+            />
           )}
+
+          <button
+            type="submit"
+            disabled={replacing}
+            className="btn-primary"
+            style={{ background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}
+          >
+            {replacing ? 'Substituindo...' : 'Confirmar Substituição do PDF'}
+          </button>
         </form>
       </div>
 
@@ -282,9 +351,9 @@ export default function EditPdfPage() {
                     className="badge"
                     style={{
                       cursor: 'pointer',
-                      background: isSelected ? 'rgba(99, 102, 241, 0.35)' : 'rgba(255, 255, 255, 0.05)',
+                      background: isSelected ? 'rgba(0, 163, 224, 0.35)' : 'rgba(255, 255, 255, 0.05)',
                       color: isSelected ? '#ffffff' : '#9ca3af',
-                      border: isSelected ? '1px solid #6366f1' : '1px solid rgba(255, 255, 255, 0.1)',
+                      border: isSelected ? '1px solid #00a3e0' : '1px solid rgba(255, 255, 255, 0.1)',
                       padding: '6px 12px',
                     }}
                   >
@@ -306,7 +375,7 @@ export default function EditPdfPage() {
                 type="checkbox"
                 checked={allowDownload}
                 onChange={(e) => setAllowDownload(e.target.checked)}
-                style={{ width: 18, height: 18, accentColor: '#6366f1' }}
+                style={{ width: 18, height: 18, accentColor: '#00a3e0' }}
               />
               <span style={{ fontSize: '0.9rem' }}>Permitir Botão de Download</span>
             </label>
@@ -316,7 +385,7 @@ export default function EditPdfPage() {
                 type="checkbox"
                 checked={allowPrint}
                 onChange={(e) => setAllowPrint(e.target.checked)}
-                style={{ width: 18, height: 18, accentColor: '#6366f1' }}
+                style={{ width: 18, height: 18, accentColor: '#00a3e0' }}
               />
               <span style={{ fontSize: '0.9rem' }}>Permitir Impressão</span>
             </label>
@@ -351,7 +420,12 @@ export default function EditPdfPage() {
           </div>
         </div>
 
-        <button type="submit" disabled={saving} className="btn-primary" style={{ padding: '14px', fontSize: '1rem' }}>
+        <button
+          type="submit"
+          disabled={saving}
+          className="btn-primary"
+          style={{ padding: '14px', fontSize: '1rem', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}
+        >
           <Save size={18} /> {saving ? 'Salvando...' : 'Salvar Alterações'}
         </button>
       </form>

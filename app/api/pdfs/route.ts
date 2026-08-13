@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next';
 import db from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
-import { generatePublicId, savePdfFile } from '@/lib/storage';
+import { generatePublicId, savePdfFile, downloadAndSavePdfFromUrl } from '@/lib/storage';
 
 export async function GET(request: Request) {
   try {
@@ -97,6 +97,7 @@ export async function POST(request: Request) {
 
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
+    const pdfUrl = (formData.get('pdfUrl') as string) || '';
     const title = formData.get('title') as string;
     const description = (formData.get('description') as string) || '';
     const category = (formData.get('category') as string) || '';
@@ -109,19 +110,43 @@ export async function POST(request: Request) {
     const tagIdsRaw = (formData.get('tagIds') as string) || '[]';
     const allowedDomainsRaw = (formData.get('allowedDomains') as string) || '';
 
-    if (!file || !title) {
-      return NextResponse.json({ error: 'Arquivo PDF e Título são obrigatórios.' }, { status: 400 });
+    if (!title) {
+      return NextResponse.json({ error: 'O Título do PDF é obrigatório.' }, { status: 400 });
     }
 
-    if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
-      return NextResponse.json({ error: 'Apenas arquivos com extensão .pdf são permitidos.' }, { status: 400 });
+    if (!file && !pdfUrl) {
+      return NextResponse.json({ error: 'Selecione um arquivo PDF do computador ou insira a URL do PDF.' }, { status: 400 });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const { storagePath, fileSize, pageCount } = await savePdfFile(buffer, file.name);
+    let storagePath = '';
+    let fileSize = 0;
+    let pageCount = 1;
+    let originalFilename = '';
+
+    if (pdfUrl) {
+      try {
+        const result = await downloadAndSavePdfFromUrl(pdfUrl);
+        storagePath = result.storagePath;
+        fileSize = result.fileSize;
+        pageCount = result.pageCount;
+        originalFilename = result.originalFilename;
+      } catch (err: any) {
+        return NextResponse.json({ error: err.message || 'Erro ao processar URL do PDF.' }, { status: 400 });
+      }
+    } else if (file) {
+      if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
+        return NextResponse.json({ error: 'Apenas arquivos com extensão .pdf são permitidos.' }, { status: 400 });
+      }
+      const buffer = Buffer.from(await file.arrayBuffer());
+      const result = await savePdfFile(buffer, file.name);
+      storagePath = result.storagePath;
+      fileSize = result.fileSize;
+      pageCount = result.pageCount;
+      originalFilename = file.name;
+    }
 
     const pdfId = `pdf_${Date.now()}`;
-    const publicId = generatePublicId(); // 8-character unique hash
+    const publicId = generatePublicId();
 
     const insertStmt = db.prepare(`
       INSERT INTO pdfs (id, public_id, title, description, category, original_filename, storage_path, file_size, page_count, site_id, status, allow_download, allow_print, allow_embed, restrict_domains)
@@ -134,7 +159,7 @@ export async function POST(request: Request) {
       title,
       description,
       category,
-      file.name,
+      originalFilename,
       storagePath,
       fileSize,
       pageCount,

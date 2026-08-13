@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Upload, ArrowLeft, CheckCircle2, FileText, Lock, Globe, Tag as TagIcon, AlertCircle } from 'lucide-react';
+import { Upload, ArrowLeft, CheckCircle2, FileText, Lock, Globe, Tag as TagIcon, AlertCircle, Link as LinkIcon } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 
 export default function NewPdfPage() {
@@ -14,8 +14,12 @@ export default function NewPdfPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Source Type Mode: 'file' | 'url'
+  const [sourceType, setSourceType] = useState<'file' | 'url'>('file');
+
   // Form State
   const [file, setFile] = useState<File | null>(null);
+  const [pdfUrl, setPdfUrl] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('Catálogo');
@@ -49,6 +53,22 @@ export default function NewPdfPage() {
     }
   };
 
+  const handleUrlBlur = () => {
+    if (pdfUrl && !title) {
+      try {
+        const urlObj = new URL(pdfUrl.startsWith('http') ? pdfUrl : `https://${pdfUrl}`);
+        const parts = urlObj.pathname.split('/');
+        const filename = parts[parts.length - 1];
+        if (filename) {
+          const cleanName = filename.replace(/\.pdf$/i, '').replace(/[-_]/g, ' ');
+          if (cleanName) {
+            setTitle(cleanName.charAt(0).toUpperCase() + cleanName.slice(1));
+          }
+        }
+      } catch (e) {}
+    }
+  };
+
   const toggleTag = (id: string) => {
     setSelectedTagIds((prev) =>
       prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
@@ -57,8 +77,12 @@ export default function NewPdfPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!file) {
+    if (sourceType === 'file' && !file) {
       setError('Por favor, faça o upload de um arquivo PDF.');
+      return;
+    }
+    if (sourceType === 'url' && !pdfUrl.trim()) {
+      setError('Por favor, insira o link/URL do arquivo PDF.');
       return;
     }
     if (!title) {
@@ -70,7 +94,11 @@ export default function NewPdfPage() {
     setError(null);
 
     const formData = new FormData();
-    formData.append('file', file);
+    if (sourceType === 'file' && file) {
+      formData.append('file', file);
+    } else {
+      formData.append('pdfUrl', pdfUrl.trim());
+    }
     formData.append('title', title);
     formData.append('description', description);
     formData.append('category', category);
@@ -114,7 +142,7 @@ export default function NewPdfPage() {
         <div>
           <h1 style={{ fontSize: '1.8rem', color: '#ffffff' }}>Cadastrar Novo PDF</h1>
           <p style={{ color: '#9ca3af', fontSize: '0.9rem' }}>
-            Faça upload do documento e configure o site e as permissões.
+            Faça upload do documento ou insira um link direto para o PDF.
           </p>
         </div>
       </div>
@@ -138,54 +166,136 @@ export default function NewPdfPage() {
         </div>
       )}
 
+      {/* Selector Tabs: Upload File vs URL Link */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '12px',
+          background: 'rgba(17, 24, 39, 0.6)',
+          padding: '6px',
+          borderRadius: '12px',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => { setSourceType('file'); setError(null); }}
+          style={{
+            padding: '12px',
+            borderRadius: '8px',
+            border: 'none',
+            background: sourceType === 'file' ? 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' : 'transparent',
+            color: sourceType === 'file' ? '#ffffff' : '#9ca3af',
+            fontWeight: 600,
+            fontSize: '0.92rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            transition: 'all 0.2s ease',
+          }}
+        >
+          <Upload size={18} /> Upload de Arquivo PDF
+        </button>
+
+        <button
+          type="button"
+          onClick={() => { setSourceType('url'); setError(null); }}
+          style={{
+            padding: '12px',
+            borderRadius: '8px',
+            border: 'none',
+            background: sourceType === 'url' ? 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' : 'transparent',
+            color: sourceType === 'url' ? '#ffffff' : '#9ca3af',
+            fontWeight: 600,
+            fontSize: '0.92rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            transition: 'all 0.2s ease',
+          }}
+        >
+          <LinkIcon size={18} /> Inserir Link / URL do PDF
+        </button>
+      </div>
+
       {/* Upload Form */}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        {/* Upload Drop Zone */}
-        <div className="glass-panel" style={{ padding: '32px', textAlign: 'center', border: '2px dashed rgba(99, 102, 241, 0.4)' }}>
-          <input
-            type="file"
-            accept=".pdf,application/pdf"
-            onChange={handleFileChange}
-            id="pdf-file-input"
-            style={{ display: 'none' }}
-          />
-          <label htmlFor="pdf-file-input" style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-            <div
-              style={{
-                width: 60,
-                height: 60,
-                borderRadius: '50%',
-                background: 'rgba(99, 102, 241, 0.2)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#818cf8',
-              }}
-            >
-              <Upload size={30} />
-            </div>
+        {sourceType === 'file' ? (
+          /* Upload Drop Zone */
+          <div className="glass-panel" style={{ padding: '32px', textAlign: 'center', border: '2px dashed rgba(0, 163, 224, 0.4)' }}>
+            <input
+              type="file"
+              accept=".pdf,application/pdf"
+              onChange={handleFileChange}
+              id="pdf-file-input"
+              style={{ display: 'none' }}
+            />
+            <label htmlFor="pdf-file-input" style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+              <div
+                style={{
+                  width: 60,
+                  height: 60,
+                  borderRadius: '50%',
+                  background: 'rgba(0, 163, 224, 0.2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#38bdf8',
+                }}
+              >
+                <Upload size={30} />
+              </div>
 
-            {file ? (
-              <div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#34d399', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }}>
-                  <CheckCircle2 size={18} /> {file.name}
+              {file ? (
+                <div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#34d399', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'center' }}>
+                    <CheckCircle2 size={18} /> {file.name}
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: 4 }}>
+                    Tamanho: {(file.size / (1024 * 1024)).toFixed(2)} MB • Clique para alterar o arquivo
+                  </div>
                 </div>
-                <div style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: 4 }}>
-                  Tamanho: {(file.size / (1024 * 1024)).toFixed(2)} MB • Clique para alterar o arquivo
+              ) : (
+                <div>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#f3f4f6' }}>
+                    Clique para selecionar ou arraste um arquivo .PDF aqui
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: 4 }}>
+                    Suporta apenas arquivos de formato PDF
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#f3f4f6' }}>
-                  Clique para selecionar ou arraste um arquivo .PDF aqui
-                </div>
-                <div style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: 4 }}>
-                  Suporta apenas arquivos de formato PDF (Máx 50MB)
-                </div>
-              </div>
-            )}
-          </label>
-        </div>
+              )}
+            </label>
+          </div>
+        ) : (
+          /* URL Input Zone */
+          <div className="glass-panel" style={{ padding: '28px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#00a3e0' }}>
+              <LinkIcon size={22} />
+              <h3 style={{ fontSize: '1.1rem', color: '#f3f4f6', margin: 0 }}>Inserir URL Externa do PDF</h3>
+            </div>
+            <p style={{ color: '#9ca3af', fontSize: '0.88rem', margin: 0 }}>
+              Insira o link completo do arquivo PDF na web. O sistema fará o download e preparará o iframe exclusivo.
+            </p>
+            <div className="form-group" style={{ marginTop: '6px' }}>
+              <input
+                type="url"
+                required={sourceType === 'url'}
+                value={pdfUrl}
+                onChange={(e) => setPdfUrl(e.target.value)}
+                onBlur={handleUrlBlur}
+                placeholder="https://exemplo.com/documentos/catalogo-2026.pdf"
+                className="form-input"
+                style={{ fontSize: '0.95rem', padding: '12px 16px' }}
+              />
+            </div>
+          </div>
+        )}
 
         {/* PDF Metadata Fields */}
         <div className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -250,9 +360,9 @@ export default function NewPdfPage() {
                     className="badge"
                     style={{
                       cursor: 'pointer',
-                      background: isSelected ? 'rgba(99, 102, 241, 0.35)' : 'rgba(255, 255, 255, 0.05)',
+                      background: isSelected ? 'rgba(0, 163, 224, 0.35)' : 'rgba(255, 255, 255, 0.05)',
                       color: isSelected ? '#ffffff' : '#9ca3af',
-                      border: isSelected ? '1px solid #6366f1' : '1px solid rgba(255, 255, 255, 0.1)',
+                      border: isSelected ? '1px solid #00a3e0' : '1px solid rgba(255, 255, 255, 0.1)',
                       padding: '6px 12px',
                     }}
                   >
@@ -274,7 +384,7 @@ export default function NewPdfPage() {
                 type="checkbox"
                 checked={allowDownload}
                 onChange={(e) => setAllowDownload(e.target.checked)}
-                style={{ width: 18, height: 18, accentColor: '#6366f1' }}
+                style={{ width: 18, height: 18, accentColor: '#00a3e0' }}
               />
               <span style={{ fontSize: '0.9rem' }}>Permitir Botão de Download</span>
             </label>
@@ -284,7 +394,7 @@ export default function NewPdfPage() {
                 type="checkbox"
                 checked={allowPrint}
                 onChange={(e) => setAllowPrint(e.target.checked)}
-                style={{ width: 18, height: 18, accentColor: '#6366f1' }}
+                style={{ width: 18, height: 18, accentColor: '#00a3e0' }}
               />
               <span style={{ fontSize: '0.9rem' }}>Permitir Impressão</span>
             </label>
@@ -319,8 +429,13 @@ export default function NewPdfPage() {
           </div>
         </div>
 
-        <button type="submit" disabled={loading} className="btn-primary" style={{ padding: '14px', fontSize: '1rem' }}>
-          {loading ? 'Cadastrando e Salvando PDF...' : 'Salvar e Gerar Código Iframe'}
+        <button
+          type="submit"
+          disabled={loading}
+          className="btn-primary"
+          style={{ padding: '14px', fontSize: '1rem', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}
+        >
+          {loading ? 'Processando e Cadastrando PDF...' : 'Salvar e Gerar Código Iframe'}
         </button>
       </form>
     </div>
