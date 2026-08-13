@@ -9,14 +9,18 @@ import {
   ArrowRight,
   Lock,
   BarChart3,
-  ShieldCheck,
   Zap,
   Sparkles,
   ExternalLink,
-  FileCheck2
+  FileCheck
 } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { WdcomLogo } from '@/components/WdcomLogo';
-import { DynamicBackground } from '@/components/DynamicBackground';
+
+const DynamicBackground = dynamic(
+  () => import('@/components/DynamicBackground').then((mod) => mod.InteractiveBackground),
+  { ssr: false }
+);
 
 export default function LandingPage() {
   const [demoPublicId, setDemoPublicId] = useState<string>('demo-wdcom');
@@ -155,7 +159,7 @@ export default function LandingPage() {
                 gap: '8px',
               }}
             >
-              <FileCheck2 size={20} color="#38bdf8" /> Ver Demonstração ao Vivo <ExternalLink size={16} />
+              <FileCheck size={20} color="#38bdf8" /> Ver Demonstração ao Vivo <ExternalLink size={16} />
             </Link>
           </div>
         </div>
