@@ -33,6 +33,7 @@ export interface User {
   password_hash: string;
   role: string;
   site_id: string | null;
+  status: 'active' | 'pending' | 'rejected';
   created_at: string;
   updated_at: string;
 }
@@ -171,6 +172,7 @@ function loadState(): DatabaseState {
       password_hash: passwordHash,
       role: 'superadmin',
       site_id: null,
+      status: 'active',
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
     },
@@ -188,10 +190,15 @@ function loadState(): DatabaseState {
         sa.password_hash = passwordHash;
         sa.role = 'superadmin';
         sa.site_id = null;
+        sa.status = 'active';
       }
     }
-    // Ensure all users have the site_id field
-    parsed.users = parsed.users.map(u => ({ ...u, site_id: u.site_id !== undefined ? u.site_id : null }));
+    // Ensure all users have site_id and status fields
+    parsed.users = parsed.users.map(u => ({
+      ...u,
+      site_id: u.site_id !== undefined ? u.site_id : null,
+      status: u.status || 'active',
+    }));
     return parsed;
   }
 
@@ -558,9 +565,20 @@ function executeMutation(sql: string, params: any[]) {
       password_hash: params[3],
       role: params[4],
       site_id: params[5] || null,
+      status: params[6] || 'active',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     });
+  }
+
+  if (cleanSql.includes('UPDATE users SET status =')) {
+    const userId = params[1];
+    const user = state.users.find(u => u.id === userId);
+    if (user) {
+      user.status = params[0];
+      if (params[2]) user.site_id = params[2];
+      user.updated_at = new Date().toISOString();
+    }
   }
 
   if (cleanSql.includes('UPDATE users SET')) {

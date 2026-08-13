@@ -14,7 +14,8 @@ import {
   Menu,
   X,
   ExternalLink,
-  Building2
+  Building2,
+  UserCheck
 } from 'lucide-react';
 import { useToast } from './Toast';
 import { WdcomLogo } from './WdcomLogo';
@@ -59,6 +60,7 @@ export const AdminSidebar: React.FC = () => {
       ? [
           { label: 'Sites / Projetos', icon: Globe, href: '/admin/sites' },
           { label: 'Tags', icon: Tag, href: '/admin/tags' },
+          { label: 'Aprovar Cadastros', icon: UserCheck, href: '/admin/users' },
           { label: 'Usuários', icon: Users, href: '/admin/users' },
         ]
       : []),

@@ -10,15 +10,14 @@ export async function GET() {
       return NextResponse.json({ error: 'Apenas Super Admins podem gerenciar usuários.' }, { status: 403 });
     }
 
-    const stmt = db.prepare('SELECT id, name, email, role, site_id, created_at FROM users ORDER BY name ASC');
+    const stmt = db.prepare('SELECT id, name, email, role, site_id, status, created_at FROM users ORDER BY created_at DESC');
     const users = stmt.all().map((u: any) => {
-      // Enrich with site name
       let siteName = null;
       if (u.site_id) {
         const site = db.prepare('SELECT name FROM sites WHERE id = ?').get(u.site_id) as any;
         siteName = site ? site.name : null;
       }
-      return { ...u, site_name: siteName };
+      return { ...u, status: u.status || 'active', site_name: siteName };
     });
     return NextResponse.json({ users });
   } catch (err: any) {
@@ -34,17 +33,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Apenas Super Admins podem cadastrar usuários.' }, { status: 403 });
     }
 
-    const { name, email, password, role, siteId } = await request.json();
+    const { name, email, password, role, siteId, status } = await request.json();
     if (!name || !email || !password) {
       return NextResponse.json({ error: 'Nome, E-mail e Senha são obrigatórios.' }, { status: 400 });
     }
 
-    // If role is 'client', a siteId is required
     if (role === 'client' && !siteId) {
       return NextResponse.json({ error: 'Para usuários do tipo Cliente, é obrigatório associar um Site.' }, { status: 400 });
     }
 
-    const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
+    const cleanEmail = email.toLowerCase().trim();
+    const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(cleanEmail);
     if (existing) {
       return NextResponse.json({ error: 'Este e-mail já está cadastrado.' }, { status: 400 });
     }
@@ -53,9 +52,9 @@ export async function POST(request: Request) {
     const passwordHash = bcrypt.hashSync(password, 10);
 
     db.prepare(`
-      INSERT INTO users (id, name, email, password_hash, role, site_id)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `).run(userId, name, email.toLowerCase().trim(), passwordHash, role || 'client', siteId || null);
+      INSERT INTO users (id, name, email, password_hash, role, site_id, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(userId, name, cleanEmail, passwordHash, role || 'client', siteId || null, status || 'active');
 
     return NextResponse.json({ success: true, message: 'Usuário cadastrado com sucesso.' });
   } catch (err: any) {
@@ -68,30 +67,47 @@ export async function PUT(request: Request) {
   try {
     const currentUser = getAuthUser();
     if (!currentUser || currentUser.role !== 'superadmin') {
-      return NextResponse.json({ error: 'Apenas Super Admins podem editar usuários.' }, { status: 403 });
+      return NextResponse.json({ error: 'Apenas Super Admins podem editar ou aprovar usuários.' }, { status: 403 });
     }
 
-    const { userId, name, role, siteId } = await request.json();
-    if (!userId || !name) {
-      return NextResponse.json({ error: 'ID e Nome são obrigatórios.' }, { status: 400 });
+    const { userId, name, role, siteId, status, action } = await request.json();
+
+    if (!userId) {
+      return NextResponse.json({ error: 'ID do usuário é obrigatório.' }, { status: 400 });
     }
 
-    // Prevent editing superadmin role
     const targetUser = db.prepare('SELECT * FROM users WHERE id = ?').get(userId) as any;
     if (!targetUser) {
       return NextResponse.json({ error: 'Usuário não encontrado.' }, { status: 404 });
     }
     if (targetUser.email === 'atendimento@wdcom.com.br') {
-      return NextResponse.json({ error: 'O Super Admin principal não pode ser editado.' }, { status: 403 });
+      return NextResponse.json({ error: 'O Super Admin principal não pode ser alterado.' }, { status: 403 });
     }
 
+    // Quick status approval / rejection action
+    if (action === 'approve') {
+      const finalSiteId = siteId || targetUser.site_id || null;
+      db.prepare('UPDATE users SET status = ? WHERE id = ?').run('active', userId, finalSiteId);
+      return NextResponse.json({ success: true, message: 'Usuário aprovado e ativado com sucesso!' });
+    }
+
+    if (action === 'reject') {
+      db.prepare('UPDATE users SET status = ? WHERE id = ?').run('rejected', userId);
+      return NextResponse.json({ success: true, message: 'Cadastro recusado.' });
+    }
+
+    // Standard edit
     if (role === 'client' && !siteId) {
       return NextResponse.json({ error: 'Para usuários do tipo Cliente, é obrigatório associar um Site.' }, { status: 400 });
     }
 
     db.prepare(`
       UPDATE users SET name = ?, role = ?, site_id = ? WHERE id = ?
-    `).run(name, role || 'client', siteId || null, userId);
+    `).run(name || targetUser.name, role || targetUser.role, siteId || null, userId);
+
+    if (status) {
+      db.prepare('UPDATE users SET status = ? WHERE id = ?').run(status, userId);
+    }
 
     return NextResponse.json({ success: true, message: 'Usuário atualizado com sucesso.' });
   } catch (err: any) {

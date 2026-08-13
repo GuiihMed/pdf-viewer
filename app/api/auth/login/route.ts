@@ -23,6 +23,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'E-mail ou senha inválidos.' }, { status: 401 });
     }
 
+    // Check account status
+    const status = user.status || 'active';
+    if (status === 'pending') {
+      return NextResponse.json({
+        error: 'Sua conta está aguardando confirmação e aprovação do administrador.',
+        code: 'PENDING_APPROVAL'
+      }, { status: 403 });
+    }
+
+    if (status === 'rejected') {
+      return NextResponse.json({
+        error: 'Sua solicitação de cadastro foi recusada pelo administrador.',
+        code: 'ACCOUNT_REJECTED'
+      }, { status: 403 });
+    }
+
     const token = signToken({
       userId: user.id,
       email: user.email,
@@ -39,6 +55,7 @@ export async function POST(request: Request) {
         email: user.email,
         role: user.role,
         site_id: user.site_id || null,
+        status: user.status,
       },
     });
 
