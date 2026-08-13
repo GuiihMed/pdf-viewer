@@ -16,6 +16,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { useToast } from './Toast';
+import { WdcomLogo } from './WdcomLogo';
 
 export const AdminSidebar: React.FC = () => {
   const pathname = usePathname();
@@ -93,24 +94,9 @@ export const AdminSidebar: React.FC = () => {
           style={{
             padding: '20px 18px',
             borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
           }}
         >
-          <img
-            src="/wdcom-logo.png"
-            alt="WDCOM Logo"
-            style={{ width: '40px', height: 'auto', objectFit: 'contain' }}
-          />
-          <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em', color: '#00a3e0' }}>
-              WDCOM <span style={{ color: '#ffffff', fontWeight: 600 }}>PDF</span>
-            </div>
-            <div style={{ fontSize: '0.7rem', color: '#9ca3af', fontWeight: 500 }}>
-              Desenvolvido por <strong style={{ color: '#00a3e0' }}>WDCOM</strong>
-            </div>
-          </div>
+          <WdcomLogo size={42} showText={true} />
         </div>
 
         {/* User Info Pill */}
@@ -230,7 +216,7 @@ export const AdminSidebar: React.FC = () => {
           </button>
 
           <div style={{ textAlign: 'center', fontSize: '0.72rem', color: '#6b7280', marginTop: '6px' }}>
-            Desenvolvido por <span style={{ color: '#38bdf8', fontWeight: 600 }}>WDCOM</span>
+            Desenvolvido por <span style={{ color: '#00A3E0', fontWeight: 600 }}>WDCOM</span>
           </div>
         </div>
       </aside>

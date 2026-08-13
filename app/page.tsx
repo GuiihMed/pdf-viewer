@@ -9,6 +9,7 @@ import {
   Lock,
   BarChart3
 } from 'lucide-react';
+import { WdcomLogo } from '@/components/WdcomLogo';
 
 export default function LandingPage() {
   return (
@@ -27,25 +28,13 @@ export default function LandingPage() {
           margin: '0 auto',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <img
-            src="/wdcom-logo.png"
-            alt="WDCOM Logo"
-            style={{ width: '42px', height: 'auto', objectFit: 'contain' }}
-          />
-          <div>
-            <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.35rem', color: '#00a3e0' }}>
-              WDCOM <span style={{ color: '#ffffff', fontWeight: 600 }}>PDF</span>
-            </span>
-            <div style={{ fontSize: '0.72rem', color: '#9ca3af' }}>Plataforma por WDCOM</div>
-          </div>
-        </div>
+        <WdcomLogo size={46} showText={true} />
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <Link href="/login" className="btn-secondary" style={{ fontSize: '0.88rem' }}>
             Fazer Login
           </Link>
-          <Link href="/admin" className="btn-primary" style={{ fontSize: '0.88rem' }}>
+          <Link href="/admin" className="btn-primary" style={{ fontSize: '0.88rem', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}>
             Acessar Painel <ArrowRight size={16} />
           </Link>
         </div>
@@ -161,8 +150,8 @@ export default function LandingPage() {
           </div>
 
           <div className="glass-panel" style={{ padding: '32px' }}>
-            <img src="/wdcom-logo.png" alt="WDCOM" style={{ width: 32, height: 'auto', marginBottom: 16 }} />
-            <h3 style={{ fontSize: '1.25rem', marginBottom: 10 }}>Substituição sem Alterar Iframe</h3>
+            <WdcomLogo size={36} showText={false} />
+            <h3 style={{ fontSize: '1.25rem', margin: '12px 0 10px 0' }}>Substituição sem Alterar Iframe</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
               Substitua o arquivo PDF mantendo a mesma URL pública e o mesmo identificador único (`public_id`). Seus clientes nunca precisarão mudar o iframe.
             </p>
@@ -190,11 +179,11 @@ export default function LandingPage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '8px',
+          gap: '12px',
         }}
       >
-        <img src="/wdcom-logo.png" alt="WDCOM" style={{ height: '20px', width: 'auto' }} />
-        <span>Desenvolvido por <strong>WDCOM</strong> © 2026</span>
+        <WdcomLogo size={24} showText={false} />
+        <span>Desenvolvido por <strong style={{ color: '#00a3e0' }}>WDCOM</strong> © 2026</span>
       </footer>
     </div>
   );

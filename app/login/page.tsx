@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Lock, Mail, ArrowRight, AlertCircle, Info } from 'lucide-react';
 import { useToast } from '@/components/Toast';
+import { WdcomLogo } from '@/components/WdcomLogo';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -64,14 +65,9 @@ export default function LoginPage() {
         }}
       >
         {/* Brand Header WDCOM */}
-        <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-          <img
-            src="/wdcom-logo.png"
-            alt="WDCOM Logo"
-            style={{ width: '60px', height: 'auto', margin: '0 auto 14px auto', display: 'block' }}
-          />
-
-          <h1 style={{ fontSize: '1.6rem', marginBottom: '4px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '28px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <WdcomLogo size={56} showText={false} />
+          <h1 style={{ fontSize: '1.6rem', marginTop: '12px', marginBottom: '4px' }}>
             WDCOM <span style={{ color: '#00a3e0' }}>PDF</span>
           </h1>
           <p style={{ fontSize: '0.85rem', color: '#9ca3af' }}>
