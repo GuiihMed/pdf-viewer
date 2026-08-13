@@ -1,15 +1,15 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Lock, Mail, ArrowRight, AlertCircle, Info } from 'lucide-react';
+import { Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 import { WdcomLogo } from '@/components/WdcomLogo';
 
 export default function LoginPage() {
   const router = useRouter();
   const { showToast } = useToast();
-  const [email, setEmail] = useState('admin@pdfembed.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -71,33 +71,8 @@ export default function LoginPage() {
             WDCOM <span style={{ color: '#00a3e0' }}>PDF</span>
           </h1>
           <p style={{ fontSize: '0.85rem', color: '#9ca3af' }}>
-            Desenvolvido por <strong style={{ color: '#00a3e0' }}>WDCOM</strong>
+            Acesso Restrito ao Painel Administrativo
           </p>
-        </div>
-
-        {/* Demo Credentials Alert Box */}
-        <div
-          style={{
-            padding: '12px 14px',
-            background: 'rgba(0, 163, 224, 0.12)',
-            border: '1px solid rgba(0, 163, 224, 0.3)',
-            borderRadius: '8px',
-            marginBottom: '20px',
-            fontSize: '0.82rem',
-            color: '#38bdf8',
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '10px',
-          }}
-        >
-          <Info size={16} style={{ marginTop: 2, flexShrink: 0 }} />
-          <div>
-            <strong>Credenciais Demonstrativas:</strong>
-            <div style={{ marginTop: 2, fontFamily: 'monospace' }}>
-              E-mail: <u>admin@pdfembed.com</u> <br />
-              Senha: <u>admin123</u>
-            </div>
-          </div>
         </div>
 
         {error && (
@@ -120,10 +95,10 @@ export default function LoginPage() {
           </div>
         )}
 
-        {/* Login Form */}
+        {/* Secure Login Form */}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label className="form-label">E-mail do Administrador</label>
+            <label className="form-label">E-mail de Acesso</label>
             <div style={{ position: 'relative' }}>
               <input
                 type="email"
@@ -131,7 +106,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-input"
-                placeholder="seu-email@dominio.com"
+                placeholder="atendimento@wdcom.com.br"
                 style={{ paddingLeft: '38px' }}
               />
               <Mail size={16} color="#6b7280" style={{ position: 'absolute', left: 12, top: 13 }} />
@@ -160,7 +135,7 @@ export default function LoginPage() {
             className="btn-primary"
             style={{ width: '100%', padding: '12px', fontSize: '0.95rem', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}
           >
-            {loading ? 'Entrando...' : 'Entrar no Sistema'} <ArrowRight size={18} />
+            {loading ? 'Autenticando...' : 'Entrar no Sistema'} <ArrowRight size={18} />
           </button>
         </form>
       </div>

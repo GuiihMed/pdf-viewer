@@ -95,7 +95,6 @@ interface DatabaseState {
   pdf_views: PdfView[];
 }
 
-// Minimal valid PDF binary header & trailer buffer generator
 function createMinimalPdfBuffer(title: string, pages: number = 3): Buffer {
   const content = `%PDF-1.4
 1 0 obj
@@ -137,34 +136,37 @@ startxref
 }
 
 function loadState(): DatabaseState {
+  const now = new Date();
+  const daysAgo = (d: number) => new Date(now.getTime() - d * 86400000).toISOString();
+  const passwordHash = bcrypt.hashSync('#Wdcom2026', 10);
+
+  let parsed: DatabaseState | null = null;
   if (fs.existsSync(dbJsonPath)) {
     try {
       const data = fs.readFileSync(dbJsonPath, 'utf8');
-      const parsed = JSON.parse(data);
-      if (parsed.users && parsed.users.length > 0) {
-        return parsed;
-      }
+      parsed = JSON.parse(data);
     } catch (e) {
       console.error('Error loading db.json:', e);
     }
   }
 
-  // Synchronous Seed
-  const now = new Date();
-  const daysAgo = (d: number) => new Date(now.getTime() - d * 86400000).toISOString();
-  const passwordHash = bcrypt.hashSync('admin123', 10);
-
   const users: User[] = [
     {
-      id: 'usr_admin_01',
-      name: 'Administrador Principal',
-      email: 'admin@pdfembed.com',
+      id: 'usr_admin_wdcom',
+      name: 'WDCOM Atendimento',
+      email: 'atendimento@wdcom.com.br',
       password_hash: passwordHash,
       role: 'superadmin',
       created_at: now.toISOString(),
       updated_at: now.toISOString(),
     },
   ];
+
+  if (parsed) {
+    // Ensure WDCOM user exists and is up to date with new password
+    parsed.users = users;
+    return parsed;
+  }
 
   const sites: Site[] = [
     { id: 'site_01', name: 'Meu Site Principal', domain: 'meusite.com', slug: 'meusite', description: 'Website principal da marca', status: 'active', created_at: now.toISOString(), updated_at: now.toISOString() },
@@ -338,7 +340,6 @@ function saveState() {
   fs.writeFileSync(dbJsonPath, JSON.stringify(state, null, 2), 'utf8');
 }
 
-// DB Interface Helper simulating SQLite statements
 export const db = {
   prepare(query: string) {
     return {
@@ -363,7 +364,7 @@ function executeQuery(sql: string, params: any[]): any[] {
   // Users lookup
   if (cleanSql.includes('FROM users WHERE email =')) {
     const email = params[0];
-    return state.users.filter(u => u.email === email);
+    return state.users.filter(u => u.email.toLowerCase() === email.toLowerCase());
   }
   if (cleanSql.includes('FROM users WHERE id =')) {
     const id = params[0];
@@ -467,7 +468,6 @@ function executeQuery(sql: string, params: any[]): any[] {
       };
     });
 
-    // Filtering logic
     if (cleanSql.includes('p.public_id = ?') || cleanSql.includes('WHERE public_id = ?')) {
       const targetPublicId = params[params.length - 1] || params[0];
       list = list.filter(p => p.public_id === targetPublicId);
@@ -485,7 +485,6 @@ function executeQuery(sql: string, params: any[]): any[] {
       if (st) list = list.filter(p => p.status === st);
     }
 
-    // Keyword Search
     const searchParam = params.find(p => typeof p === 'string' && p.startsWith('%') && p.endsWith('%'));
     if (searchParam) {
       const term = searchParam.replace(/%/g, '').toLowerCase();
@@ -497,7 +496,6 @@ function executeQuery(sql: string, params: any[]): any[] {
       );
     }
 
-    // Limit clause for recent PDFs
     if (cleanSql.includes('LIMIT 6')) {
       return list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 6);
     }
@@ -512,7 +510,6 @@ function executeMutation(sql: string, params: any[]) {
   state = loadState();
   const cleanSql = sql.replace(/\s+/g, ' ').trim();
 
-  // Users insert
   if (cleanSql.includes('INSERT INTO users')) {
     state.users.push({
       id: params[0],
@@ -525,7 +522,6 @@ function executeMutation(sql: string, params: any[]) {
     });
   }
 
-  // Sites mutations
   if (cleanSql.includes('INSERT INTO sites')) {
     state.sites.push({
       id: params[0],
@@ -554,7 +550,6 @@ function executeMutation(sql: string, params: any[]) {
     state.sites = state.sites.filter(s => s.id !== params[0]);
   }
 
-  // Tags mutations
   if (cleanSql.includes('INSERT INTO tags')) {
     state.tags.push({
       id: params[0],
@@ -577,7 +572,6 @@ function executeMutation(sql: string, params: any[]) {
     state.tags = state.tags.filter(t => t.id !== params[0]);
   }
 
-  // PDF mutations
   if (cleanSql.includes('INSERT INTO pdfs')) {
     const now = new Date().toISOString();
     state.pdfs.push({
@@ -635,7 +629,6 @@ function executeMutation(sql: string, params: any[]) {
     state.pdf_views = state.pdf_views.filter(pv => pv.pdf_id !== pdfId);
   }
 
-  // pdf_tags & allowed_domains
   if (cleanSql.includes('INSERT INTO pdf_tags')) {
     state.pdf_tags.push({ pdf_id: params[0], tag_id: params[1] });
   }
@@ -650,7 +643,6 @@ function executeMutation(sql: string, params: any[]) {
     state.allowed_domains = state.allowed_domains.filter(ad => ad.pdf_id !== params[0]);
   }
 
-  // Views insertion
   if (cleanSql.includes('INSERT INTO pdf_views')) {
     state.pdf_views.push({
       id: params[0],
