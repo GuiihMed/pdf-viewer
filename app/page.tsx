@@ -17,7 +17,7 @@ export default function LandingPage() {
       {/* Header Navigation */}
       <header
         style={{
-          height: '74px',
+          height: '84px',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
           padding: '0 32px',
           display: 'flex',
@@ -28,7 +28,9 @@ export default function LandingPage() {
           margin: '0 auto',
         }}
       >
-        <WdcomLogo height={42} />
+        <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+          <WdcomLogo height={58} />
+        </a>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <Link href="/login" className="btn-secondary" style={{ fontSize: '0.88rem' }}>
@@ -150,7 +152,9 @@ export default function LandingPage() {
           </div>
 
           <div className="glass-panel" style={{ padding: '32px' }}>
-            <WdcomLogo height={32} />
+            <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+              <WdcomLogo height={42} />
+            </a>
             <h3 style={{ fontSize: '1.25rem', margin: '14px 0 10px 0' }}>Substituição sem Alterar Iframe</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
               Substitua o arquivo PDF mantendo a mesma URL pública e o mesmo identificador único (`public_id`). Seus clientes nunca precisarão mudar o iframe.
@@ -182,7 +186,9 @@ export default function LandingPage() {
           gap: '12px',
         }}
       >
-        <WdcomLogo height={24} />
+        <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+          <WdcomLogo height={36} />
+        </a>
       </footer>
     </div>
   );

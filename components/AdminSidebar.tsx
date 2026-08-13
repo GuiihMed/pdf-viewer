@@ -89,7 +89,7 @@ export const AdminSidebar: React.FC = () => {
           transition: 'transform 0.3s ease',
         }}
       >
-        {/* Main Logo WDCOM */}
+        {/* Main Logo WDCOM Linked to http://wdcom.com.br/ */}
         <div
           style={{
             padding: '24px 20px',
@@ -99,7 +99,9 @@ export const AdminSidebar: React.FC = () => {
             justifyContent: 'flex-start',
           }}
         >
-          <WdcomLogo height={34} />
+          <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', transition: 'opacity 0.2s ease' }}>
+            <WdcomLogo height={52} />
+          </a>
         </div>
 
         {/* User Info Pill */}

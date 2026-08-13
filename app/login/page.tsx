@@ -64,9 +64,11 @@ export default function LoginPage() {
           boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
         }}
       >
-        {/* Brand Header WDCOM Logo */}
+        {/* Brand Header WDCOM Logo Linked to http://wdcom.com.br/ */}
         <div style={{ textAlign: 'center', marginBottom: '28px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <WdcomLogo height={48} />
+          <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+            <WdcomLogo height={64} />
+          </a>
         </div>
 
         {error && (
