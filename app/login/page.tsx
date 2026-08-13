@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FileCheck, Lock, Mail, ArrowRight, AlertCircle, Info } from 'lucide-react';
+import { Lock, Mail, ArrowRight, AlertCircle, Info } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 
 export default function LoginPage() {
@@ -63,29 +63,19 @@ export default function LoginPage() {
           boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
         }}
       >
-        {/* Brand Header */}
+        {/* Brand Header WDCOM */}
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-          <div
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: 14,
-              background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 16px auto',
-              boxShadow: '0 0 25px rgba(99, 102, 241, 0.5)',
-            }}
-          >
-            <FileCheck size={30} color="#ffffff" />
-          </div>
+          <img
+            src="/wdcom-logo.png"
+            alt="WDCOM Logo"
+            style={{ width: '60px', height: 'auto', margin: '0 auto 14px auto', display: 'block' }}
+          />
 
-          <h1 style={{ fontSize: '1.6rem', marginBottom: '6px' }}>
-            Painel <span className="gradient-text">Administrativo</span>
+          <h1 style={{ fontSize: '1.6rem', marginBottom: '4px' }}>
+            WDCOM <span style={{ color: '#00a3e0' }}>PDF</span>
           </h1>
-          <p style={{ fontSize: '0.88rem', color: '#9ca3af' }}>
-            Acesse sua conta para gerenciar PDFs e iframes
+          <p style={{ fontSize: '0.85rem', color: '#9ca3af' }}>
+            Desenvolvido por <strong style={{ color: '#00a3e0' }}>WDCOM</strong>
           </p>
         </div>
 
@@ -93,12 +83,12 @@ export default function LoginPage() {
         <div
           style={{
             padding: '12px 14px',
-            background: 'rgba(99, 102, 241, 0.12)',
-            border: '1px solid rgba(99, 102, 241, 0.3)',
+            background: 'rgba(0, 163, 224, 0.12)',
+            border: '1px solid rgba(0, 163, 224, 0.3)',
             borderRadius: '8px',
             marginBottom: '20px',
             fontSize: '0.82rem',
-            color: '#a5b4fc',
+            color: '#38bdf8',
             display: 'flex',
             alignItems: 'flex-start',
             gap: '10px',
@@ -106,7 +96,7 @@ export default function LoginPage() {
         >
           <Info size={16} style={{ marginTop: 2, flexShrink: 0 }} />
           <div>
-            <strong>Credenciais Demonstrativas Pré-configuradas:</strong>
+            <strong>Credenciais Demonstrativas:</strong>
             <div style={{ marginTop: 2, fontFamily: 'monospace' }}>
               E-mail: <u>admin@pdfembed.com</u> <br />
               Senha: <u>admin123</u>
@@ -172,7 +162,7 @@ export default function LoginPage() {
             type="submit"
             disabled={loading}
             className="btn-primary"
-            style={{ width: '100%', padding: '12px', fontSize: '0.95rem' }}
+            style={{ width: '100%', padding: '12px', fontSize: '0.95rem', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}
           >
             {loading ? 'Entrando...' : 'Entrar no Sistema'} <ArrowRight size={18} />
           </button>

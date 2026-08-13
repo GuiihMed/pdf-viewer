@@ -3,8 +3,8 @@ import './globals.css';
 import { ToastProvider } from '@/components/Toast';
 
 export const metadata: Metadata = {
-  title: 'PDF Embed Platform | Hospedagem e Visualização Online de PDFs',
-  description: 'Plataforma SaaS para hospedagem, gerenciamento e incorporação de arquivos PDF via iframe em múltiplos sites.',
+  title: 'WDCOM PDF Embed | Hospedagem e Visualização Online de PDFs',
+  description: 'Plataforma SaaS por WDCOM para hospedagem, gerenciamento e incorporação de arquivos PDF via iframe em múltiplos sites.',
 };
 
 export default function RootLayout({

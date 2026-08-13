@@ -13,7 +13,6 @@ import {
   LogOut,
   Menu,
   X,
-  FileCheck,
   ExternalLink
 } from 'lucide-react';
 import { useToast } from './Toast';
@@ -89,35 +88,28 @@ export const AdminSidebar: React.FC = () => {
           transition: 'transform 0.3s ease',
         }}
       >
-        {/* Brand Logo */}
+        {/* Brand Logo WDCOM */}
         <div
           style={{
-            padding: '24px 20px',
+            padding: '20px 18px',
             borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
           }}
         >
-          <div
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: 10,
-              background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)',
-            }}
-          >
-            <FileCheck size={22} color="#ffffff" />
-          </div>
+          <img
+            src="/wdcom-logo.png"
+            alt="WDCOM Logo"
+            style={{ width: '40px', height: 'auto', objectFit: 'contain' }}
+          />
           <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.1rem', letterSpacing: '-0.01em' }}>
-              PDF <span className="gradient-text">Embed</span>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em', color: '#00a3e0' }}>
+              WDCOM <span style={{ color: '#ffffff', fontWeight: 600 }}>PDF</span>
             </div>
-            <div style={{ fontSize: '0.72rem', color: '#6b7280', fontWeight: 500 }}>Gestão & Visualização</div>
+            <div style={{ fontSize: '0.7rem', color: '#9ca3af', fontWeight: 500 }}>
+              Desenvolvido por <strong style={{ color: '#00a3e0' }}>WDCOM</strong>
+            </div>
           </div>
         </div>
 
@@ -125,7 +117,7 @@ export const AdminSidebar: React.FC = () => {
         {user && (
           <div
             style={{
-              margin: '16px 16px 8px 16px',
+              margin: '14px 14px 6px 14px',
               padding: '10px 12px',
               background: 'rgba(255, 255, 255, 0.04)',
               borderRadius: '8px',
@@ -140,7 +132,7 @@ export const AdminSidebar: React.FC = () => {
                 width: 32,
                 height: 32,
                 borderRadius: '50%',
-                background: '#4f46e5',
+                background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -181,20 +173,20 @@ export const AdminSidebar: React.FC = () => {
                   fontSize: '0.9rem',
                   fontWeight: isActive ? 600 : 500,
                   color: isActive ? '#ffffff' : '#9ca3af',
-                  backgroundColor: isActive ? 'rgba(99, 102, 241, 0.18)' : 'transparent',
-                  border: isActive ? '1px solid rgba(99, 102, 241, 0.35)' : '1px solid transparent',
+                  backgroundColor: isActive ? 'rgba(0, 163, 224, 0.18)' : 'transparent',
+                  border: isActive ? '1px solid rgba(0, 163, 224, 0.35)' : '1px solid transparent',
                   transition: 'all 0.15s ease',
                 }}
               >
-                <Icon size={18} color={isActive ? '#818cf8' : '#9ca3af'} />
+                <Icon size={18} color={isActive ? '#38bdf8' : '#9ca3af'} />
                 <span>{item.label}</span>
               </Link>
             );
           })}
         </nav>
 
-        {/* Footer Actions */}
-        <div style={{ padding: '16px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        {/* Footer Actions & Branding */}
+        <div style={{ padding: '14px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <Link
             href="/"
             target="_blank"
@@ -236,6 +228,10 @@ export const AdminSidebar: React.FC = () => {
             <LogOut size={16} />
             <span>Sair do Painel</span>
           </button>
+
+          <div style={{ textAlign: 'center', fontSize: '0.72rem', color: '#6b7280', marginTop: '6px' }}>
+            Desenvolvido por <span style={{ color: '#38bdf8', fontWeight: 600 }}>WDCOM</span>
+          </div>
         </div>
       </aside>
     </>

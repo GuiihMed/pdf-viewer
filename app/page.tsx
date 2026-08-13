@@ -1,17 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import {
-  FileCheck,
   Upload,
   Layers,
   Code,
   Globe,
-  ShieldCheck,
-  Zap,
   ArrowRight,
   Lock,
-  BarChart3,
-  CheckCircle2
+  BarChart3
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -20,7 +16,7 @@ export default function LandingPage() {
       {/* Header Navigation */}
       <header
         style={{
-          height: '70px',
+          height: '74px',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
           padding: '0 32px',
           display: 'flex',
@@ -31,24 +27,18 @@ export default function LandingPage() {
           margin: '0 auto',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: 10,
-              background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)',
-            }}
-          >
-            <FileCheck size={22} color="#ffffff" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <img
+            src="/wdcom-logo.png"
+            alt="WDCOM Logo"
+            style={{ width: '42px', height: 'auto', objectFit: 'contain' }}
+          />
+          <div>
+            <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.35rem', color: '#00a3e0' }}>
+              WDCOM <span style={{ color: '#ffffff', fontWeight: 600 }}>PDF</span>
+            </span>
+            <div style={{ fontSize: '0.72rem', color: '#9ca3af' }}>Plataforma por WDCOM</div>
           </div>
-          <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.25rem' }}>
-            PDF <span className="gradient-text">Embed</span>
-          </span>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -66,14 +56,14 @@ export default function LandingPage() {
         <div
           className="badge"
           style={{
-            background: 'rgba(99, 102, 241, 0.15)',
-            color: '#a5b4fc',
-            border: '1px solid rgba(99, 102, 241, 0.3)',
+            background: 'rgba(0, 163, 224, 0.15)',
+            color: '#38bdf8',
+            border: '1px solid rgba(0, 163, 224, 0.3)',
             padding: '6px 16px',
             marginBottom: '24px',
           }}
         >
-          ⚡ Plataforma SaaS de Gerenciamento & Incorporação de PDFs
+          ⚡ Plataforma SaaS Desenvolvida por WDCOM
         </div>
 
         <h1
@@ -86,7 +76,7 @@ export default function LandingPage() {
           }}
         >
           Hospede e incorpore seus PDFs em <br />
-          <span className="gradient-text">qualquer site via iframe exclusivo</span>
+          <span style={{ color: '#00a3e0' }}>qualquer site via iframe exclusivo</span>
         </h1>
 
         <p
@@ -98,11 +88,11 @@ export default function LandingPage() {
             lineHeight: 1.6,
           }}
         >
-          Faça upload dos seus documentos, organize por sites e tags e incorpore seus PDFs em qualquer site usando uma URL pública exclusiva ou código iframe responsivo — sem precisar hospedar o arquivo diretamente no servidor do cliente.
+          Faça upload dos seus documentos, organize por sites e tags e incorpore seus PDFs em qualquer site usando uma URL pública exclusiva ou código iframe responsivo — desenvolvido com a tecnologia da <strong>WDCOM</strong>.
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-          <Link href="/login" className="btn-primary" style={{ padding: '14px 28px', fontSize: '1rem' }}>
+          <Link href="/login" className="btn-primary" style={{ padding: '14px 28px', fontSize: '1rem', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}>
             Entrar no Painel Administrativo <ArrowRight size={18} />
           </Link>
           <Link href="/view/8f72a91c" target="_blank" className="btn-secondary" style={{ padding: '14px 24px', fontSize: '1rem' }}>
@@ -115,16 +105,16 @@ export default function LandingPage() {
       <section style={{ padding: '60px 24px', background: 'rgba(17, 24, 39, 0.6)', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>Como Funciona o Fluxo</h2>
+            <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>Como Funciona o Fluxo WDCOM</h2>
             <p style={{ color: '#9ca3af', fontSize: '1rem' }}>Gerencie dezenas de PDFs para múltiplos sites de forma centralizada.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
             <div className="glass-panel" style={{ padding: '28px' }}>
-              <div style={{ width: 44, height: 44, borderRadius: 10, background: 'rgba(99, 102, 241, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#818cf8', marginBottom: 16 }}>
+              <div style={{ width: 44, height: 44, borderRadius: 10, background: 'rgba(0, 163, 224, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#38bdf8', marginBottom: 16 }}>
                 <Upload size={24} />
               </div>
-              <div style={{ fontSize: '0.8rem', color: '#6366f1', fontWeight: 700, textTransform: 'uppercase', marginBottom: 4 }}>Passo 1</div>
+              <div style={{ fontSize: '0.8rem', color: '#00a3e0', fontWeight: 700, textTransform: 'uppercase', marginBottom: 4 }}>Passo 1</div>
               <h3 style={{ fontSize: '1.15rem', marginBottom: 8 }}>1. Envie o PDF</h3>
               <p style={{ fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.5 }}>Faça upload do arquivo PDF. O sistema valida e armazena com segurança no storage.</p>
             </div>
@@ -171,7 +161,7 @@ export default function LandingPage() {
           </div>
 
           <div className="glass-panel" style={{ padding: '32px' }}>
-            <Zap size={32} color="#6366f1" style={{ marginBottom: 16 }} />
+            <img src="/wdcom-logo.png" alt="WDCOM" style={{ width: 32, height: 'auto', marginBottom: 16 }} />
             <h3 style={{ fontSize: '1.25rem', marginBottom: 10 }}>Substituição sem Alterar Iframe</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
               Substitua o arquivo PDF mantendo a mesma URL pública e o mesmo identificador único (`public_id`). Seus clientes nunca precisarão mudar o iframe.
@@ -197,9 +187,14 @@ export default function LandingPage() {
           fontSize: '0.85rem',
           color: '#6b7280',
           marginTop: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '8px',
         }}
       >
-        PDF Embed Platform © 2026 • Plataforma SaaS Completa para Gestão de PDFs
+        <img src="/wdcom-logo.png" alt="WDCOM" style={{ height: '20px', width: 'auto' }} />
+        <span>Desenvolvido por <strong>WDCOM</strong> © 2026</span>
       </footer>
     </div>
   );
