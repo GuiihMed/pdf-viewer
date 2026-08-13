@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const user = getAuthUser();
@@ -19,7 +21,6 @@ export async function GET() {
     const views7d = (db.prepare("SELECT COUNT(*) as count FROM pdf_views WHERE viewed_at >= datetime('now', '-7 days')").get() as any).count;
     const views30d = (db.prepare("SELECT COUNT(*) as count FROM pdf_views WHERE viewed_at >= datetime('now', '-30 days')").get() as any).count;
 
-    // View trend data for chart (last 14 days)
     const viewsChart = db.prepare(`
       SELECT strftime('%Y-%m-%d', viewed_at) as date, COUNT(*) as count
       FROM pdf_views
@@ -28,7 +29,6 @@ export async function GET() {
       ORDER BY date ASC
     `).all();
 
-    // Recent PDFs table
     const recentPdfs = db.prepare(`
       SELECT p.*, s.name as site_name, s.domain as site_domain,
         (SELECT COUNT(*) FROM pdf_views pv WHERE pv.pdf_id = p.id) as views_count,
