@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 import bcrypt from 'bcryptjs';
+import { firestore } from './firebase';
 
 function getWritableDir(subDir: string): string {
   try {
@@ -99,7 +100,7 @@ export interface PdfView {
   ip_hash?: string;
 }
 
-interface DatabaseState {
+export interface DatabaseState {
   users: User[];
   sites: Site[];
   tags: Tag[];
@@ -109,49 +110,8 @@ interface DatabaseState {
   pdf_views: PdfView[];
 }
 
-function createMinimalPdfBuffer(title: string, pages: number = 3): Buffer {
-  const content = `%PDF-1.4
-1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
-endobj
-2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
-endobj
-3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
-endobj
-4 0 obj
-<< /Length 55 >>
-stream
-BT
-/F1 18 Tf
-50 700 Td
-(${title}) Tj
-ET
-endstream
-endobj
-5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
-endobj
-xref
-0 6
-0000000000 65535 f 
-0000000009 00000 n 
-0000000058 00000 n 
-0000000115 00000 n 
-0000000244 00000 n 
-0000000350 00000 n 
-trailer
-<< /Size 6 /Root 1 0 R >>
-startxref
-424
-%%EOF`;
-  return Buffer.from(content, 'utf-8');
-}
-
 function loadState(): DatabaseState {
   const now = new Date();
-  const daysAgo = (d: number) => new Date(now.getTime() - d * 86400000).toISOString();
   const passwordHash = bcrypt.hashSync('#Wdcom2026', 10);
 
   let parsed: DatabaseState | null = null;
@@ -159,9 +119,7 @@ function loadState(): DatabaseState {
     try {
       const data = fs.readFileSync(dbJsonPath, 'utf8');
       parsed = JSON.parse(data);
-    } catch (e) {
-      console.error('Error loading db.json:', e);
-    }
+    } catch (e) {}
   }
 
   const defaultUsers: User[] = [
@@ -179,7 +137,6 @@ function loadState(): DatabaseState {
   ];
 
   if (parsed) {
-    // Ensure superadmin always exists and stays updated
     const superadminExists = parsed.users.some(u => u.email.toLowerCase() === 'atendimento@wdcom.com.br');
     if (!superadminExists) {
       parsed.users.unshift(defaultUsers[0]);
@@ -192,7 +149,6 @@ function loadState(): DatabaseState {
         sa.status = 'active';
       }
     }
-    // Ensure array integrity
     parsed.users = (parsed.users || []).map(u => ({
       ...u,
       site_id: u.site_id !== undefined ? u.site_id : null,
@@ -228,6 +184,12 @@ let state: DatabaseState | null = null;
 function saveState() {
   try {
     fs.writeFileSync(dbJsonPath, JSON.stringify(state, null, 2), 'utf8');
+    // Sync state to Google Cloud Firestore in background
+    if (state) {
+      firestore.collection('system').doc('db_state').set(state).catch((err) => {
+        console.warn('Firestore sync error:', err.message);
+      });
+    }
   } catch (e) {
     console.warn('Could not persist state to db.json:', e);
   }
