@@ -87,6 +87,7 @@ export async function GET(request: Request) {
 
       return {
         ...p,
+        storage_path: p.storage_path ? p.storage_path.split('|||')[0] : '',
         allow_download: Boolean(p.allow_download),
         allow_print: Boolean(p.allow_print),
         allow_embed: Boolean(p.allow_embed),

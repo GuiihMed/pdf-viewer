@@ -46,6 +46,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
     return NextResponse.json({
       pdf: {
         ...pdf,
+        storage_path: pdf.storage_path ? pdf.storage_path.split('|||')[0] : '',
         allow_download: Boolean(pdf.allow_download),
         allow_print: Boolean(pdf.allow_print),
         allow_embed: Boolean(pdf.allow_embed),
