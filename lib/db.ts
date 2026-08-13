@@ -412,8 +412,8 @@ function executeQuery(sql: string, params: any[]): any[] {
     const id = params[0];
     return state.users.filter(u => u.id === id);
   }
-  if (cleanSql.includes('FROM users ORDER BY name ASC')) {
-    return [...state.users].sort((a, b) => a.name.localeCompare(b.name));
+  if (cleanSql.includes('FROM users ORDER BY')) {
+    return [...state.users].sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
   }
   if (cleanSql.includes('COUNT(*) as count FROM users')) {
     return [{ count: state.users.length }];
