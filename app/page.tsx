@@ -54,7 +54,7 @@ export default function LandingPage() {
             marginBottom: '24px',
           }}
         >
-          ⚡ Plataforma SaaS de Gerenciamento & Embed de PDFs
+          ⚡ Sistema de Visualizador de PDF Feito pela WDCOM
         </div>
 
         <h1
@@ -79,7 +79,7 @@ export default function LandingPage() {
             lineHeight: 1.6,
           }}
         >
-          Faça upload dos seus documentos, organize por sites e tags e incorpore seus PDFs em qualquer site usando uma URL pública exclusiva ou código iframe responsivo.
+          Sistema de visualizador e gerenciamento completo de PDFs desenvolvido pela <strong>WDCOM Mídia Digital</strong>. Faça upload de documentos, organize por projetos e incorpore seus PDFs em qualquer site usando URLs públicas exclusivas.
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
@@ -96,7 +96,7 @@ export default function LandingPage() {
       <section style={{ padding: '60px 24px', background: 'rgba(17, 24, 39, 0.6)', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>Como Funciona o Fluxo de Trabalho</h2>
+            <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>Como Funciona o Sistema WDCOM</h2>
             <p style={{ color: '#9ca3af', fontSize: '1rem' }}>Gerencie dezenas de PDFs para múltiplos sites de forma centralizada.</p>
           </div>
 
@@ -132,7 +132,7 @@ export default function LandingPage() {
               <div style={{ width: 44, height: 44, borderRadius: 10, background: 'rgba(16, 185, 129, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#34d399', marginBottom: 16 }}>
                 <Globe size={24} />
               </div>
-              <div style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 700, textTransform: 'uppercase', marginBottom: 4 }}>Passo 4</div>
+              <div style={{ fontSize: '0.8rem', color: '#10b981', fontWeight 700, textTransform: 'uppercase', marginBottom: 4 }}>Passo 4</div>
               <h3 style={{ fontSize: '1.15rem', marginBottom: 8 }}>4. Publique</h3>
               <p style={{ fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.5 }}>Cole o iframe no site de destino. Se precisar atualizar o arquivo, a URL se mantém!</p>
             </div>
@@ -153,7 +153,7 @@ export default function LandingPage() {
 
           <div className="glass-panel" style={{ padding: '32px' }}>
             <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
-              <WdcomLogo height={42} />
+              <img src="/og-image.png" alt="WDCOM Mídia Digital" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
             </a>
             <h3 style={{ fontSize: '1.25rem', margin: '14px 0 10px 0' }}>Substituição sem Alterar Iframe</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
@@ -181,14 +181,18 @@ export default function LandingPage() {
           color: '#6b7280',
           marginTop: 'auto',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           gap: '12px',
         }}
       >
         <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
-          <WdcomLogo height={36} />
+          <img src="/og-image.png" alt="WDCOM Mídia Digital" style={{ height: '38px', width: 'auto', objectFit: 'contain' }} />
         </a>
+        <div>
+          Sistema de visualizador de PDF desenvolvido por <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ color: '#00a3e0', fontWeight: 600, textDecoration: 'none' }}>WDCOM Mídia Digital</a> © 2026
+        </div>
       </footer>
     </div>
   );
