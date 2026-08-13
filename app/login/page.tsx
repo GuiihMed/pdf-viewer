@@ -1,12 +1,15 @@
 'use client';
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 import { WdcomLogo } from '@/components/WdcomLogo';
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTarget = searchParams.get('redirect') || '/admin';
+
   const { showToast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,7 +37,7 @@ export default function LoginPage() {
       }
 
       showToast('Login realizado com sucesso! Redirecionando...', 'success');
-      router.push('/admin');
+      router.push(redirectTarget);
     } catch (err) {
       setError('Erro de conexão com o servidor.');
       setLoading(false);
@@ -134,5 +137,13 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div style={{ color: '#ffffff', textAlign: 'center', padding: '40px' }}>Carregando...</div>}>
+      <LoginForm />
+    </Suspense>
   );
 }

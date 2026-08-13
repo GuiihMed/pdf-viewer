@@ -4,6 +4,11 @@ import { getAuthUser } from '@/lib/auth';
 
 export async function GET() {
   try {
+    const user = getAuthUser();
+    if (!user) {
+      return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
+    }
+
     const stmt = db.prepare(`
       SELECT t.*,
         (SELECT COUNT(*) FROM pdf_tags pt WHERE pt.tag_id = t.id) as pdfs_count

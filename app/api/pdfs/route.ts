@@ -12,6 +12,14 @@ export async function GET(request: Request) {
     const status = searchParams.get('status') || '';
     const publicId = searchParams.get('publicId') || '';
 
+    // If publicId is missing, this is an administrative list query
+    if (!publicId) {
+      const user = getAuthUser();
+      if (!user) {
+        return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
+      }
+    }
+
     let query = `
       SELECT p.*, s.name as site_name, s.domain as site_domain,
         (SELECT COUNT(*) FROM pdf_views pv WHERE pv.pdf_id = p.id) as views_count,
