@@ -64,13 +64,10 @@ export default function LoginPage() {
           boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
         }}
       >
-        {/* Brand Header WDCOM */}
+        {/* Brand Header WDCOM Main Logo */}
         <div style={{ textAlign: 'center', marginBottom: '28px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <WdcomLogo size={56} showText={false} />
-          <h1 style={{ fontSize: '1.6rem', marginTop: '12px', marginBottom: '4px' }}>
-            WDCOM <span style={{ color: '#00a3e0' }}>PDF</span>
-          </h1>
-          <p style={{ fontSize: '0.85rem', color: '#9ca3af' }}>
+          <WdcomLogo height={48} />
+          <p style={{ fontSize: '0.85rem', color: '#9ca3af', marginTop: '12px' }}>
             Acesso Restrito ao Painel Administrativo
           </p>
         </div>

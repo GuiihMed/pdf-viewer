@@ -28,7 +28,7 @@ export default function LandingPage() {
           margin: '0 auto',
         }}
       >
-        <WdcomLogo size={46} showText={true} />
+        <WdcomLogo height={42} />
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <Link href="/login" className="btn-secondary" style={{ fontSize: '0.88rem' }}>
@@ -52,7 +52,7 @@ export default function LandingPage() {
             marginBottom: '24px',
           }}
         >
-          ⚡ Plataforma SaaS Desenvolvida por WDCOM
+          ⚡ Plataforma SaaS de Gerenciamento & Embed de PDFs
         </div>
 
         <h1
@@ -77,7 +77,7 @@ export default function LandingPage() {
             lineHeight: 1.6,
           }}
         >
-          Faça upload dos seus documentos, organize por sites e tags e incorpore seus PDFs em qualquer site usando uma URL pública exclusiva ou código iframe responsivo — desenvolvido com a tecnologia da <strong>WDCOM</strong>.
+          Faça upload dos seus documentos, organize por sites e tags e incorpore seus PDFs em qualquer site usando uma URL pública exclusiva ou código iframe responsivo.
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
@@ -94,7 +94,7 @@ export default function LandingPage() {
       <section style={{ padding: '60px 24px', background: 'rgba(17, 24, 39, 0.6)', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>Como Funciona o Fluxo WDCOM</h2>
+            <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>Como Funciona o Fluxo de Trabalho</h2>
             <p style={{ color: '#9ca3af', fontSize: '1rem' }}>Gerencie dezenas de PDFs para múltiplos sites de forma centralizada.</p>
           </div>
 
@@ -150,8 +150,8 @@ export default function LandingPage() {
           </div>
 
           <div className="glass-panel" style={{ padding: '32px' }}>
-            <WdcomLogo size={36} showText={false} />
-            <h3 style={{ fontSize: '1.25rem', margin: '12px 0 10px 0' }}>Substituição sem Alterar Iframe</h3>
+            <WdcomLogo height={32} />
+            <h3 style={{ fontSize: '1.25rem', margin: '14px 0 10px 0' }}>Substituição sem Alterar Iframe</h3>
             <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
               Substitua o arquivo PDF mantendo a mesma URL pública e o mesmo identificador único (`public_id`). Seus clientes nunca precisarão mudar o iframe.
             </p>
@@ -182,8 +182,7 @@ export default function LandingPage() {
           gap: '12px',
         }}
       >
-        <WdcomLogo size={24} showText={false} />
-        <span>Desenvolvido por <strong style={{ color: '#00a3e0' }}>WDCOM</strong> © 2026</span>
+        <WdcomLogo height={24} />
       </footer>
     </div>
   );

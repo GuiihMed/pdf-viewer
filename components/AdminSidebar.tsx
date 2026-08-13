@@ -89,14 +89,17 @@ export const AdminSidebar: React.FC = () => {
           transition: 'transform 0.3s ease',
         }}
       >
-        {/* Brand Logo WDCOM */}
+        {/* Main Logo WDCOM */}
         <div
           style={{
-            padding: '20px 18px',
+            padding: '24px 20px',
             borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
           }}
         >
-          <WdcomLogo size={42} showText={true} />
+          <WdcomLogo height={34} />
         </div>
 
         {/* User Info Pill */}
@@ -171,7 +174,7 @@ export const AdminSidebar: React.FC = () => {
           })}
         </nav>
 
-        {/* Footer Actions & Branding */}
+        {/* Footer Actions */}
         <div style={{ padding: '14px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <Link
             href="/"
@@ -214,10 +217,6 @@ export const AdminSidebar: React.FC = () => {
             <LogOut size={16} />
             <span>Sair do Painel</span>
           </button>
-
-          <div style={{ textAlign: 'center', fontSize: '0.72rem', color: '#6b7280', marginTop: '6px' }}>
-            Desenvolvido por <span style={{ color: '#00A3E0', fontWeight: 600 }}>WDCOM</span>
-          </div>
         </div>
       </aside>
     </>
