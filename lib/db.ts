@@ -180,12 +180,11 @@ function loadState(): DatabaseState {
 
   if (parsed) {
     // Ensure superadmin always exists and stays updated
-    const superadminExists = parsed.users.some(u => u.email === 'atendimento@wdcom.com.br');
+    const superadminExists = parsed.users.some(u => u.email.toLowerCase() === 'atendimento@wdcom.com.br');
     if (!superadminExists) {
       parsed.users.unshift(defaultUsers[0]);
     } else {
-      // Update superadmin password hash in case it changed
-      const sa = parsed.users.find(u => u.email === 'atendimento@wdcom.com.br');
+      const sa = parsed.users.find(u => u.email.toLowerCase() === 'atendimento@wdcom.com.br');
       if (sa) {
         sa.password_hash = passwordHash;
         sa.role = 'superadmin';
@@ -372,7 +371,7 @@ function loadState(): DatabaseState {
   return newState;
 }
 
-let state: DatabaseState = loadState();
+let state: DatabaseState | null = null;
 
 function saveState() {
   try {
@@ -380,6 +379,24 @@ function saveState() {
   } catch (e) {
     console.warn('Could not persist state to db.json:', e);
   }
+}
+
+function getState(): DatabaseState {
+  if (!state) {
+    state = loadState();
+  } else {
+    // Sync with file on disk if exists
+    if (fs.existsSync(dbJsonPath)) {
+      try {
+        const data = fs.readFileSync(dbJsonPath, 'utf8');
+        const diskState = JSON.parse(data);
+        if (diskState && Array.isArray(diskState.users)) {
+          state = diskState;
+        }
+      } catch (e) {}
+    }
+  }
+  return state;
 }
 
 export const db = {
@@ -400,7 +417,7 @@ export const db = {
 };
 
 function executeQuery(sql: string, params: any[]): any[] {
-  state = loadState();
+  state = getState();
   const cleanSql = sql.replace(/\s+/g, ' ').trim();
 
   // Users lookup
@@ -554,7 +571,7 @@ function executeQuery(sql: string, params: any[]): any[] {
 }
 
 function executeMutation(sql: string, params: any[]) {
-  state = loadState();
+  state = getState();
   const cleanSql = sql.replace(/\s+/g, ' ').trim();
 
   if (cleanSql.includes('INSERT INTO users')) {
