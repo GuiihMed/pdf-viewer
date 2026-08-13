@@ -198,6 +198,33 @@ function saveState() {
 function getState(): DatabaseState {
   if (!state) {
     state = loadState();
+    // Async pull from Firestore in background if db.json is cold
+    firestore.collection('system').doc('db_state').get().then((doc) => {
+      if (doc.exists) {
+        const remoteData = doc.data() as DatabaseState;
+        if (remoteData && state) {
+          // Merge remote users, pdfs, sites, tags into state
+          if (Array.isArray(remoteData.pdfs) && remoteData.pdfs.length >= state.pdfs.length) {
+            state.pdfs = remoteData.pdfs;
+          }
+          if (Array.isArray(remoteData.sites) && remoteData.sites.length >= state.sites.length) {
+            state.sites = remoteData.sites;
+          }
+          if (Array.isArray(remoteData.tags) && remoteData.tags.length >= state.tags.length) {
+            state.tags = remoteData.tags;
+          }
+          if (Array.isArray(remoteData.users) && remoteData.users.length >= state.users.length) {
+            state.users = remoteData.users;
+          }
+          if (Array.isArray(remoteData.pdf_tags)) state.pdf_tags = remoteData.pdf_tags;
+          if (Array.isArray(remoteData.allowed_domains)) state.allowed_domains = remoteData.allowed_domains;
+          if (Array.isArray(remoteData.pdf_views)) state.pdf_views = remoteData.pdf_views;
+          try {
+            fs.writeFileSync(dbJsonPath, JSON.stringify(state, null, 2), 'utf8');
+          } catch (e) {}
+        }
+      }
+    }).catch(() => {});
   }
   return state;
 }
