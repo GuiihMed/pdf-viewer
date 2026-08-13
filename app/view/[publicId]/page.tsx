@@ -4,6 +4,8 @@ import { PdfViewer } from '@/components/PdfViewer';
 import { AlertTriangle, FileQuestion } from 'lucide-react';
 import type { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: { params: { publicId: string } }): Promise<Metadata> {
   const pdf = db.prepare('SELECT title, description FROM pdfs WHERE public_id = ?').get(params.publicId) as any;
   if (!pdf) {

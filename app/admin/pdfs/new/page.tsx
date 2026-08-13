@@ -124,8 +124,8 @@ export default function NewPdfPage() {
         return;
       }
 
-      showToast('PDF cadastrado com sucesso!', 'success');
-      router.push('/admin/pdfs');
+      showToast('PDF cadastrado com sucesso! Gerando URL e código iframe...', 'success');
+      router.push(`/admin/pdfs/${data.pdf.id}`);
     } catch (err) {
       setError('Erro de conexão ao enviar o arquivo.');
       setLoading(false);
