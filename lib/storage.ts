@@ -48,6 +48,7 @@ export async function savePdfFile(fileBuffer: Buffer, originalFilename: string):
     pageCount = pdfDoc.getPageCount();
   } catch (err) {
     console.warn('Could not parse PDF page count:', err);
+    pageCount = 1;
   }
 
   return {
