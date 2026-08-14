@@ -83,12 +83,18 @@ export default async function PublicPdfViewPage({ params }: { params: { publicId
     );
   }
 
+  const site = pdf.site_id ? (db.prepare('SELECT name, domain FROM sites WHERE id = ?').get(pdf.site_id) as any) : null;
+
   return (
     <PdfViewer
       publicId={pdf.public_id}
       title={pdf.title}
+      description={pdf.description}
       allowDownload={Boolean(pdf.allow_download)}
       allowPrint={Boolean(pdf.allow_print)}
+      siteName={site ? site.name : ''}
+      siteDomain={site ? site.domain : ''}
+      pageCount={pdf.page_count}
     />
   );
 }
