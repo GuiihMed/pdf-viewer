@@ -39,10 +39,10 @@ export default function LandingPage() {
 
       {/* Header Navigation */}
       <header
-        className="glass-header"
+        className="landing-header glass-header"
         style={{
-          height: '88px',
-          padding: '0 32px',
+          minHeight: '76px',
+          padding: '12px 24px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -53,52 +53,90 @@ export default function LandingPage() {
           zIndex: 100,
         }}
       >
-        <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
-            <WdcomLogo height={56} />
+        <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+          <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center' }}>
+            <WdcomLogo height={44} />
           </a>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <Link href="/galeria" className="btn-secondary" style={{ fontSize: '0.88rem', padding: '10px 20px', background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 163, 224, 0.3)', color: '#38bdf8' }}>
-              📚 Galeria de PDFs
+          <div className="landing-nav-links" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            <Link
+              href="/galeria"
+              className="btn-secondary nav-link-galeria"
+              style={{
+                fontSize: '0.84rem',
+                padding: '8px 14px',
+                background: 'rgba(0, 163, 224, 0.12)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(0, 163, 224, 0.3)',
+                color: '#38bdf8',
+                borderRadius: '8px',
+              }}
+            >
+              📚 Galeria
             </Link>
-            <Link href="/login" className="btn-secondary" style={{ fontSize: '0.88rem', padding: '10px 20px', background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
-              Fazer Login
+            <Link
+              href="/login"
+              className="btn-secondary nav-link-login"
+              style={{
+                fontSize: '0.84rem',
+                padding: '8px 14px',
+                background: 'rgba(255, 255, 255, 0.05)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                borderRadius: '8px',
+              }}
+            >
+              Login
             </Link>
-            <Link href="/login" className="btn-primary" style={{ fontSize: '0.88rem', padding: '10px 22px', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)' }}>
-              Acessar Painel <ArrowRight size={16} />
+            <Link
+              href="/login"
+              className="btn-primary nav-link-painel"
+              style={{
+                fontSize: '0.84rem',
+                padding: '8px 16px',
+                background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)',
+                borderRadius: '8px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+              }}
+            >
+              Painel <ArrowRight size={14} />
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section style={{ padding: '100px 24px 80px 24px', textAlign: 'center', maxWidth: '1120px', margin: '0 auto', flex: 1, position: 'relative', zIndex: 10 }}>
+      <section className="landing-hero" style={{ padding: '60px 20px 60px 20px', textAlign: 'center', maxWidth: '1120px', margin: '0 auto', flex: 1, position: 'relative', zIndex: 10 }}>
         <div
-          className="badge"
+          className="badge hero-badge"
           style={{
             background: 'rgba(0, 163, 224, 0.12)',
             color: '#38bdf8',
             border: '1px solid rgba(0, 163, 224, 0.3)',
-            padding: '8px 22px',
-            marginBottom: '32px',
-            fontSize: '0.92rem',
+            padding: '6px 16px',
+            marginBottom: '24px',
+            fontSize: '0.82rem',
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
             borderRadius: '30px',
             boxShadow: '0 0 30px rgba(0, 163, 224, 0.15)',
+            maxWidth: '100%',
+            lineHeight: 1.4,
           }}
         >
-          <FileText size={16} color="#00a3e0" /> Plataforma de Hospedagem & Embed de PDFs por WDCOM
+          <FileText size={15} color="#00a3e0" style={{ flexShrink: 0 }} /> Plataforma de Hospedagem & Embed de PDFs
         </div>
 
         <h1
+          className="hero-main-title"
           style={{
-            fontSize: 'clamp(2.6rem, 5.8vw, 4.4rem)',
-            lineHeight: 1.12,
+            fontSize: 'clamp(1.9rem, 5.2vw, 4.2rem)',
+            lineHeight: 1.18,
             fontWeight: 800,
-            marginBottom: '26px',
+            marginBottom: '20px',
             letterSpacing: '-0.03em',
             color: '#ffffff',
           }}
@@ -112,50 +150,56 @@ export default function LandingPage() {
         </h1>
 
         <p
+          className="hero-subtitle"
           style={{
-            fontSize: '1.25rem',
+            fontSize: 'clamp(0.95rem, 2.5vw, 1.2rem)',
             color: '#94a3b8',
-            maxWidth: '820px',
-            margin: '0 auto 44px auto',
-            lineHeight: 1.65,
+            maxWidth: '780px',
+            margin: '0 auto 36px auto',
+            lineHeight: 1.6,
             fontWeight: 400,
           }}
         >
           Hospede catálogos, manuais, contratos e relatórios com renderização ultrarrápida. Incorpore no seu site via iFrame responsivo mantendo a mesma URL pública mesmo se trocar o arquivo.
         </p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+        <div className="hero-cta-buttons" style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
           <Link
             href="/galeria"
-            className="btn-primary"
+            className="btn-primary hero-btn-primary"
             style={{
-              padding: '16px 32px',
-              fontSize: '1.05rem',
+              padding: '14px 28px',
+              fontSize: '0.98rem',
               background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)',
               boxShadow: '0 10px 30px rgba(0, 163, 224, 0.35)',
               borderRadius: '10px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
             }}
           >
-            Explorar Galeria de PDFs <ArrowRight size={20} />
+            Explorar Galeria de PDFs <ArrowRight size={18} />
           </Link>
 
           <Link
             href={`/view/${demoPublicId}`}
             target="_blank"
-            className="btn-secondary"
+            className="btn-secondary hero-btn-demo"
             style={{
-              padding: '16px 28px',
-              fontSize: '1.05rem',
+              padding: '14px 24px',
+              fontSize: '0.98rem',
               border: '1px solid rgba(255, 255, 255, 0.2)',
               background: 'rgba(255, 255, 255, 0.05)',
               backdropFilter: 'blur(12px)',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '10px',
+              justifyContent: 'center',
+              gap: '8px',
               borderRadius: '10px',
             }}
           >
-            <FileCheck size={20} color="#38bdf8" /> Ver Demonstração ao Vivo <ExternalLink size={16} />
+            <FileCheck size={18} color="#38bdf8" /> Ver Demonstração ao Vivo <ExternalLink size={15} />
           </Link>
         </div>
       </section>
