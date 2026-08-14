@@ -125,25 +125,50 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
     }
   };
 
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!chatInput.trim()) return;
+  const handleSendMessage = async (e?: React.FormEvent, customQuery?: string) => {
+    if (e) e.preventDefault();
+    const query = customQuery || chatInput;
+    if (!query.trim()) return;
 
-    const userText = chatInput.trim();
+    const userText = query.trim();
     setChatMessages((prev) => [...prev, { role: 'user', content: userText }]);
     setChatInput('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      let aiResponse = `Com base no documento "${title}": Identifiquei que as seções principais tratam dos tópicos abordados pela empresa ${siteName || 'responsável'}. Se precisar de um resumo específico de uma página ou cláusula, basta me solicitar!`;
-      if (userText.toLowerCase().includes('resumo') || userText.toLowerCase().includes('resuma')) {
-        aiResponse = `📄 **Resumo Executivo do PDF**: Este documento corporativo contém especificações técnicas e diretrizes catalogadas para ${siteName || 'a organização'}. Ele abrange tópicos estruturais divididos em páginas sequenciais para consulta rápida e segura.`;
-      } else if (userText.toLowerCase().includes('contato') || userText.toLowerCase().includes('whatsapp')) {
-        aiResponse = `📞 Para falar diretamente com o setor de atendimento ou solicitar uma proposta sobre este documento, você pode clicar no botão **"Falar no WhatsApp"** no topo do leitor!`;
+    try {
+      const res = await fetch('/api/ai/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          publicId,
+          message: userText,
+          conversationHistory: chatMessages,
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setChatMessages((prev) => [...prev, { role: 'assistant', content: data.reply }]);
+      } else {
+        setChatMessages((prev) => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: `📄 Com base no documento "${title}": Este material possui ${pageCount} página(s) da empresa ${siteName || 'WDCOM'}. Posso ajudar com resumos, informações sobre download ou contato comercial!`,
+          },
+        ]);
       }
-      setChatMessages((prev) => [...prev, { role: 'assistant', content: aiResponse }]);
+    } catch (err) {
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: `📄 Documento: "${title}". Você pode navegar pelas ${pageCount} páginas no leitor ou solicitar atendimento comercial pelo botão do WhatsApp.`,
+        },
+      ]);
+    } finally {
       setIsTyping(false);
-    }, 900);
+    }
   };
 
   // Color background depending on theme
@@ -492,24 +517,77 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
                 key={idx}
                 style={{
                   alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-                  maxWidth: '85%',
-                  background: msg.role === 'user' ? '#00a3e0' : 'rgba(255, 255, 255, 0.06)',
+                  maxWidth: '90%',
+                  background: msg.role === 'user' ? '#00a3e0' : 'rgba(255, 255, 255, 0.07)',
                   color: '#ffffff',
                   padding: '10px 14px',
                   borderRadius: msg.role === 'user' ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
                   fontSize: '0.84rem',
-                  lineHeight: 1.45,
+                  lineHeight: 1.5,
                   border: msg.role === 'assistant' ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+                  whiteSpace: 'pre-line',
                 }}
               >
                 {msg.content}
               </div>
             ))}
             {isTyping && (
-              <div style={{ alignSelf: 'flex-start', background: 'rgba(255, 255, 255, 0.06)', padding: '8px 12px', borderRadius: '12px', fontSize: '0.78rem', color: '#a78bfa' }}>
-                Digitando resposta com base no PDF...
+              <div style={{ alignSelf: 'flex-start', background: 'rgba(139, 92, 246, 0.15)', border: '1px solid rgba(139, 92, 246, 0.3)', padding: '8px 12px', borderRadius: '12px', fontSize: '0.78rem', color: '#c084fc', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Sparkles size={13} /> Analisando documento e gerando resposta...
               </div>
             )}
+          </div>
+
+          {/* Quick Suggestion Pills */}
+          <div style={{ padding: '6px 12px', background: 'rgba(0, 0, 0, 0.3)', display: 'flex', gap: '6px', overflowX: 'auto', borderTop: '1px solid rgba(255, 255, 255, 0.05)' }}>
+            <button
+              type="button"
+              onClick={() => handleSendMessage(undefined, 'Fazer um resumo deste documento')}
+              style={{
+                background: 'rgba(139, 92, 246, 0.2)',
+                border: '1px solid rgba(139, 92, 246, 0.4)',
+                color: '#ddd6fe',
+                borderRadius: '16px',
+                padding: '4px 10px',
+                fontSize: '0.72rem',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              📄 Resumo Executivo
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSendMessage(undefined, 'Como falar no WhatsApp com a empresa?')}
+              style={{
+                background: 'rgba(37, 211, 102, 0.15)',
+                border: '1px solid rgba(37, 211, 102, 0.3)',
+                color: '#86efac',
+                borderRadius: '16px',
+                padding: '4px 10px',
+                fontSize: '0.72rem',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              💬 Contato Comercial
+            </button>
+            <button
+              type="button"
+              onClick={() => handleSendMessage(undefined, 'Informações técnicas e quantas páginas tem')}
+              style={{
+                background: 'rgba(56, 189, 248, 0.15)',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
+                color: '#bae6fd',
+                borderRadius: '16px',
+                padding: '4px 10px',
+                fontSize: '0.72rem',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              📊 Páginas & Dados
+            </button>
           </div>
 
           {/* Input Form */}
@@ -532,6 +610,7 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
             />
             <button
               type="submit"
+              disabled={isTyping}
               className="btn-primary"
               style={{ padding: '8px 12px', background: '#8b5cf6', borderRadius: '8px' }}
             >
