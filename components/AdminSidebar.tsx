@@ -51,20 +51,22 @@ export const AdminSidebar: React.FC = () => {
   const isSuperAdmin = user?.role === 'superadmin';
 
   // Build nav items based on role
+  const clientGalleryHref = user?.siteSlug ? `/galeria?site=${user.siteSlug}` : (user?.siteId ? `/galeria?site=${user.siteId}` : '/admin/sites');
+
   const navItems = [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/admin' },
     { label: 'Gerenciar PDFs', icon: FileText, href: '/admin/pdfs' },
     { label: 'Cadastrar PDF', icon: Upload, href: '/admin/pdfs/new' },
-    { label: 'Ver Galeria Pública', icon: ExternalLink, href: '/galeria', target: '_blank' },
-    // Only superadmin sees Sites, Tags, and Users management
     ...(isSuperAdmin
       ? [
-          { label: 'Sites / Projetos', icon: Globe, href: '/admin/sites' },
+          { label: 'Sites / Clientes', icon: Globe, href: '/admin/sites' },
           { label: 'Tags', icon: Tag, href: '/admin/tags' },
           { label: 'Aprovar Cadastros', icon: UserCheck, href: '/admin/users' },
           { label: 'Usuários', icon: Users, href: '/admin/users' },
         ]
-      : []),
+      : [
+          { label: 'Galeria do Meu Site', icon: ExternalLink, href: clientGalleryHref, target: '_blank' },
+        ]),
   ];
 
   return (

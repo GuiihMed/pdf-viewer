@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Globe, Plus, Edit3, Trash2, CheckCircle2, AlertCircle, FileText, Eye } from 'lucide-react';
+import { Globe, Plus, Edit3, Trash2, CheckCircle2, AlertCircle, FileText, Eye, ExternalLink, Share2 } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 import { RequireRole } from '@/components/RequireRole';
 
@@ -164,11 +164,32 @@ function SitesManagementContent() {
               </div>
 
               <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
-                <button onClick={() => handleOpenEdit(site)} className="btn-secondary" style={{ flex: 1, fontSize: '0.8rem', padding: '6px' }}>
-                  <Edit3 size={14} /> Editar
+                <a
+                  href={`/galeria?site=${site.slug || site.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                  style={{ flex: 1, fontSize: '0.8rem', padding: '6px 10px', background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}
+                >
+                  <ExternalLink size={13} /> Galeria do Site
+                </a>
+                <button
+                  onClick={() => {
+                    const url = `${window.location.origin}/galeria?site=${site.slug || site.id}`;
+                    navigator.clipboard.writeText(url);
+                    showToast('Link da Galeria do site copiado!', 'success');
+                  }}
+                  className="btn-secondary"
+                  style={{ padding: '6px 10px' }}
+                  title="Copiar Link da Galeria deste Site"
+                >
+                  <Share2 size={13} />
                 </button>
-                <button onClick={() => handleDelete(site.id)} className="btn-danger" style={{ padding: '6px 12px' }} title="Excluir">
-                  <Trash2 size={14} />
+                <button onClick={() => handleOpenEdit(site)} className="btn-secondary" style={{ padding: '6px 10px' }} title="Editar">
+                  <Edit3 size={13} />
+                </button>
+                <button onClick={() => handleDelete(site.id)} className="btn-danger" style={{ padding: '6px 10px' }} title="Excluir">
+                  <Trash2 size={13} />
                 </button>
               </div>
             </div>

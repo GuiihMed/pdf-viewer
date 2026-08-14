@@ -9,38 +9,45 @@ export async function GET(request: Request) {
     await ensureDbSynced();
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
-    const siteSlug = searchParams.get('site') || searchParams.get('siteSlug') || '';
-    const siteId = searchParams.get('siteId') || '';
+    const siteParam = searchParams.get('site') || searchParams.get('siteSlug') || searchParams.get('siteId') || '';
     const tagSlug = searchParams.get('tag') || searchParams.get('tagSlug') || '';
     const category = searchParams.get('category') || '';
 
-    // Resolving site if filtered by slug or id
-    let resolvedSiteId = siteId;
-    let siteInfo = null;
-    if (siteSlug) {
-      const site = db.prepare('SELECT * FROM sites WHERE slug = ? OR id = ?').get(siteSlug, siteSlug) as any;
-      if (site) {
-        resolvedSiteId = site.id;
-        siteInfo = {
-          id: site.id,
-          name: site.name,
-          domain: site.domain,
-          slug: site.slug,
-          description: site.description,
-        };
-      }
-    } else if (siteId) {
-      const site = db.prepare('SELECT * FROM sites WHERE id = ?').get(siteId) as any;
-      if (site) {
-        siteInfo = {
-          id: site.id,
-          name: site.name,
-          domain: site.domain,
-          slug: site.slug,
-          description: site.description,
-        };
-      }
+    // A Galeria agora é estritamente individual por Site/Cliente.
+    // É obrigatório passar o identificador do site (slug ou id) na URL.
+    if (!siteParam) {
+      return NextResponse.json({
+        success: false,
+        error: 'É necessário informar o identificador do site para acessar a galeria individual.',
+        requiresSite: true,
+      }, { status: 400 });
     }
+
+    // Resolving site
+    const currentSite = db.prepare('SELECT * FROM sites WHERE slug = ? OR id = ? OR domain = ?').get(siteParam, siteParam, siteParam.toLowerCase().trim()) as any;
+    if (!currentSite) {
+      return NextResponse.json({
+        success: false,
+        error: 'Empresa ou Site não encontrado.',
+        siteNotFound: true,
+      }, { status: 404 });
+    }
+
+    if (currentSite.status !== 'active') {
+      return NextResponse.json({
+        success: false,
+        error: 'A galeria deste site está temporariamente desativada.',
+        siteInactive: true,
+      }, { status: 403 });
+    }
+
+    const siteInfo = {
+      id: currentSite.id,
+      name: currentSite.name,
+      domain: currentSite.domain,
+      slug: currentSite.slug,
+      description: currentSite.description,
+    };
 
     let query = `
       SELECT p.id, p.public_id, p.title, p.description, p.category, p.original_filename,
@@ -54,15 +61,10 @@ export async function GET(request: Request) {
               WHERE pt.pdf_id = p.id) as tags_info
       FROM pdfs p
       LEFT JOIN sites s ON s.id = p.site_id
-      WHERE p.status = 'active'
+      WHERE p.status = 'active' AND p.site_id = ?
     `;
 
-    const params: any[] = [];
-
-    if (resolvedSiteId) {
-      query += ` AND p.site_id = ?`;
-      params.push(resolvedSiteId);
-    }
+    const params: any[] = [currentSite.id];
 
     if (category) {
       query += ` AND p.category = ?`;
@@ -117,20 +119,26 @@ export async function GET(request: Request) {
       };
     });
 
-    // Public list of active sites and tags for filter tabs
-    const sites = db.prepare('SELECT id, name, domain, slug FROM sites WHERE status = "active" ORDER BY name ASC').all();
-    const tags = db.prepare('SELECT id, name, slug FROM tags ORDER BY name ASC').all();
+    // Apenas as tags que possuem PDFs vinculados a ESTE site específico
+    const allTags = db.prepare('SELECT id, name, slug FROM tags ORDER BY name ASC').all();
+    const sitePdfIds = db.prepare('SELECT id FROM pdfs WHERE site_id = ? AND status = "active"').all(currentSite.id).map((p: any) => p.id);
+    const siteTagIds = new Set(
+      db.prepare('SELECT tag_id FROM pdf_tags WHERE pdf_id IN (' + (sitePdfIds.map(() => '?').join(',') || "''") + ')')
+        .all(...sitePdfIds)
+        .map((pt: any) => pt.tag_id)
+    );
+
+    const availableTags = allTags.filter((t: any) => siteTagIds.has(t.id) || pdfs.some((p: any) => p.tags.some((pt: any) => pt.id === t.id)));
 
     return NextResponse.json({
       success: true,
       site: siteInfo,
       total: pdfs.length,
       pdfs,
-      availableSites: sites,
-      availableTags: tags,
+      availableTags,
     });
   } catch (err: any) {
-    console.error('Public Gallery API Error:', err);
-    return NextResponse.json({ error: 'Erro ao listar galeria de PDFs pública.' }, { status: 500 });
+    console.error('Individual Site Gallery API Error:', err);
+    return NextResponse.json({ error: 'Erro ao carregar galeria do site.' }, { status: 500 });
   }
 }

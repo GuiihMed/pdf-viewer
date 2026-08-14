@@ -60,21 +60,6 @@ export default function LandingPage() {
 
           <div className="landing-nav-links" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
             <Link
-              href="/galeria"
-              className="btn-secondary nav-link-galeria"
-              style={{
-                fontSize: '0.84rem',
-                padding: '8px 14px',
-                background: 'rgba(0, 163, 224, 0.12)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(0, 163, 224, 0.3)',
-                color: '#38bdf8',
-                borderRadius: '8px',
-              }}
-            >
-              📚 Galeria
-            </Link>
-            <Link
               href="/login"
               className="btn-secondary nav-link-login"
               style={{
@@ -86,7 +71,7 @@ export default function LandingPage() {
                 borderRadius: '8px',
               }}
             >
-              Login
+              Fazer Login
             </Link>
             <Link
               href="/login"
@@ -101,7 +86,7 @@ export default function LandingPage() {
                 gap: '6px',
               }}
             >
-              Painel <ArrowRight size={14} />
+              Acessar Painel <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -165,7 +150,7 @@ export default function LandingPage() {
 
         <div className="hero-cta-buttons" style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
           <Link
-            href="/galeria"
+            href="/login"
             className="btn-primary hero-btn-primary"
             style={{
               padding: '14px 28px',
@@ -179,7 +164,7 @@ export default function LandingPage() {
               gap: '8px',
             }}
           >
-            Explorar Galeria de PDFs <ArrowRight size={18} />
+            Entrar no Painel Administrativo <ArrowRight size={18} />
           </Link>
 
           <Link
