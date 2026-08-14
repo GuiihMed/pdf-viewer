@@ -73,7 +73,7 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Apenas Super Admins podem editar ou aprovar usuários.' }, { status: 403 });
     }
 
-    const { userId, name, role, siteId, status, action } = await request.json();
+    const { userId, name, email, password, role, siteId, status, action } = await request.json();
 
     if (!userId) {
       return NextResponse.json({ error: 'ID do usuário é obrigatório.' }, { status: 400 });
@@ -83,8 +83,8 @@ export async function PUT(request: Request) {
     if (!targetUser) {
       return NextResponse.json({ error: 'Usuário não encontrado.' }, { status: 404 });
     }
-    if (targetUser.email === 'atendimento@wdcom.com.br') {
-      return NextResponse.json({ error: 'O Super Admin principal não pode ser alterado.' }, { status: 403 });
+    if (targetUser.email === 'atendimento@wdcom.com.br' && email && email !== 'atendimento@wdcom.com.br') {
+      return NextResponse.json({ error: 'O e-mail do Super Admin principal não pode ser alterado.' }, { status: 403 });
     }
 
     // Quick status approval / rejection action
@@ -104,6 +104,19 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Para usuários do tipo Cliente, é obrigatório associar um Site.' }, { status: 400 });
     }
 
+    if (email && email.toLowerCase().trim() !== targetUser.email.toLowerCase().trim()) {
+      const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email.toLowerCase().trim()) as any;
+      if (existing && existing.id !== userId) {
+        return NextResponse.json({ error: 'Este e-mail já está sendo utilizado por outro usuário.' }, { status: 400 });
+      }
+      db.prepare('UPDATE users SET email = ? WHERE id = ?').run(email.toLowerCase().trim(), userId);
+    }
+
+    if (password && password.trim().length > 0) {
+      const newHash = bcrypt.hashSync(password.trim(), 10);
+      db.prepare('UPDATE users SET password_hash = ? WHERE id = ?').run(newHash, userId);
+    }
+
     db.prepare(`
       UPDATE users SET name = ?, role = ?, site_id = ? WHERE id = ?
     `).run(name || targetUser.name, role || targetUser.role, siteId || null, userId);
@@ -112,7 +125,7 @@ export async function PUT(request: Request) {
       db.prepare('UPDATE users SET status = ? WHERE id = ?').run(status, userId);
     }
 
-    return NextResponse.json({ success: true, message: 'Usuário atualizado com sucesso.' });
+    return NextResponse.json({ success: true, message: 'Usuário e dados de acesso atualizados com sucesso.' });
   } catch (err: any) {
     console.error('Error updating user:', err);
     return NextResponse.json({ error: 'Erro ao atualizar usuário.' }, { status: 500 });

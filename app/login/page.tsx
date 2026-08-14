@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Lock, Mail, ArrowRight, AlertCircle, User, Building2, CheckCircle2, Clock, Phone, KeyRound } from 'lucide-react';
+import { Lock, Mail, ArrowRight, AlertCircle, User, Building2, CheckCircle2, Clock, Phone, KeyRound, Eye, EyeOff } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 import { WdcomLogo } from '@/components/WdcomLogo';
 import Link from 'next/link';
@@ -19,6 +19,8 @@ function LoginForm() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showRegPassword, setShowRegPassword] = useState(false);
 
   // Forgot password fields
   const [forgotEmail, setForgotEmail] = useState('');
@@ -435,15 +437,35 @@ function LoginForm() {
             <div className="form-group" style={{ marginBottom: '12px' }}>
               <div style={{ position: 'relative' }}>
                 <input
-                  type="password"
+                  type={showLoginPassword ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="form-input"
                   placeholder="Senha"
-                  style={{ paddingLeft: '38px' }}
+                  style={{ paddingLeft: '38px', paddingRight: '40px' }}
                 />
                 <Lock size={16} color="#6b7280" style={{ position: 'absolute', left: 12, top: 13 }} />
+                <button
+                  type="button"
+                  onClick={() => setShowLoginPassword(!showLoginPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: 12,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    color: '#6b7280',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: 0,
+                  }}
+                  title={showLoginPassword ? 'Ocultar senha' : 'Exibir senha'}
+                >
+                  {showLoginPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
               </div>
             </div>
 
@@ -518,15 +540,35 @@ function LoginForm() {
             <div className="form-group" style={{ marginBottom: '14px' }}>
               <div style={{ position: 'relative' }}>
                 <input
-                  type="password"
+                  type={showRegPassword ? 'text' : 'password'}
                   required
                   value={regPassword}
                   onChange={(e) => setRegPassword(e.target.value)}
                   className="form-input"
                   placeholder="Crie uma Senha"
-                  style={{ paddingLeft: '38px' }}
+                  style={{ paddingLeft: '38px', paddingRight: '40px' }}
                 />
                 <Lock size={16} color="#6b7280" style={{ position: 'absolute', left: 12, top: 13 }} />
+                <button
+                  type="button"
+                  onClick={() => setShowRegPassword(!showRegPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: 12,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    color: '#6b7280',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: 0,
+                  }}
+                  title={showRegPassword ? 'Ocultar senha' : 'Exibir senha'}
+                >
+                  {showRegPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
               </div>
             </div>
 

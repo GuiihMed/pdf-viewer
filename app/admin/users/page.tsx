@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Users, Plus, Shield, CheckCircle2, XCircle, Clock, Building2, Pencil, Trash2, X, AlertCircle } from 'lucide-react';
+import { Users, Plus, Shield, CheckCircle2, XCircle, Clock, Building2, Pencil, Trash2, X, AlertCircle, Eye, EyeOff, KeyRound } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 import { RequireRole } from '@/components/RequireRole';
 
@@ -22,6 +22,7 @@ function UsersManagementContent() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState('client');
   const [siteId, setSiteId] = useState('');
   const [status, setStatus] = useState('active');
@@ -120,6 +121,7 @@ function UsersManagementContent() {
     setName('');
     setEmail('');
     setPassword('');
+    setShowPassword(false);
     setRole('client');
     setSiteId('');
     setStatus('active');
@@ -131,6 +133,7 @@ function UsersManagementContent() {
     setName(user.name);
     setEmail(user.email);
     setPassword('');
+    setShowPassword(false);
     setRole(user.role);
     setSiteId(user.site_id || '');
     setStatus(user.status || 'active');
@@ -149,6 +152,8 @@ function UsersManagementContent() {
           body: JSON.stringify({
             userId: editingUser.id,
             name,
+            email,
+            password: password ? password : undefined,
             role,
             siteId: role === 'client' ? siteId : null,
             status,
@@ -156,7 +161,7 @@ function UsersManagementContent() {
         });
 
         if (res.ok) {
-          showToast('Usuário atualizado com sucesso!', 'success');
+          showToast('Usuário e dados de acesso atualizados com sucesso!', 'success');
           setIsModalOpen(false);
           loadUsers();
         } else {
@@ -667,33 +672,75 @@ function UsersManagementContent() {
                 />
               </div>
 
-              {!editingUser && (
-                <>
-                  <div className="form-group">
-                    <label className="form-label">E-mail *</label>
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="email@empresa.com"
-                      className="form-input"
-                    />
-                  </div>
+              <div className="form-group">
+                <label className="form-label">E-mail *</label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="email@empresa.com"
+                  className="form-input"
+                />
+              </div>
 
-                  <div className="form-group">
-                    <label className="form-label">Senha *</label>
-                    <input
-                      type="password"
-                      required
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="••••••••"
-                      className="form-input"
-                    />
-                  </div>
-                </>
-              )}
+              <div className="form-group">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <label className="form-label" style={{ marginBottom: 0 }}>
+                    {editingUser ? 'Alterar Senha (Deixe em branco para manter a atual)' : 'Senha *'}
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#38bdf8',
+                      cursor: 'pointer',
+                      fontSize: '0.78rem',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      padding: 0,
+                    }}
+                  >
+                    {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
+                    {showPassword ? 'Ocultar Senha' : 'Ver Senha'}
+                  </button>
+                </div>
+
+                <div style={{ position: 'relative' }}>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required={!editingUser}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder={editingUser ? 'Nova senha (opcional)' : 'Digite a senha do usuário'}
+                    className="form-input"
+                    style={{ paddingRight: '40px' }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: 12,
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      color: '#6b7280',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      padding: 0,
+                    }}
+                    title={showPassword ? 'Ocultar senha' : 'Exibir senha'}
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+              </div>
 
               <div className="form-group">
                 <label className="form-label">Status da Conta</label>
