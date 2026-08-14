@@ -190,14 +190,6 @@ function GalleryContent() {
             <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
               <WdcomLogo height={44} />
             </Link>
-            {siteInfo && (
-              <>
-                <span style={{ height: '20px', width: '1px', background: 'rgba(255, 255, 255, 0.15)' }} />
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.95rem', fontWeight: 600, color: '#38bdf8' }}>
-                  <Building2 size={16} /> {siteInfo.name}
-                </div>
-              </>
-            )}
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
