@@ -54,9 +54,9 @@ export default function LandingPage() {
         }}
       >
         <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-          <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center' }}>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
             <WdcomLogo height={44} />
-          </a>
+          </Link>
 
           <div className="landing-nav-links" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
             <Link

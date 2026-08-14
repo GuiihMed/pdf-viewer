@@ -187,9 +187,9 @@ function GalleryContent() {
       >
         <div style={{ maxWidth: '1360px', width: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
               <WdcomLogo height={44} />
-            </a>
+            </Link>
             {siteInfo && (
               <>
                 <span style={{ height: '20px', width: '1px', background: 'rgba(255, 255, 255, 0.15)' }} />

@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Lock, Mail, ArrowRight, AlertCircle, User, Building2, CheckCircle2, Clock, Phone, KeyRound } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 import { WdcomLogo } from '@/components/WdcomLogo';
+import Link from 'next/link';
 
 function LoginForm() {
   const router = useRouter();
@@ -23,6 +24,8 @@ function LoginForm() {
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotSent, setForgotSent] = useState(false);
   const [resetLink, setResetLink] = useState('');
+  const [resettingWithLink, setResettingWithLink] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
 
   // Register fields
   const [regName, setRegName] = useState('');
@@ -48,7 +51,7 @@ function LoginForm() {
       .catch(() => {});
 
     // Sync superadmin in Firebase Auth on page load
-    fetch('/api/auth/seed-superadmin', { method: 'POST' }).catch(() => {});
+    fetch('/api/auth/seed-superadmin').catch(() => {});
   }, []);
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
@@ -58,31 +61,29 @@ function LoginForm() {
     setPendingNotice(false);
 
     try {
-      const loginPayload = loginType === 'email'
-        ? { email, password }
-        : { email: phone, password };
-
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loginPayload),
+        body: JSON.stringify({ email, phone, password, loginType }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        if (data.code === 'PENDING_APPROVAL') {
+        if (data.status === 'pending') {
           setPendingNotice(true);
           setError(null);
+        } else if (data.status === 'rejected') {
+          setError('Seu cadastro foi recusado pelo administrador. Entre em contato com o suporte.');
         } else {
-          setError(data.error || 'Erro ao realizar login.');
+          setError(data.error || 'Credenciais inválidas.');
         }
         setLoading(false);
         return;
       }
 
-      showToast('Login realizado com sucesso! Redirecionando...', 'success');
-      window.location.href = redirectTarget;
+      showToast('Login realizado com sucesso!', 'success');
+      router.push(redirectTarget);
     } catch (err) {
       setError('Erro de conexão com o servidor.');
       setLoading(false);
@@ -178,9 +179,9 @@ function LoginForm() {
       >
         {/* Brand Header WDCOM Logo */}
         <div style={{ textAlign: 'center', marginBottom: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <a href="http://wdcom.com.br/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block' }}>
+          <Link href="/" style={{ display: 'inline-block' }}>
             <WdcomLogo height={64} />
-          </a>
+          </Link>
           <p style={{ color: '#9ca3af', fontSize: '0.85rem', marginTop: '8px' }}>
             {mode === 'login' && 'Acesse o Painel de Gerenciamento de PDFs'}
             {mode === 'register' && 'Solicite seu Acesso ao Sistema'}
