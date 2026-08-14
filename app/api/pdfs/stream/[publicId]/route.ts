@@ -54,16 +54,37 @@ export async function GET(request: Request, { params }: { params: { publicId: st
     }
 
     let fileBuffer: Buffer | null = null;
-    if (pdf.storage_path.includes('|||data:application/pdf;base64,')) {
+
+    // 1. Try from in-memory storage_path base64 if present
+    if (pdf.storage_path && pdf.storage_path.includes('|||data:application/pdf;base64,')) {
       const parts = pdf.storage_path.split('|||data:application/pdf;base64,');
       if (parts[1]) {
         fileBuffer = Buffer.from(parts[1], 'base64');
       }
     }
 
-    const filePath = getPdfFilePath(pdf.storage_path);
-    if (!fileBuffer && fs.existsSync(filePath)) {
-      fileBuffer = fs.readFileSync(filePath);
+    // 2. Try from local disk uploads folder
+    if (!fileBuffer && pdf.storage_path) {
+      const filePath = getPdfFilePath(pdf.storage_path);
+      if (fs.existsSync(filePath)) {
+        fileBuffer = fs.readFileSync(filePath);
+      }
+    }
+
+    // 3. Fallback to Firestore 'pdf_files' collection dedicated document
+    if (!fileBuffer) {
+      try {
+        const { firestore } = await import('@/lib/firebase');
+        const fileDoc = await firestore.collection('pdf_files').doc(publicId).get();
+        if (fileDoc.exists) {
+          const docData = fileDoc.data();
+          if (docData && docData.base64Data) {
+            fileBuffer = Buffer.from(docData.base64Data, 'base64');
+          }
+        }
+      } catch (err: any) {
+        console.warn('Could not fetch PDF from Firestore pdf_files:', err.message);
+      }
     }
 
     if (!fileBuffer) {

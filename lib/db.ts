@@ -243,9 +243,37 @@ export async function persistStateAsync(): Promise<void> {
     console.warn('Could not write local db.json:', e);
   }
 
-  // Await Sync to Google Cloud Firestore
+  // 1. Sync metadata to Google Cloud Firestore (stripping base64 from main doc if heavy)
   try {
-    await firestore.collection('system').doc('db_state').set(memoryState);
+    const mainDocState = {
+      ...memoryState,
+      pdfs: memoryState.pdfs.map((p) => {
+        // Strip heavy base64 payload from the central db_state doc to prevent Firestore 1MB doc size limit
+        const cleanName = p.storage_path.split('|||')[0];
+        return {
+          ...p,
+          storage_path: cleanName,
+        };
+      }),
+    };
+
+    await firestore.collection('system').doc('db_state').set(mainDocState);
+
+    // 2. Save individual PDF payloads into 'pdf_files' collection
+    for (const p of memoryState.pdfs) {
+      if (p.storage_path.includes('|||data:application/pdf;base64,')) {
+        const payload = p.storage_path.split('|||data:application/pdf;base64,')[1];
+        if (payload) {
+          await firestore.collection('pdf_files').doc(p.public_id).set({
+            publicId: p.public_id,
+            pdfId: p.id,
+            originalFilename: p.original_filename,
+            base64Data: payload,
+            updatedAt: new Date().toISOString(),
+          }).catch((err) => console.warn(`Error storing PDF file ${p.public_id}:`, err.message));
+        }
+      }
+    }
   } catch (err: any) {
     console.warn('Firestore set error:', err.message);
   }

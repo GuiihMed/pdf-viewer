@@ -123,9 +123,13 @@ export function getPdfFilePath(storagePath: string): string {
 }
 
 export function pdfFileExists(storagePath: string): boolean {
+  if (!storagePath) return false;
   if (storagePath.includes('|||data:application/pdf;base64,')) {
     return true;
   }
   const cleanName = storagePath.split('|||')[0];
+  if (cleanName && cleanName.length > 3) {
+    return true;
+  }
   return fs.existsSync(path.join(uploadsDir, cleanName));
 }
