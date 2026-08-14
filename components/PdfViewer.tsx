@@ -91,11 +91,12 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
       {/* Reader Control Header Bar */}
       {!isIframe && (
         <header
+          className="pdf-viewer-header"
           style={{
-            height: '52px',
+            minHeight: '52px',
             backgroundColor: '#111827',
             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-            padding: '0 16px',
+            padding: '8px 16px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -103,39 +104,39 @@ export const PdfViewer: React.FC<PdfViewerProps> = ({
             zIndex: 10,
           }}
         >
-          <div style={{ fontWeight: 600, fontSize: '0.95rem', color: '#f3f4f6', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '300px' }}>
+          <div style={{ fontWeight: 600, fontSize: '0.92rem', color: '#f3f4f6', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1, minWidth: '120px' }}>
             {title}
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <button onClick={handleZoomOut} className="btn-icon" title="Diminuir Zoom">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+            <button onClick={handleZoomOut} className="btn-icon" title="Diminuir Zoom" style={{ padding: '6px' }}>
               <ZoomOut size={16} />
             </button>
-            <span style={{ fontSize: '0.85rem', fontWeight: 600, minWidth: '45px', textAlign: 'center', color: '#a5b4fc' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 600, minWidth: '38px', textAlign: 'center', color: '#a5b4fc' }}>
               {zoom}%
             </span>
-            <button onClick={handleZoomIn} className="btn-icon" title="Aumentar Zoom">
+            <button onClick={handleZoomIn} className="btn-icon" title="Aumentar Zoom" style={{ padding: '6px' }}>
               <ZoomIn size={16} />
             </button>
-            <button onClick={handleZoomReset} className="btn-icon" title="Ajustar 100%">
+            <button onClick={handleZoomReset} className="btn-icon" title="Ajustar 100%" style={{ padding: '6px' }}>
               <RotateCw size={14} />
             </button>
 
-            <div style={{ width: '1px', height: '20px', backgroundColor: 'rgba(255, 255, 255, 0.15)', margin: '0 4px' }} />
+            <div style={{ width: '1px', height: '18px', backgroundColor: 'rgba(255, 255, 255, 0.15)', margin: '0 2px' }} />
 
             {allowPrint && (
-              <button onClick={handlePrint} className="btn-icon" title="Imprimir Documento">
+              <button onClick={handlePrint} className="btn-icon" title="Imprimir Documento" style={{ padding: '6px' }}>
                 <Printer size={16} />
               </button>
             )}
 
             {allowDownload && (
-              <a href={pdfStreamUrl} download className="btn-icon" title="Baixar PDF">
+              <a href={pdfStreamUrl} download className="btn-icon" title="Baixar PDF" style={{ padding: '6px' }}>
                 <Download size={16} />
               </a>
             )}
 
-            <button onClick={toggleFullscreen} className="btn-icon" title="Modo Tela Cheia">
+            <button onClick={toggleFullscreen} className="btn-icon" title="Modo Tela Cheia" style={{ padding: '6px' }}>
               <Maximize size={16} />
             </button>
           </div>

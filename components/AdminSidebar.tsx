@@ -72,21 +72,44 @@ export const AdminSidebar: React.FC = () => {
       {/* Mobile Menu Toggle Button */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="btn-icon"
+        className="btn-icon mobile-menu-btn"
         style={{
           position: 'fixed',
           top: 16,
           left: 16,
-          zIndex: 50,
-          display: 'none',
+          zIndex: 90,
+          background: 'rgba(15, 23, 42, 0.85)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          color: '#ffffff',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
         }}
         aria-label="Abrir menu"
       >
-        {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+        {mobileOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
+
+      {/* Mobile Backdrop Overlay */}
+      {mobileOpen && (
+        <div
+          onClick={() => setMobileOpen(false)}
+          className="mobile-backdrop"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(0, 0, 0, 0.65)',
+            backdropFilter: 'blur(4px)',
+            zIndex: 70,
+          }}
+        />
+      )}
 
       {/* Sidebar Container */}
       <aside
+        className={`admin-sidebar ${mobileOpen ? 'open' : ''}`}
         style={{
           width: '260px',
           height: '100vh',
@@ -97,8 +120,8 @@ export const AdminSidebar: React.FC = () => {
           borderRight: '1px solid rgba(255, 255, 255, 0.08)',
           display: 'flex',
           flexDirection: 'column',
-          zIndex: 40,
-          transition: 'transform 0.3s ease',
+          zIndex: 80,
+          transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         {/* Main Logo WDCOM Linked to http://wdcom.com.br/ */}
