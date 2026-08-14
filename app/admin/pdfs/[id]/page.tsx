@@ -27,17 +27,45 @@ export default function PdfDetailsPage() {
   const pdfId = params.id as string;
 
   const [pdf, setPdf] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
-    fetch(`/api/pdfs/${pdfId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.pdf) setPdf(data.pdf);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [pdfId]);
+    let isMounted = true;
+    const fetchPdf = async () => {
+      try {
+        const res = await fetch(`/api/pdfs/${pdfId}`, { cache: 'no-store' });
+        const data = await res.json();
+        if (isMounted) {
+          if (data.pdf) {
+            setPdf(data.pdf);
+            setLoading(false);
+          } else if (retryCount < 4) {
+            // Auto retry in case serverless container is warming or sync is catching up
+            setTimeout(() => {
+              if (isMounted) setRetryCount((prev) => prev + 1);
+            }, 1000);
+          } else {
+            setLoading(false);
+          }
+        }
+      } catch (err) {
+        if (isMounted) {
+          if (retryCount < 4) {
+            setTimeout(() => {
+              if (isMounted) setRetryCount((prev) => prev + 1);
+            }, 1000);
+          } else {
+            setLoading(false);
+          }
+        }
+      }
+    };
+
+    fetchPdf();
+    return () => {
+      isMounted = false;
+    };
+  }, [pdfId, retryCount]);
 
   const handleDelete = async () => {
     if (!window.confirm('Tem certeza que deseja excluir este PDF? Esta ação removerá o arquivo do storage e desativará a URL pública.')) {
@@ -58,16 +86,39 @@ export default function PdfDetailsPage() {
   };
 
   if (loading) {
-    return <div style={{ color: '#9ca3af', padding: '48px', textAlign: 'center' }}>Carregando detalhes do PDF...</div>;
+    return (
+      <div style={{ color: '#9ca3af', padding: '60px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+        <div style={{
+          width: '40px',
+          height: '40px',
+          border: '3px solid rgba(0, 163, 224, 0.2)',
+          borderTopColor: '#00a3e0',
+          borderRadius: '50%',
+          animation: 'spin 1s linear infinite'
+        }} />
+        <p style={{ fontSize: '1.05rem', color: '#e5e7eb' }}>Carregando dados e gerando links do PDF...</p>
+      </div>
+    );
   }
 
   if (!pdf) {
     return (
-      <div style={{ color: '#9ca3af', padding: '48px', textAlign: 'center' }}>
-        <h2>PDF não encontrado</h2>
-        <Link href="/admin/pdfs" className="btn-secondary" style={{ marginTop: '16px' }}>
-          Voltar para Galeria
-        </Link>
+      <div className="glass-panel" style={{ padding: '48px', textAlign: 'center', maxWidth: '520px', margin: '40px auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+        <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: 'rgba(239, 68, 68, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f87171' }}>
+          <FileText size={28} />
+        </div>
+        <h2 style={{ fontSize: '1.35rem', color: '#f3f4f6', margin: 0 }}>PDF em processamento ou não localizado</h2>
+        <p style={{ color: '#9ca3af', fontSize: '0.9rem', margin: 0, lineHeight: 1.5 }}>
+          O arquivo foi enviado para o sistema. Se acabou de cadastrar, aguarde alguns instantes ou atualize a página.
+        </p>
+        <div style={{ display: 'flex', gap: '10px', marginTop: '12px' }}>
+          <button onClick={() => { setLoading(true); setRetryCount(0); }} className="btn-secondary" style={{ padding: '10px 18px' }}>
+            Tentar Novamente
+          </button>
+          <Link href="/admin/pdfs" className="btn-primary" style={{ padding: '10px 18px' }}>
+            Ir para Meus PDFs
+          </Link>
+        </div>
       </div>
     );
   }

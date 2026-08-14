@@ -107,6 +107,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    await ensureDbSynced();
     const user = getAuthUser();
     if (!user) {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
@@ -243,6 +244,8 @@ export async function POST(request: Request) {
         }
       } catch (e) {}
     }
+
+    await persistStateAsync();
 
     return NextResponse.json({
       success: true,

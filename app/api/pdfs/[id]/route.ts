@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import db, { ensureDbSynced, persistStateAsync } from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
 import { deletePdfFile } from '@/lib/storage';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   try {
+    await ensureDbSynced();
     const pdfId = params.id;
     const stmt = db.prepare(`
       SELECT p.*, s.name as site_name, s.domain as site_domain,

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Upload, ArrowLeft, CheckCircle2, FileText, Lock, Globe, Tag as TagIcon, AlertCircle, Link as LinkIcon } from 'lucide-react';
+import { Upload, ArrowLeft, CheckCircle2, FileText, Lock, Globe, Tag as TagIcon, AlertCircle, Link as LinkIcon, Eye, Copy, ExternalLink, Code, Sparkles } from 'lucide-react';
 import { useToast } from '@/components/Toast';
 
 export default function NewPdfPage() {
@@ -13,6 +13,7 @@ export default function NewPdfPage() {
   const [tags, setTags] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [createdPdf, setCreatedPdf] = useState<any | null>(null);
 
   // Source Type Mode: 'file' | 'url'
   const [sourceType, setSourceType] = useState<'file' | 'url'>('file');
@@ -124,13 +125,172 @@ export default function NewPdfPage() {
         return;
       }
 
-      showToast('PDF cadastrado com sucesso! Gerando URL e código iframe...', 'success');
-      router.push(`/admin/pdfs/${data.pdf.id}`);
+      showToast('PDF cadastrado com sucesso!', 'success');
+      setLoading(false);
+      setCreatedPdf(data.pdf);
     } catch (err) {
       setError('Erro de conexão ao enviar o arquivo.');
       setLoading(false);
     }
   };
+
+  const copyToClipboard = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    showToast(`${label} copiado com sucesso!`, 'success');
+  };
+
+  if (createdPdf) {
+    const appUrl = typeof window !== 'undefined' ? window.location.origin : 'https://wdcom-pdfviewer.vercel.app';
+    const publicUrl = `${appUrl}/view/${createdPdf.public_id}`;
+    const iframeCode = `<iframe src="${publicUrl}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`;
+
+    return (
+      <div style={{ maxWidth: '780px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div className="glass-panel" style={{ padding: '36px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', border: '1px solid rgba(52, 211, 153, 0.3)', background: 'linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, rgba(17, 24, 39, 0.8) 100%)' }}>
+          <div
+            style={{
+              width: 64,
+              height: 64,
+              borderRadius: '50%',
+              background: 'rgba(52, 211, 153, 0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#34d399',
+            }}
+          >
+            <CheckCircle2 size={36} />
+          </div>
+
+          <div>
+            <h1 style={{ fontSize: '1.75rem', color: '#ffffff', margin: 0, fontWeight: 700 }}>
+              PDF Cadastrado com Sucesso!
+            </h1>
+            <p style={{ color: '#9ca3af', fontSize: '0.95rem', marginTop: '6px', marginBottom: 0 }}>
+              O documento <strong style={{ color: '#67e8f9' }}>{createdPdf.title || title}</strong> já está ativo e pronto para visualização e incorporação no Wix / Site.
+            </p>
+          </div>
+
+          {/* Quick Actions */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center', marginTop: '8px' }}>
+            <Link
+              href={`/view/${createdPdf.public_id}`}
+              target="_blank"
+              className="btn-primary"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 20px',
+                fontSize: '0.95rem',
+                background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)'
+              }}
+            >
+              <Eye size={18} /> Abrir Visualizador
+            </Link>
+
+            <Link
+              href={`/admin/pdfs/${createdPdf.id}`}
+              className="btn-secondary"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 20px', fontSize: '0.95rem' }}
+            >
+              <Code size={18} /> Configurar Iframe & Detalhes
+            </Link>
+
+            <Link
+              href="/admin/pdfs"
+              className="btn-secondary"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 20px', fontSize: '0.95rem' }}
+            >
+              <ArrowLeft size={18} /> Galeria de PDFs
+            </Link>
+          </div>
+
+          {/* Direct Link & Iframe Quick Copy Box */}
+          <div style={{ width: '100%', marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'left' }}>
+            <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#e5e7eb', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <ExternalLink size={14} color="#38bdf8" /> Link Direto do PDF:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(publicUrl, 'Link direto')}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#38bdf8',
+                    cursor: 'pointer',
+                    fontSize: '0.8rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                  }}
+                >
+                  <Copy size={13} /> Copiar Link
+                </button>
+              </div>
+              <input
+                type="text"
+                readOnly
+                value={publicUrl}
+                className="form-input"
+                style={{ fontSize: '0.85rem', fontFamily: 'monospace', color: '#93c5fd', background: 'rgba(0, 0, 0, 0.5)' }}
+                onClick={(e) => (e.target as HTMLInputElement).select()}
+              />
+            </div>
+
+            <div style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '16px', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#e5e7eb', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Code size={14} color="#34d399" /> Código de Incorporação (Iframe para Wix / HTML):
+                </span>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(iframeCode, 'Código Iframe')}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#34d399',
+                    cursor: 'pointer',
+                    fontSize: '0.8rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                  }}
+                >
+                  <Copy size={13} /> Copiar Código
+                </button>
+              </div>
+              <textarea
+                readOnly
+                rows={2}
+                value={iframeCode}
+                className="form-textarea"
+                style={{ fontSize: '0.82rem', fontFamily: 'monospace', color: '#a7f3d0', background: 'rgba(0, 0, 0, 0.5)' }}
+                onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+              />
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              setCreatedPdf(null);
+              setFile(null);
+              setPdfUrl('');
+              setTitle('');
+              setDescription('');
+            }}
+            className="btn-secondary"
+            style={{ marginTop: '12px', fontSize: '0.9rem' }}
+          >
+            Cadastrar Outro PDF
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth: '850px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px' }}>
