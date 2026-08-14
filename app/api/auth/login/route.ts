@@ -1,18 +1,23 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import db from '@/lib/db';
+import db, { ensureDbSynced } from '@/lib/db';
 import { signToken } from '@/lib/auth';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function POST(request: Request) {
   try {
+    await ensureDbSynced();
     const { email, password } = await request.json();
 
     if (!email || !password) {
       return NextResponse.json({ error: 'E-mail e senha são obrigatórios.' }, { status: 400 });
     }
 
+    const cleanEmail = email.toLowerCase().trim();
     const stmt = db.prepare('SELECT * FROM users WHERE email = ?');
-    const user = stmt.get(email) as any;
+    const user = stmt.get(cleanEmail) as any;
 
     if (!user) {
       return NextResponse.json({ error: 'E-mail ou senha inválidos.' }, { status: 401 });

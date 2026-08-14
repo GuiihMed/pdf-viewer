@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import db from '@/lib/db';
+import db, { ensureDbSynced, persistStateAsync } from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
@@ -8,6 +8,7 @@ export const revalidate = 0;
 
 export async function GET() {
   try {
+    await ensureDbSynced();
     const user = getAuthUser();
     if (!user || user.role !== 'superadmin') {
       return NextResponse.json({ error: 'Apenas Super Admins podem gerenciar usuários.' }, { status: 403 });
@@ -31,6 +32,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    await ensureDbSynced();
     const currentUser = getAuthUser();
     if (!currentUser || currentUser.role !== 'superadmin') {
       return NextResponse.json({ error: 'Apenas Super Admins podem cadastrar usuários.' }, { status: 403 });
@@ -59,6 +61,8 @@ export async function POST(request: Request) {
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `).run(userId, name, cleanEmail, passwordHash, role || 'client', siteId || null, status || 'active');
 
+    await persistStateAsync();
+
     return NextResponse.json({ success: true, message: 'Usuário cadastrado com sucesso.' });
   } catch (err: any) {
     console.error('Error creating user:', err);
@@ -68,6 +72,7 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
+    await ensureDbSynced();
     const currentUser = getAuthUser();
     if (!currentUser || currentUser.role !== 'superadmin') {
       return NextResponse.json({ error: 'Apenas Super Admins podem editar ou aprovar usuários.' }, { status: 403 });
@@ -91,11 +96,13 @@ export async function PUT(request: Request) {
     if (action === 'approve') {
       const finalSiteId = siteId || targetUser.site_id || null;
       db.prepare('UPDATE users SET status = ? WHERE id = ?').run('active', userId, finalSiteId);
+      await persistStateAsync();
       return NextResponse.json({ success: true, message: 'Usuário aprovado e ativado com sucesso!' });
     }
 
     if (action === 'reject') {
       db.prepare('UPDATE users SET status = ? WHERE id = ?').run('rejected', userId);
+      await persistStateAsync();
       return NextResponse.json({ success: true, message: 'Cadastro recusado.' });
     }
 
@@ -125,6 +132,8 @@ export async function PUT(request: Request) {
       db.prepare('UPDATE users SET status = ? WHERE id = ?').run(status, userId);
     }
 
+    await persistStateAsync();
+
     return NextResponse.json({ success: true, message: 'Usuário e dados de acesso atualizados com sucesso.' });
   } catch (err: any) {
     console.error('Error updating user:', err);
@@ -134,6 +143,7 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
+    await ensureDbSynced();
     const currentUser = getAuthUser();
     if (!currentUser || currentUser.role !== 'superadmin') {
       return NextResponse.json({ error: 'Apenas Super Admins podem excluir usuários.' }, { status: 403 });
@@ -154,6 +164,7 @@ export async function DELETE(request: Request) {
     }
 
     db.prepare('DELETE FROM users WHERE id = ?').run(userId);
+    await persistStateAsync();
 
     return NextResponse.json({ success: true, message: 'Usuário excluído com sucesso.' });
   } catch (err: any) {

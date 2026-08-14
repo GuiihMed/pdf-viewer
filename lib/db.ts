@@ -235,7 +235,7 @@ function loadLocalFileState(): DatabaseState | null {
   return null;
 }
 
-function persistState() {
+export async function persistStateAsync(): Promise<void> {
   if (!memoryState) return;
   try {
     fs.writeFileSync(dbJsonPath, JSON.stringify(memoryState, null, 2), 'utf8');
@@ -243,12 +243,16 @@ function persistState() {
     console.warn('Could not write local db.json:', e);
   }
 
-  // Sync to Google Cloud Firestore collections
+  // Await Sync to Google Cloud Firestore
   try {
-    firestore.collection('system').doc('db_state').set(memoryState).catch((err) => {
-      console.warn('Firestore sync error:', err.message);
-    });
-  } catch (e) {}
+    await firestore.collection('system').doc('db_state').set(memoryState);
+  } catch (err: any) {
+    console.warn('Firestore set error:', err.message);
+  }
+}
+
+function persistState() {
+  persistStateAsync().catch(() => {});
 }
 
 function getState(): DatabaseState {
@@ -576,21 +580,42 @@ function executeMutation(sql: string, params: any[]) {
   }
 
   if (cleanSql.includes('UPDATE users SET status =')) {
+    // UPDATE users SET status = ? WHERE id = ?
+    const statusVal = params[0];
     const userId = params[1];
     const user = current.users.find((u) => u.id === userId);
     if (user) {
-      user.status = params[0];
-      if (params[2]) user.site_id = params[2];
+      user.status = statusVal;
+      if (params.length > 2 && params[2]) {
+        user.site_id = params[2];
+      }
       user.updated_at = new Date().toISOString();
     }
-  }
-
-  if (cleanSql.includes('UPDATE users SET name =') || cleanSql.includes('UPDATE users SET')) {
+  } else if (cleanSql.includes('UPDATE users SET email =')) {
+    // UPDATE users SET email = ? WHERE id = ?
+    const newEmail = (params[0] || '').toLowerCase().trim();
+    const userId = params[1];
+    const user = current.users.find((u) => u.id === userId);
+    if (user) {
+      user.email = newEmail;
+      user.updated_at = new Date().toISOString();
+    }
+  } else if (cleanSql.includes('UPDATE users SET password_hash =')) {
+    // UPDATE users SET password_hash = ? WHERE id = ?
+    const newHash = params[0];
+    const userId = params[1];
+    const user = current.users.find((u) => u.id === userId);
+    if (user) {
+      user.password_hash = newHash;
+      user.updated_at = new Date().toISOString();
+    }
+  } else if (cleanSql.includes('UPDATE users SET name =') || cleanSql.includes('UPDATE users SET')) {
+    // UPDATE users SET name = ?, role = ?, site_id = ? WHERE id = ?
     const userId = params[params.length - 1];
     const user = current.users.find((u) => u.id === userId);
     if (user) {
-      user.name = params[0];
-      user.role = params[1];
+      user.name = params[0] || user.name;
+      user.role = params[1] || user.role;
       user.site_id = params[2] || null;
       user.updated_at = new Date().toISOString();
     }

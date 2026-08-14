@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import db from '@/lib/db';
+import db, { ensureDbSynced, persistStateAsync } from '@/lib/db';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function POST(request: Request) {
   try {
+    await ensureDbSynced();
     const { name, email, password, siteId } = await request.json();
 
     if (!name || !email || !password) {
@@ -24,6 +28,8 @@ export async function POST(request: Request) {
       INSERT INTO users (id, name, email, password_hash, role, site_id, status)
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `).run(userId, name, cleanEmail, passwordHash, 'client', siteId || null, 'pending');
+
+    await persistStateAsync();
 
     return NextResponse.json({
       success: true,
