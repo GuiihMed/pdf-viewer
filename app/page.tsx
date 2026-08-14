@@ -59,6 +59,9 @@ export default function LandingPage() {
           </a>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <Link href="/galeria" className="btn-secondary" style={{ fontSize: '0.88rem', padding: '10px 20px', background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 163, 224, 0.3)', color: '#38bdf8' }}>
+              📚 Galeria de PDFs
+            </Link>
             <Link href="/login" className="btn-secondary" style={{ fontSize: '0.88rem', padding: '10px 20px', background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255, 255, 255, 0.12)' }}>
               Fazer Login
             </Link>
@@ -121,19 +124,19 @@ export default function LandingPage() {
           Hospede catálogos, manuais, contratos e relatórios com renderização ultrarrápida. Incorpore no seu site via iFrame responsivo mantendo a mesma URL pública mesmo se trocar o arquivo.
         </p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
           <Link
-            href="/login"
+            href="/galeria"
             className="btn-primary"
             style={{
-              padding: '16px 36px',
+              padding: '16px 32px',
               fontSize: '1.05rem',
               background: 'linear-gradient(135deg, #00a3e0 0%, #0077b6 100%)',
               boxShadow: '0 10px 30px rgba(0, 163, 224, 0.35)',
               borderRadius: '10px',
             }}
           >
-            Entrar no Painel Administrativo <ArrowRight size={20} />
+            Explorar Galeria de PDFs <ArrowRight size={20} />
           </Link>
 
           <Link
@@ -141,7 +144,7 @@ export default function LandingPage() {
             target="_blank"
             className="btn-secondary"
             style={{
-              padding: '16px 30px',
+              padding: '16px 28px',
               fontSize: '1.05rem',
               border: '1px solid rgba(255, 255, 255, 0.2)',
               background: 'rgba(255, 255, 255, 0.05)',

@@ -53,8 +53,9 @@ export const AdminSidebar: React.FC = () => {
   // Build nav items based on role
   const navItems = [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/admin' },
-    { label: 'Galeria de PDFs', icon: FileText, href: '/admin/pdfs' },
+    { label: 'Gerenciar PDFs', icon: FileText, href: '/admin/pdfs' },
     { label: 'Cadastrar PDF', icon: Upload, href: '/admin/pdfs/new' },
+    { label: 'Ver Galeria Pública', icon: ExternalLink, href: '/galeria', target: '_blank' },
     // Only superadmin sees Sites, Tags, and Users management
     ...(isSuperAdmin
       ? [
@@ -195,6 +196,8 @@ export const AdminSidebar: React.FC = () => {
               <Link
                 key={item.href}
                 href={item.href}
+                target={(item as any).target}
+                rel={(item as any).target === '_blank' ? 'noopener noreferrer' : undefined}
                 onClick={() => setMobileOpen(false)}
                 style={{
                   display: 'flex',
