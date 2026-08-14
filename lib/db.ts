@@ -24,7 +24,6 @@ function getWritableDir(subDir: string): string {
 }
 
 const dataDir = getWritableDir('data');
-const uploadsDir = getWritableDir('uploads');
 const dbJsonPath = path.join(dataDir, 'db.json');
 
 export interface User {
@@ -111,61 +110,24 @@ export interface DatabaseState {
   pdf_views: PdfView[];
 }
 
-function loadState(): DatabaseState {
-  const now = new Date();
-  const passwordHash = bcrypt.hashSync('#Wdcom2026', 10);
+const DEFAULT_SUPERADMIN_PASSWORD_HASH = bcrypt.hashSync('#Wdcom2026', 10);
 
-  let parsed: DatabaseState | null = null;
-  if (fs.existsSync(dbJsonPath)) {
-    try {
-      const data = fs.readFileSync(dbJsonPath, 'utf8');
-      parsed = JSON.parse(data);
-    } catch (e) {}
-  }
-
-  const defaultUsers: User[] = [
-    {
-      id: 'usr_admin_wdcom',
-      name: 'WDCOM Atendimento',
-      email: 'atendimento@wdcom.com.br',
-      password_hash: passwordHash,
-      role: 'superadmin',
-      site_id: null,
-      status: 'active',
-      created_at: now.toISOString(),
-      updated_at: now.toISOString(),
-    },
-  ];
-
-  if (parsed) {
-    const superadminExists = parsed.users.some(u => u.email.toLowerCase() === 'atendimento@wdcom.com.br');
-    if (!superadminExists) {
-      parsed.users.unshift(defaultUsers[0]);
-    } else {
-      const sa = parsed.users.find(u => u.email.toLowerCase() === 'atendimento@wdcom.com.br');
-      if (sa) {
-        sa.password_hash = passwordHash;
-        sa.role = 'superadmin';
-        sa.site_id = null;
-        sa.status = 'active';
-      }
-    }
-    parsed.users = (parsed.users || []).map(u => ({
-      ...u,
-      site_id: u.site_id !== undefined ? u.site_id : null,
-      status: u.status || 'active',
-    }));
-    parsed.pdfs = parsed.pdfs || [];
-    parsed.sites = parsed.sites || [];
-    parsed.tags = parsed.tags || [];
-    parsed.pdf_tags = parsed.pdf_tags || [];
-    parsed.allowed_domains = parsed.allowed_domains || [];
-    parsed.pdf_views = parsed.pdf_views || [];
-    return parsed;
-  }
-
-  const newState: DatabaseState = {
-    users: defaultUsers,
+function getDefaultState(): DatabaseState {
+  const now = new Date().toISOString();
+  return {
+    users: [
+      {
+        id: 'usr_admin_wdcom',
+        name: 'WDCOM Atendimento',
+        email: 'atendimento@wdcom.com.br',
+        password_hash: DEFAULT_SUPERADMIN_PASSWORD_HASH,
+        role: 'superadmin',
+        site_id: null,
+        status: 'active',
+        created_at: now,
+        updated_at: now,
+      },
+    ],
     sites: [],
     tags: [],
     pdfs: [],
@@ -173,61 +135,170 @@ function loadState(): DatabaseState {
     allowed_domains: [],
     pdf_views: [],
   };
-
-  try {
-    fs.writeFileSync(dbJsonPath, JSON.stringify(newState, null, 2), 'utf8');
-  } catch (e) {}
-  return newState;
 }
 
-let state: DatabaseState | null = null;
+function sanitizeAndEnsureSuperadmin(data: Partial<DatabaseState> | null | undefined): DatabaseState {
+  const defaults = getDefaultState();
+  if (!data) return defaults;
 
-function saveState() {
-  try {
-    fs.writeFileSync(dbJsonPath, JSON.stringify(state, null, 2), 'utf8');
-    // Sync state to Google Cloud Firestore in background
-    if (state) {
-      firestore.collection('system').doc('db_state').set(state).catch((err) => {
-        console.warn('Firestore sync error:', err.message);
-      });
-    }
-  } catch (e) {
-    console.warn('Could not persist state to db.json:', e);
+  const users = Array.isArray(data.users) ? [...data.users] : [];
+  const superadminIndex = users.findIndex(
+    (u) => u && u.email && u.email.toLowerCase() === 'atendimento@wdcom.com.br'
+  );
+
+  if (superadminIndex === -1) {
+    users.unshift(defaults.users[0]);
+  } else {
+    users[superadminIndex] = {
+      ...users[superadminIndex],
+      role: 'superadmin',
+      status: 'active',
+      site_id: null,
+      password_hash: users[superadminIndex].password_hash || DEFAULT_SUPERADMIN_PASSWORD_HASH,
+    };
   }
+
+  return {
+    users: users.map((u) => ({
+      id: u.id,
+      name: u.name || 'Usuário',
+      email: (u.email || '').toLowerCase().trim(),
+      password_hash: u.password_hash || DEFAULT_SUPERADMIN_PASSWORD_HASH,
+      role: u.role || 'client',
+      site_id: u.site_id || null,
+      status: u.status || 'active',
+      created_at: u.created_at || new Date().toISOString(),
+      updated_at: u.updated_at || new Date().toISOString(),
+    })),
+    sites: Array.isArray(data.sites)
+      ? data.sites.map((s) => ({
+          id: s.id,
+          name: s.name || '',
+          domain: (s.domain || '').toLowerCase().trim(),
+          slug: s.slug || (s.name || '').toLowerCase().replace(/[^a-z0-9]/g, '-'),
+          description: s.description || '',
+          wix_webhook_url: s.wix_webhook_url || null,
+          status: s.status || 'active',
+          created_at: s.created_at || new Date().toISOString(),
+          updated_at: s.updated_at || new Date().toISOString(),
+        }))
+      : [],
+    tags: Array.isArray(data.tags)
+      ? data.tags.map((t) => ({
+          id: t.id,
+          name: t.name || '',
+          slug: t.slug || (t.name || '').toLowerCase().replace(/[^a-z0-9]/g, '-'),
+          description: t.description || '',
+          created_at: t.created_at || new Date().toISOString(),
+        }))
+      : [],
+    pdfs: Array.isArray(data.pdfs)
+      ? data.pdfs.map((p) => ({
+          id: p.id,
+          public_id: p.public_id,
+          title: p.title || 'Sem título',
+          description: p.description || '',
+          category: p.category || 'Geral',
+          original_filename: p.original_filename || 'documento.pdf',
+          storage_path: p.storage_path || '',
+          file_size: Number(p.file_size) || 0,
+          page_count: Number(p.page_count) || 1,
+          site_id: p.site_id || null,
+          status: p.status || 'active',
+          allow_download: p.allow_download !== undefined ? Number(p.allow_download) : 1,
+          allow_print: p.allow_print !== undefined ? Number(p.allow_print) : 1,
+          allow_embed: p.allow_embed !== undefined ? Number(p.allow_embed) : 1,
+          restrict_domains: p.restrict_domains !== undefined ? Number(p.restrict_domains) : 0,
+          created_at: p.created_at || new Date().toISOString(),
+          updated_at: p.updated_at || new Date().toISOString(),
+        }))
+      : [],
+    pdf_tags: Array.isArray(data.pdf_tags) ? data.pdf_tags : [],
+    allowed_domains: Array.isArray(data.allowed_domains) ? data.allowed_domains : [],
+    pdf_views: Array.isArray(data.pdf_views) ? data.pdf_views : [],
+  };
+}
+
+let memoryState: DatabaseState | null = null;
+let firestoreSyncPromise: Promise<void> | null = null;
+
+function loadLocalFileState(): DatabaseState | null {
+  if (fs.existsSync(dbJsonPath)) {
+    try {
+      const raw = fs.readFileSync(dbJsonPath, 'utf8');
+      const parsed = JSON.parse(raw);
+      return sanitizeAndEnsureSuperadmin(parsed);
+    } catch (e) {
+      console.warn('Error reading local db.json:', e);
+    }
+  }
+  return null;
+}
+
+function persistState() {
+  if (!memoryState) return;
+  try {
+    fs.writeFileSync(dbJsonPath, JSON.stringify(memoryState, null, 2), 'utf8');
+  } catch (e) {
+    console.warn('Could not write local db.json:', e);
+  }
+
+  // Sync to Google Cloud Firestore collections
+  try {
+    firestore.collection('system').doc('db_state').set(memoryState).catch((err) => {
+      console.warn('Firestore sync error:', err.message);
+    });
+  } catch (e) {}
 }
 
 function getState(): DatabaseState {
-  if (!state) {
-    state = loadState();
-    // Async pull from Firestore in background if db.json is cold
-    firestore.collection('system').doc('db_state').get().then((doc) => {
-      if (doc.exists) {
-        const remoteData = doc.data() as DatabaseState;
-        if (remoteData && state) {
-          // Merge remote users, pdfs, sites, tags into state
-          if (Array.isArray(remoteData.pdfs) && remoteData.pdfs.length >= state.pdfs.length) {
-            state.pdfs = remoteData.pdfs;
+  if (!memoryState) {
+    const local = loadLocalFileState();
+    memoryState = local || getDefaultState();
+
+    // Async pull from Cloud Firestore to hydrate if fresh serverless container
+    if (!firestoreSyncPromise) {
+      firestoreSyncPromise = firestore
+        .collection('system')
+        .doc('db_state')
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const remoteData = doc.data() as DatabaseState;
+            if (remoteData && memoryState) {
+              const sanitized = sanitizeAndEnsureSuperadmin(remoteData);
+              // Merge items
+              if (sanitized.pdfs.length >= memoryState.pdfs.length) {
+                memoryState.pdfs = sanitized.pdfs;
+              }
+              if (sanitized.sites.length >= memoryState.sites.length) {
+                memoryState.sites = sanitized.sites;
+              }
+              if (sanitized.tags.length >= memoryState.tags.length) {
+                memoryState.tags = sanitized.tags;
+              }
+              if (sanitized.users.length >= memoryState.users.length) {
+                memoryState.users = sanitized.users;
+              }
+              if (sanitized.pdf_tags.length >= memoryState.pdf_tags.length) {
+                memoryState.pdf_tags = sanitized.pdf_tags;
+              }
+              if (sanitized.allowed_domains.length >= memoryState.allowed_domains.length) {
+                memoryState.allowed_domains = sanitized.allowed_domains;
+              }
+              if (sanitized.pdf_views.length >= memoryState.pdf_views.length) {
+                memoryState.pdf_views = sanitized.pdf_views;
+              }
+              try {
+                fs.writeFileSync(dbJsonPath, JSON.stringify(memoryState, null, 2), 'utf8');
+              } catch (e) {}
+            }
           }
-          if (Array.isArray(remoteData.sites) && remoteData.sites.length >= state.sites.length) {
-            state.sites = remoteData.sites;
-          }
-          if (Array.isArray(remoteData.tags) && remoteData.tags.length >= state.tags.length) {
-            state.tags = remoteData.tags;
-          }
-          if (Array.isArray(remoteData.users) && remoteData.users.length >= state.users.length) {
-            state.users = remoteData.users;
-          }
-          if (Array.isArray(remoteData.pdf_tags)) state.pdf_tags = remoteData.pdf_tags;
-          if (Array.isArray(remoteData.allowed_domains)) state.allowed_domains = remoteData.allowed_domains;
-          if (Array.isArray(remoteData.pdf_views)) state.pdf_views = remoteData.pdf_views;
-          try {
-            fs.writeFileSync(dbJsonPath, JSON.stringify(state, null, 2), 'utf8');
-          } catch (e) {}
-        }
-      }
-    }).catch(() => {});
+        })
+        .catch(() => {});
+    }
   }
-  return state;
+  return memoryState;
 }
 
 export const db = {
@@ -248,91 +319,98 @@ export const db = {
 };
 
 function executeQuery(sql: string, params: any[]): any[] {
-  state = getState();
+  const current = getState();
   const cleanSql = sql.replace(/\s+/g, ' ').trim();
 
-  // Users lookup
+  // 1. Users Queries
   if (cleanSql.includes('FROM users WHERE email =')) {
-    const email = params[0];
-    return state.users.filter(u => u.email.toLowerCase() === email.toLowerCase());
+    const email = (params[0] || '').toLowerCase().trim();
+    return current.users.filter((u) => u.email.toLowerCase() === email);
   }
   if (cleanSql.includes('FROM users WHERE id =')) {
     const id = params[0];
-    return state.users.filter(u => u.id === id);
+    return current.users.filter((u) => u.id === id);
   }
-  if (cleanSql.includes('FROM users ORDER BY')) {
-    return [...state.users].sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
+  if (cleanSql.includes('FROM users ORDER BY') || cleanSql.includes('FROM users')) {
+    return [...current.users].sort(
+      (a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime()
+    );
   }
   if (cleanSql.includes('COUNT(*) as count FROM users')) {
-    return [{ count: state.users.length }];
+    return [{ count: current.users.length }];
   }
 
-  // Sites queries
+  // 2. Sites Queries
   if (cleanSql.includes('COUNT(*) as count FROM sites')) {
-    return [{ count: state.sites.length }];
+    return [{ count: current.sites.length }];
   }
-  if (cleanSql.includes('FROM sites s')) {
-    return state.sites.map(s => {
-      const pdfsCount = state.pdfs.filter(p => p.site_id === s.id).length;
-      const pdfIds = state.pdfs.filter(p => p.site_id === s.id).map(p => p.id);
-      const totalViews = state.pdf_views.filter(v => pdfIds.includes(v.pdf_id)).length;
-      return { ...s, pdfs_count: pdfsCount, total_views: totalViews };
-    }).sort((a, b) => a.name.localeCompare(b.name));
+  if (cleanSql.includes('FROM sites WHERE slug = ? OR id = ?') || cleanSql.includes('FROM sites WHERE id = ? OR slug = ?')) {
+    const term = (params[0] || '').toLowerCase().trim();
+    return current.sites.filter((s) => s.id === params[0] || s.slug === term || s.domain === term);
   }
   if (cleanSql.includes('FROM sites WHERE id =')) {
-    return state.sites.filter(s => s.id === params[0]);
+    return current.sites.filter((s) => s.id === params[0]);
+  }
+  if (cleanSql.includes('FROM sites WHERE status = "active"') || cleanSql.includes("FROM sites WHERE status = 'active'")) {
+    return current.sites.filter((s) => s.status === 'active').sort((a, b) => a.name.localeCompare(b.name));
+  }
+  if (cleanSql.includes('FROM sites s') || cleanSql.includes('FROM sites')) {
+    return current.sites
+      .map((s) => {
+        const pdfsCount = current.pdfs.filter((p) => p.site_id === s.id).length;
+        const pdfIds = current.pdfs.filter((p) => p.site_id === s.id).map((p) => p.id);
+        const totalViews = current.pdf_views.filter((v) => pdfIds.includes(v.pdf_id)).length;
+        return { ...s, pdfs_count: pdfsCount, total_views: totalViews };
+      })
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  // Tags queries
+  // 3. Tags Queries
   if (cleanSql.includes('COUNT(*) as count FROM tags')) {
-    return [{ count: state.tags.length }];
+    return [{ count: current.tags.length }];
   }
-  if (cleanSql.includes('FROM tags t')) {
-    return state.tags.map(t => {
-      const pdfsCount = state.pdf_tags.filter(pt => pt.tag_id === t.id).length;
-      return { ...t, pdfs_count: pdfsCount };
-    }).sort((a, b) => a.name.localeCompare(b.name));
+  if (cleanSql.includes('FROM tags t') || cleanSql.includes('FROM tags')) {
+    return current.tags
+      .map((t) => {
+        const pdfsCount = current.pdf_tags.filter((pt) => pt.tag_id === t.id).length;
+        return { ...t, pdfs_count: pdfsCount };
+      })
+      .sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  // PDFs queries
+  // 4. Analytics and Views Queries
   if (cleanSql.includes("COUNT(*) as count FROM pdfs WHERE status = 'active'")) {
-    return [{ count: state.pdfs.filter(p => p.status === 'active').length }];
+    return [{ count: current.pdfs.filter((p) => p.status === 'active').length }];
   }
   if (cleanSql.includes("COUNT(*) as count FROM pdfs WHERE status = 'inactive'")) {
-    return [{ count: state.pdfs.filter(p => p.status === 'inactive').length }];
+    return [{ count: current.pdfs.filter((p) => p.status === 'inactive').length }];
   }
   if (cleanSql.includes('COUNT(*) as count FROM pdfs')) {
-    return [{ count: state.pdfs.length }];
+    return [{ count: current.pdfs.length }];
   }
-
-  // PDF Views counts
   if (cleanSql.includes('COUNT(*) as count FROM pdf_views WHERE viewed_at >= datetime')) {
     if (cleanSql.includes('-7 days')) {
       const sevenDaysAgo = new Date(Date.now() - 7 * 86400000).toISOString();
-      return [{ count: state.pdf_views.filter(v => v.viewed_at >= sevenDaysAgo).length }];
+      return [{ count: current.pdf_views.filter((v) => v.viewed_at >= sevenDaysAgo).length }];
     }
     if (cleanSql.includes('-30 days')) {
       const thirtyDaysAgo = new Date(Date.now() - 30 * 86400000).toISOString();
-      return [{ count: state.pdf_views.filter(v => v.viewed_at >= thirtyDaysAgo).length }];
+      return [{ count: current.pdf_views.filter((v) => v.viewed_at >= thirtyDaysAgo).length }];
     }
   }
   if (cleanSql.includes('COUNT(*) as count FROM pdf_views')) {
-    return [{ count: state.pdf_views.length }];
+    return [{ count: current.pdf_views.length }];
   }
-
-  // Raw pdf_views for multi-tenant filtering
   if (cleanSql.includes('FROM pdf_views WHERE') && !cleanSql.includes('COUNT')) {
-    return [...state.pdf_views];
+    return [...current.pdf_views];
   }
-
-  // Chart view trends
   if (cleanSql.includes("strftime('%Y-%m-%d', viewed_at)")) {
     const map = new Map<string, number>();
     for (let i = 13; i >= 0; i--) {
       const dStr = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
       map.set(dStr, 0);
     }
-    state.pdf_views.forEach(v => {
+    current.pdf_views.forEach((v) => {
       const dStr = v.viewed_at ? v.viewed_at.slice(0, 10) : '';
       if (map.has(dStr)) {
         map.set(dStr, (map.get(dStr) || 0) + 1);
@@ -341,21 +419,25 @@ function executeQuery(sql: string, params: any[]): any[] {
     return Array.from(map.entries()).map(([date, count]) => ({ date, count }));
   }
 
-  // PDF lookup by id or public_id
-  if (cleanSql.includes('FROM pdfs p') || cleanSql.includes('FROM pdfs WHERE')) {
-    let list = state.pdfs.map(p => {
-      const site = state.sites.find(s => s.id === p.site_id);
-      const viewsCount = state.pdf_views.filter(v => v.pdf_id === p.id).length;
-      const tagRels = state.pdf_tags.filter(pt => pt.pdf_id === p.id);
-      const tagList = state.tags.filter(t => tagRels.some(r => r.tag_id === t.id));
-      const tagsInfo = tagList.map(t => `${t.id}:${t.name}:${t.slug}`).join(';');
-      const tagsNameList = tagList.map(t => t.name).join(', ');
-      const allowed = state.allowed_domains.filter(ad => ad.pdf_id === p.id).map(ad => ad.domain).join(';');
+  // 5. PDFs and Gallery Queries
+  if (cleanSql.includes('FROM pdfs p') || cleanSql.includes('FROM pdfs WHERE') || cleanSql.includes('FROM pdfs')) {
+    let list = current.pdfs.map((p) => {
+      const site = current.sites.find((s) => s.id === p.site_id);
+      const viewsCount = current.pdf_views.filter((v) => v.pdf_id === p.id).length;
+      const tagRels = current.pdf_tags.filter((pt) => pt.pdf_id === p.id);
+      const tagList = current.tags.filter((t) => tagRels.some((r) => r.tag_id === t.id));
+      const tagsInfo = tagList.map((t) => `${t.id}:${t.name}:${t.slug}`).join(';');
+      const tagsNameList = tagList.map((t) => t.name).join(', ');
+      const allowed = current.allowed_domains
+        .filter((ad) => ad.pdf_id === p.id)
+        .map((ad) => ad.domain)
+        .join(';');
 
       return {
         ...p,
         site_name: site ? site.name : null,
         site_domain: site ? site.domain : null,
+        site_slug: site ? site.slug : null,
         views_count: viewsCount,
         tags_info: tagsInfo,
         tags_list: tagsNameList,
@@ -363,32 +445,77 @@ function executeQuery(sql: string, params: any[]): any[] {
       };
     });
 
-    if (cleanSql.includes('p.public_id = ?') || cleanSql.includes('WHERE public_id = ?')) {
-      const targetPublicId = params[params.length - 1] || params[0];
-      list = list.filter(p => p.public_id === targetPublicId);
-    }
-    if (cleanSql.includes('p.id = ?')) {
-      const id = params[0];
-      list = list.filter(p => p.id === id || p.public_id === id);
-    }
-    if (cleanSql.includes('p.site_id = ?')) {
-      const sId = params[params.indexOf('p.site_id = ?') > -1 ? params.length - 1 : 0];
-      if (sId) list = list.filter(p => p.site_id === sId);
-    }
-    if (cleanSql.includes('p.status = ?')) {
-      const st = params[params.length - 1];
-      if (st) list = list.filter(p => p.status === st);
+    if (cleanSql.includes('WHERE status = "active"') || cleanSql.includes("WHERE status = 'active'") || cleanSql.includes("p.status = 'active'")) {
+      list = list.filter((p) => p.status === 'active');
     }
 
-    const searchParam = params.find(p => typeof p === 'string' && p.startsWith('%') && p.endsWith('%'));
+    // Public ID filter
+    if (cleanSql.includes('p.public_id = ?') || cleanSql.includes('WHERE public_id = ?')) {
+      const targetPublicId = params.find(
+        (p) => typeof p === 'string' && !p.startsWith('%') && p.length < 40 && !p.startsWith('site_') && !p.startsWith('tag_')
+      ) || params[0];
+      if (targetPublicId) {
+        list = list.filter((p) => p.public_id === targetPublicId);
+      }
+    }
+
+    // Direct ID filter
+    if (cleanSql.includes('p.id = ?') || cleanSql.includes('WHERE id = ?')) {
+      const id = params[0];
+      if (id) {
+        list = list.filter((p) => p.id === id || p.public_id === id);
+      }
+    }
+
+    // Site ID filter
+    if (cleanSql.includes('p.site_id = ?')) {
+      const sId = params.find((p) => typeof p === 'string' && (p.startsWith('site_') || p === 'siteId' || p.length > 5));
+      if (sId) {
+        list = list.filter((p) => p.site_id === sId);
+      }
+    }
+
+    // Category filter
+    if (cleanSql.includes('p.category = ?')) {
+      const cat = params.find((p) => typeof p === 'string' && !p.startsWith('%') && !p.startsWith('site_'));
+      if (cat) {
+        list = list.filter((p) => p.category === cat);
+      }
+    }
+
+    // Status filter
+    if (cleanSql.includes('p.status = ?')) {
+      const st = params.find((p) => p === 'active' || p === 'inactive');
+      if (st) {
+        list = list.filter((p) => p.status === st);
+      }
+    }
+
+    // Search term filter (%term%)
+    const searchParam = params.find((p) => typeof p === 'string' && p.startsWith('%') && p.endsWith('%'));
     if (searchParam) {
-      const term = searchParam.replace(/%/g, '').toLowerCase();
-      list = list.filter(p =>
-        (p.title && p.title.toLowerCase().includes(term)) ||
-        (p.description && p.description.toLowerCase().includes(term)) ||
-        (p.original_filename && p.original_filename.toLowerCase().includes(term)) ||
-        (p.public_id && p.public_id.toLowerCase().includes(term))
+      const term = searchParam.replace(/%/g, '').toLowerCase().trim();
+      list = list.filter(
+        (p) =>
+          (p.title && p.title.toLowerCase().includes(term)) ||
+          (p.description && p.description.toLowerCase().includes(term)) ||
+          (p.original_filename && p.original_filename.toLowerCase().includes(term)) ||
+          (p.public_id && p.public_id.toLowerCase().includes(term))
       );
+    }
+
+    // Tag filter
+    if (cleanSql.includes('pdf_tags') && cleanSql.includes('tags t')) {
+      const tagParam = params.find((p) => typeof p === 'string' && !p.startsWith('%') && !p.startsWith('site_'));
+      if (tagParam) {
+        const matchingTag = current.tags.find(
+          (t) => t.slug === tagParam || t.id === tagParam || t.name.toLowerCase() === tagParam.toLowerCase()
+        );
+        if (matchingTag) {
+          const pdfIdsWithTag = current.pdf_tags.filter((pt) => pt.tag_id === matchingTag.id).map((pt) => pt.pdf_id);
+          list = list.filter((p) => pdfIdsWithTag.includes(p.id));
+        }
+      }
     }
 
     if (cleanSql.includes('LIMIT 6')) {
@@ -402,26 +529,33 @@ function executeQuery(sql: string, params: any[]): any[] {
 }
 
 function executeMutation(sql: string, params: any[]) {
-  state = getState();
+  const current = getState();
   const cleanSql = sql.replace(/\s+/g, ' ').trim();
 
+  // 1. Users Mutations
   if (cleanSql.includes('INSERT INTO users')) {
-    state.users.push({
+    const existingIdx = current.users.findIndex((u) => u.email.toLowerCase() === params[2].toLowerCase());
+    const newUser: User = {
       id: params[0],
       name: params[1],
-      email: params[2],
+      email: params[2].toLowerCase().trim(),
       password_hash: params[3],
       role: params[4],
       site_id: params[5] || null,
       status: params[6] || 'active',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
-    });
+    };
+    if (existingIdx >= 0) {
+      current.users[existingIdx] = newUser;
+    } else {
+      current.users.push(newUser);
+    }
   }
 
   if (cleanSql.includes('UPDATE users SET status =')) {
     const userId = params[1];
-    const user = state.users.find(u => u.id === userId);
+    const user = current.users.find((u) => u.id === userId);
     if (user) {
       user.status = params[0];
       if (params[2]) user.site_id = params[2];
@@ -429,9 +563,9 @@ function executeMutation(sql: string, params: any[]) {
     }
   }
 
-  if (cleanSql.includes('UPDATE users SET')) {
+  if (cleanSql.includes('UPDATE users SET name =') || cleanSql.includes('UPDATE users SET')) {
     const userId = params[params.length - 1];
-    const user = state.users.find(u => u.id === userId);
+    const user = current.users.find((u) => u.id === userId);
     if (user) {
       user.name = params[0];
       user.role = params[1];
@@ -442,143 +576,192 @@ function executeMutation(sql: string, params: any[]) {
 
   if (cleanSql.includes('DELETE FROM users WHERE')) {
     const userId = params[0];
-    state.users = state.users.filter(u => u.id !== userId);
+    current.users = current.users.filter((u) => u.id !== userId);
   }
 
+  // 2. Sites Mutations
   if (cleanSql.includes('INSERT INTO sites')) {
-    state.sites.push({
-      id: params[0],
-      name: params[1],
-      domain: params[2],
-      slug: params[3],
-      description: params[4],
-      status: params[5],
+    const siteId = params[0];
+    const name = params[1];
+    const domain = params[2];
+    const slug = params[3];
+    const description = params[4];
+    const wix_webhook_url = params.length >= 7 ? params[5] : null;
+    const status = params.length >= 7 ? params[6] : params[5] || 'active';
+
+    const existingIdx = current.sites.findIndex((s) => s.id === siteId);
+    const newSite: Site = {
+      id: siteId,
+      name,
+      domain: (domain || '').toLowerCase().trim(),
+      slug: slug || name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+      description: description || '',
+      wix_webhook_url: wix_webhook_url || null,
+      status: status || 'active',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
-    });
+    };
+
+    if (existingIdx >= 0) {
+      current.sites[existingIdx] = newSite;
+    } else {
+      current.sites.push(newSite);
+    }
   }
+
   if (cleanSql.includes('UPDATE sites')) {
-    const siteId = params[5];
-    const site = state.sites.find(s => s.id === siteId);
+    const siteId = params[params.length - 1];
+    const site = current.sites.find((s) => s.id === siteId);
     if (site) {
       site.name = params[0];
-      site.domain = params[1];
+      site.domain = (params[1] || '').toLowerCase().trim();
       site.slug = params[2];
       site.description = params[3];
-      site.status = params[4];
+      if (params.length >= 7) {
+        site.wix_webhook_url = params[4] || null;
+        site.status = params[5] || 'active';
+      } else {
+        site.status = params[4] || 'active';
+      }
       site.updated_at = new Date().toISOString();
     }
   }
+
   if (cleanSql.includes('DELETE FROM sites')) {
-    state.sites = state.sites.filter(s => s.id !== params[0]);
+    current.sites = current.sites.filter((s) => s.id !== params[0]);
   }
 
+  // 3. Tags Mutations
   if (cleanSql.includes('INSERT INTO tags')) {
-    state.tags.push({
-      id: params[0],
+    const tagId = params[0];
+    const existingIdx = current.tags.findIndex((t) => t.id === tagId);
+    const newTag: Tag = {
+      id: tagId,
       name: params[1],
       slug: params[2],
-      description: params[3],
+      description: params[3] || '',
       created_at: new Date().toISOString(),
-    });
+    };
+    if (existingIdx >= 0) {
+      current.tags[existingIdx] = newTag;
+    } else {
+      current.tags.push(newTag);
+    }
   }
+
   if (cleanSql.includes('UPDATE tags')) {
     const tagId = params[3];
-    const tag = state.tags.find(t => t.id === tagId);
+    const tag = current.tags.find((t) => t.id === tagId);
     if (tag) {
       tag.name = params[0];
       tag.slug = params[1];
       tag.description = params[2];
     }
   }
+
   if (cleanSql.includes('DELETE FROM tags')) {
-    state.tags = state.tags.filter(t => t.id !== params[0]);
+    current.tags = current.tags.filter((t) => t.id !== params[0]);
+    current.pdf_tags = current.pdf_tags.filter((pt) => pt.tag_id !== params[0]);
   }
 
+  // 4. PDFs Mutations
   if (cleanSql.includes('INSERT INTO pdfs')) {
     const now = new Date().toISOString();
-    state.pdfs.push({
-      id: params[0],
+    const pdfId = params[0];
+    const existingIdx = current.pdfs.findIndex((p) => p.id === pdfId);
+
+    const newPdf: Pdf = {
+      id: pdfId,
       public_id: params[1],
       title: params[2],
-      description: params[3],
-      category: params[4],
+      description: params[3] || '',
+      category: params[4] || 'Geral',
       original_filename: params[5],
       storage_path: params[6],
-      file_size: params[7],
-      page_count: params[8],
-      site_id: params[9],
-      status: params[10],
-      allow_download: params[11],
-      allow_print: params[12],
-      allow_embed: params[13],
-      restrict_domains: params[14],
-      created_at: now,
-      updated_at: now,
-    });
+      file_size: Number(params[7]) || 0,
+      page_count: Number(params[8]) || 1,
+      site_id: params[9] || null,
+      status: params[10] || 'active',
+      allow_download: Number(params[11]) || 0,
+      allow_print: Number(params[12]) || 0,
+      allow_embed: Number(params[13]) || 0,
+      restrict_domains: Number(params[14]) || 0,
+      created_at: params.length >= 16 ? params[15] : now,
+      updated_at: params.length >= 17 ? params[16] : now,
+    };
+
+    if (existingIdx >= 0) {
+      current.pdfs[existingIdx] = newPdf;
+    } else {
+      current.pdfs.push(newPdf);
+    }
   }
-  if (cleanSql.includes('UPDATE pdfs SET title =')) {
-    const pdfId = params[9];
-    const pdf = state.pdfs.find(p => p.id === pdfId);
+
+  if (cleanSql.includes('UPDATE pdfs SET title =') || cleanSql.includes('UPDATE pdfs SET')) {
+    const pdfId = params[params.length - 1];
+    const pdf = current.pdfs.find((p) => p.id === pdfId);
     if (pdf) {
       pdf.title = params[0];
-      pdf.description = params[1];
-      pdf.category = params[2];
-      pdf.site_id = params[3];
-      pdf.status = params[4];
-      pdf.allow_download = params[5];
-      pdf.allow_print = params[6];
-      pdf.allow_embed = params[7];
-      pdf.restrict_domains = params[8];
+      pdf.description = params[1] || '';
+      pdf.category = params[2] || 'Geral';
+      pdf.site_id = params[3] || null;
+      pdf.status = params[4] || 'active';
+      pdf.allow_download = Number(params[5]) || 0;
+      pdf.allow_print = Number(params[6]) || 0;
+      pdf.allow_embed = Number(params[7]) || 0;
+      pdf.restrict_domains = Number(params[8]) || 0;
       pdf.updated_at = new Date().toISOString();
     }
   }
+
   if (cleanSql.includes('UPDATE pdfs SET original_filename =')) {
     const pdfId = params[4];
-    const pdf = state.pdfs.find(p => p.id === pdfId);
+    const pdf = current.pdfs.find((p) => p.id === pdfId);
     if (pdf) {
       pdf.original_filename = params[0];
       pdf.storage_path = params[1];
-      pdf.file_size = params[2];
-      pdf.page_count = params[3];
+      pdf.file_size = Number(params[2]) || 0;
+      pdf.page_count = Number(params[3]) || 1;
       pdf.updated_at = new Date().toISOString();
     }
   }
-  if (cleanSql.includes('DELETE FROM pdfs WHERE id =')) {
+
+  if (cleanSql.includes('DELETE FROM pdfs WHERE id =') || cleanSql.includes('DELETE FROM pdfs WHERE')) {
     const pdfId = params[0];
-    state.pdfs = state.pdfs.filter(p => p.id !== pdfId);
-    state.pdf_tags = state.pdf_tags.filter(pt => pt.pdf_id !== pdfId);
-    state.allowed_domains = state.allowed_domains.filter(ad => ad.pdf_id !== pdfId);
-    state.pdf_views = state.pdf_views.filter(pv => pv.pdf_id !== pdfId);
+    current.pdfs = current.pdfs.filter((p) => p.id !== pdfId);
+    current.pdf_tags = current.pdf_tags.filter((pt) => pt.pdf_id !== pdfId);
+    current.allowed_domains = current.allowed_domains.filter((ad) => ad.pdf_id !== pdfId);
+    current.pdf_views = current.pdf_views.filter((pv) => pv.pdf_id !== pdfId);
   }
 
+  // 5. Relations (Tags, Domains, Views)
   if (cleanSql.includes('INSERT INTO pdf_tags')) {
-    state.pdf_tags.push({ pdf_id: params[0], tag_id: params[1] });
+    current.pdf_tags.push({ pdf_id: params[0], tag_id: params[1] });
   }
   if (cleanSql.includes('DELETE FROM pdf_tags')) {
-    state.pdf_tags = state.pdf_tags.filter(pt => pt.pdf_id !== params[0]);
+    current.pdf_tags = current.pdf_tags.filter((pt) => pt.pdf_id !== params[0]);
   }
 
   if (cleanSql.includes('INSERT INTO allowed_domains')) {
-    state.allowed_domains.push({ id: params[0], pdf_id: params[1], domain: params[2] });
+    current.allowed_domains.push({ id: params[0], pdf_id: params[1], domain: params[2] });
   }
   if (cleanSql.includes('DELETE FROM allowed_domains')) {
-    state.allowed_domains = state.allowed_domains.filter(ad => ad.pdf_id !== params[0]);
+    current.allowed_domains = current.allowed_domains.filter((ad) => ad.pdf_id !== params[0]);
   }
 
   if (cleanSql.includes('INSERT INTO pdf_views')) {
-    state.pdf_views.push({
+    current.pdf_views.push({
       id: params[0],
       pdf_id: params[1],
-      referrer: params[2],
-      user_agent: params[3],
-      device: params[4],
-      browser: params[5],
+      referrer: params[2] || 'Direct',
+      user_agent: params[3] || '',
+      device: params[4] || 'Desktop',
+      browser: params[5] || 'Outro',
       viewed_at: new Date().toISOString(),
     });
   }
 
-  saveState();
+  persistState();
 }
 
 export default db;
