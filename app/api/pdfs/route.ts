@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import db, { ensureDbSynced } from '@/lib/db';
+import db, { ensureDbSynced, persistStateAsync } from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
 import { generatePublicId, savePdfFile, downloadAndSavePdfFromUrl } from '@/lib/storage';
 
