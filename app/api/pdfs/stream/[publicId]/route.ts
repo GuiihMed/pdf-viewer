@@ -1,11 +1,16 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
-import db from '@/lib/db';
+import db, { ensureDbSynced } from '@/lib/db';
 import { getPdfFilePath, pdfFileExists } from '@/lib/storage';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function GET(request: Request, { params }: { params: { publicId: string } }) {
   try {
     const publicId = params.publicId;
+
+    await ensureDbSynced();
 
     const pdf = db.prepare(`
       SELECT p.*,

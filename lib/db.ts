@@ -255,50 +255,72 @@ function getState(): DatabaseState {
   if (!memoryState) {
     const local = loadLocalFileState();
     memoryState = local || getDefaultState();
-
-    // Async pull from Cloud Firestore to hydrate if fresh serverless container
-    if (!firestoreSyncPromise) {
-      firestoreSyncPromise = firestore
-        .collection('system')
-        .doc('db_state')
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            const remoteData = doc.data() as DatabaseState;
-            if (remoteData && memoryState) {
-              const sanitized = sanitizeAndEnsureSuperadmin(remoteData);
-              // Merge items
-              if (sanitized.pdfs.length >= memoryState.pdfs.length) {
-                memoryState.pdfs = sanitized.pdfs;
-              }
-              if (sanitized.sites.length >= memoryState.sites.length) {
-                memoryState.sites = sanitized.sites;
-              }
-              if (sanitized.tags.length >= memoryState.tags.length) {
-                memoryState.tags = sanitized.tags;
-              }
-              if (sanitized.users.length >= memoryState.users.length) {
-                memoryState.users = sanitized.users;
-              }
-              if (sanitized.pdf_tags.length >= memoryState.pdf_tags.length) {
-                memoryState.pdf_tags = sanitized.pdf_tags;
-              }
-              if (sanitized.allowed_domains.length >= memoryState.allowed_domains.length) {
-                memoryState.allowed_domains = sanitized.allowed_domains;
-              }
-              if (sanitized.pdf_views.length >= memoryState.pdf_views.length) {
-                memoryState.pdf_views = sanitized.pdf_views;
-              }
-              try {
-                fs.writeFileSync(dbJsonPath, JSON.stringify(memoryState, null, 2), 'utf8');
-              } catch (e) {}
-            }
-          }
-        })
-        .catch(() => {});
-    }
   }
   return memoryState;
+}
+
+export async function ensureDbSynced(): Promise<DatabaseState> {
+  const current = getState();
+  try {
+    const doc = await firestore.collection('system').doc('db_state').get();
+    if (doc.exists) {
+      const remoteData = doc.data() as DatabaseState;
+      if (remoteData) {
+        const sanitized = sanitizeAndEnsureSuperadmin(remoteData);
+        // Merge items from remote
+        if (sanitized.pdfs.length > 0) {
+          sanitized.pdfs.forEach((rPdf) => {
+            const idx = current.pdfs.findIndex((p) => p.id === rPdf.id || p.public_id === rPdf.public_id);
+            if (idx >= 0) {
+              current.pdfs[idx] = rPdf;
+            } else {
+              current.pdfs.push(rPdf);
+            }
+          });
+        }
+        if (sanitized.sites.length > 0) {
+          sanitized.sites.forEach((rSite) => {
+            const idx = current.sites.findIndex((s) => s.id === rSite.id);
+            if (idx >= 0) {
+              current.sites[idx] = rSite;
+            } else {
+              current.sites.push(rSite);
+            }
+          });
+        }
+        if (sanitized.tags.length > 0) {
+          sanitized.tags.forEach((rTag) => {
+            const idx = current.tags.findIndex((t) => t.id === rTag.id);
+            if (idx >= 0) {
+              current.tags[idx] = rTag;
+            } else {
+              current.tags.push(rTag);
+            }
+          });
+        }
+        if (sanitized.users.length > 0) {
+          sanitized.users.forEach((rUser) => {
+            const idx = current.users.findIndex((u) => u.id === rUser.id || u.email.toLowerCase() === rUser.email.toLowerCase());
+            if (idx >= 0) {
+              current.users[idx] = rUser;
+            } else {
+              current.users.push(rUser);
+            }
+          });
+        }
+        if (Array.isArray(sanitized.pdf_tags)) current.pdf_tags = sanitized.pdf_tags;
+        if (Array.isArray(sanitized.allowed_domains)) current.allowed_domains = sanitized.allowed_domains;
+        if (Array.isArray(sanitized.pdf_views)) current.pdf_views = sanitized.pdf_views;
+
+        try {
+          fs.writeFileSync(dbJsonPath, JSON.stringify(current, null, 2), 'utf8');
+        } catch (e) {}
+      }
+    }
+  } catch (err: any) {
+    console.warn('Error during ensureDbSynced from Firestore:', err.message);
+  }
+  return current;
 }
 
 export const db = {

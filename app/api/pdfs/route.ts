@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import db from '@/lib/db';
+import db, { ensureDbSynced } from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
 import { generatePublicId, savePdfFile, downloadAndSavePdfFromUrl } from '@/lib/storage';
 
@@ -8,6 +8,7 @@ export const revalidate = 0;
 
 export async function GET(request: Request) {
   try {
+    await ensureDbSynced();
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
     const siteId = searchParams.get('siteId') || '';

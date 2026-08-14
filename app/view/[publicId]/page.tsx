@@ -1,12 +1,14 @@
 import React from 'react';
-import db from '@/lib/db';
+import db, { ensureDbSynced } from '@/lib/db';
 import { PdfViewer } from '@/components/PdfViewer';
 import { AlertTriangle, FileQuestion } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export async function generateMetadata({ params }: { params: { publicId: string } }): Promise<Metadata> {
+  await ensureDbSynced();
   const pdf = db.prepare('SELECT title, description FROM pdfs WHERE public_id = ?').get(params.publicId) as any;
   if (!pdf) {
     return {
@@ -21,9 +23,10 @@ export async function generateMetadata({ params }: { params: { publicId: string 
   };
 }
 
-export default function PublicPdfViewPage({ params }: { params: { publicId: string } }) {
+export default async function PublicPdfViewPage({ params }: { params: { publicId: string } }) {
   const publicId = params.publicId;
 
+  await ensureDbSynced();
   const pdf = db.prepare('SELECT * FROM pdfs WHERE public_id = ?').get(publicId) as any;
 
   if (!pdf) {
